@@ -24,8 +24,8 @@ def free_port():
 def verify(previous):
     previous = previous.resolve()
     previous_version = (previous / "VERSION").read_text().strip()
-    if previous_version not in {"0.3.6", "0.4.0", "0.4.7", "0.4.8", "0.4.9", "0.4.10", "0.4.11", "0.5.0", "0.5.1", "0.5.2", "0.5.3", "0.5.4", "0.5.5", "0.5.6", "0.5.7", "0.5.8", "0.5.9", "0.5.10", "0.5.11"}:
-        raise ValueError("use an explicitly supported prior package (0.3.6, 0.4.0, 0.4.7–0.4.11 or 0.5.0–0.5.11)")
+    if previous_version not in {"0.3.6", "0.4.0", "0.4.7", "0.4.8", "0.4.9", "0.4.10", "0.4.11", "0.5.0", "0.5.1", "0.5.2", "0.5.3", "0.5.4", "0.5.5", "0.5.6", "0.5.7", "0.5.8", "0.5.9", "0.5.10", "0.5.11", "0.5.12"}:
+        raise ValueError("use an explicitly supported prior package (0.3.6, 0.4.0, 0.4.7–0.4.11 or 0.5.0–0.5.12)")
     spec = importlib.util.spec_from_file_location("upgrade_ops", ROOT / "runtime/xhs_ops.py")
     ops = importlib.util.module_from_spec(spec); spec.loader.exec_module(ops)
     steps = []
