@@ -1,0 +1,4 @@
+interface:
+  display_name: "小红书自动运营"
+  short_description: "小红书评论与图文运营，保留执行进度，遇到异常保存并恢复任务"
+  default_prompt: "使用 $xiaohongshu-operations，先检查配置、任务状态和授权，再完成本次评论或图文运营；未授权只保存研究与草稿。"

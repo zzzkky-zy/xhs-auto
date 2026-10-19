@@ -1,0 +1,19 @@
+cookies.json
+*.lock
+__pycache__/
+.DS_Store
+.tools/
+bin/
+dist/
+var/
+*.sqlite3*
+*.log*
+config/*.local.json
+config/*.private.json
+**/vendor/
+
+# Private operation data and merge evidence; never package or commit.
+工作资料/
+
+# Generated validation reports belong in private work files.
+docs/test-results.json

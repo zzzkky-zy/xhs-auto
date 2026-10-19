@@ -1,0 +1,18 @@
+Upstream license declaration evidence (verbatim excerpts)
+Repository: https://github.com/threerocks/sweety-skills
+Commit: 3ddcaeb80310daf991797ad2772bba82709d6f3e
+
+README.md, final license section:
+## License
+
+MIT
+
+.codex-plugin/plugin.json, license field:
+"license": "MIT"
+
+At this commit the repository has no root LICENSE file and the four imported
+modules have no standalone LICENSE file. These excerpts preserve the available
+upstream declarations; this file does not claim to be a complete upstream
+copyright notice. Unrelated sweety-md vendor licenses were not substituted.
+The README statement about MIT-0 applies to ClawHub publication, not the source
+used here. Existing Humanizer and MCP licenses remain separate and unchanged.

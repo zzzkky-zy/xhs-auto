@@ -1,0 +1,19 @@
+# 小红书自动运营插件 · 0.6.0
+
+完整的小红书运营方法、图文制作资源、Humanizer、Naturalizer和配套MCP。研究、评论、回评、图文与视频发布均从 [运营入口](skills/xiaohongshu-operations/SKILL.md) 开始。
+
+## 安装与使用
+
+选择本机平台运行包，先校验SHA256，再按 [安装说明](docs/CODEX-LOCAL.md) 安装。Python只使用标准库，运行包含预编译程序，无需Go或Docker。其他支持MCP的agent可按 [通用接入](docs/AGENT-INSTALL.md) 配置。
+
+收到单独的私人配置包时，按其中说明导入完整配置和素材；没有私人配置时执行首次引导。配置、照片、产品资料、账号登录及任务记录不在公共插件包内。
+
+| 用途 | 入口 |
+| --- | --- |
+| 执行与恢复 | [运行规则](docs/RUNTIME.md)、[MCP字段](docs/MCP-CONTRACT.md) |
+| 内容规则与完整方法 | [内容来源](docs/CONTENT-SOURCES.md)、[内容审查](docs/CONTENT-REVIEW.md) |
+| 所有画风与制图 | [视觉入口](skills/xiaohongshu-operations/references/visual-production.md) |
+| 升级 | [保留记录的升级与回退](docs/UPGRADE-ROLLBACK.md) |
+| Linux宿主 | [资源配置](docs/CLOUD-RESOURCES.md)、[验收标准](docs/CLOUD-ACCEPTANCE.md) |
+
+源码包另含构建源码、测试和锁定依赖。修改在源码完成，不编辑安装缓存。发布数量、时间和审批以实际用户授权为准。

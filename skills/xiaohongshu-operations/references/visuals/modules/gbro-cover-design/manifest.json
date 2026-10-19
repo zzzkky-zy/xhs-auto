@@ -1,0 +1,273 @@
+{
+  "repository": "https://github.com/pyang5166/gbro-cover-design",
+  "commit": "8d1a0a5487e9ee6539b2b0a471b58469aadfedd6",
+  "verified_on": "2026-10-16",
+  "purpose": "完整构图、示例和许可；入口按当前私人配置与宿主适配，分别保留来源和当前哈希",
+  "license": "upstream/LICENSE",
+  "files": [
+    {
+      "source_path": ".gitignore",
+      "path": "upstream/.gitignore",
+      "mode": "100644",
+      "git_blob": "f839c465bfb976d44063c4e6ceadffbe0ea351a3",
+      "sha256": "fc6aef30c006e38d69f894958c7d418b073730a396b6ae6fe3a990b9b9d3050f",
+      "bytes": 37,
+      "local_sha256": "fc6aef30c006e38d69f894958c7d418b073730a396b6ae6fe3a990b9b9d3050f",
+      "local_bytes": 37,
+      "adapted": false
+    },
+    {
+      "source_path": "LICENSE",
+      "path": "upstream/LICENSE",
+      "mode": "100644",
+      "git_blob": "e2a3364fa669bea16cb4e0946aedf605784e7f52",
+      "sha256": "89fe5ae8d5faeda939e392638d21ef1ab5084b3ecb8df96c8bbcb38416291958",
+      "bytes": 1148,
+      "local_sha256": "89fe5ae8d5faeda939e392638d21ef1ab5084b3ecb8df96c8bbcb38416291958",
+      "local_bytes": 1148,
+      "adapted": false
+    },
+    {
+      "source_path": "README.md",
+      "path": "upstream/README.md",
+      "mode": "100644",
+      "git_blob": "59a3357a713866017f39a5bee7bc7f425293bea3",
+      "sha256": "141de1c65d23322dd22d44bf52e8af84f5a51eb5cf81e40ff33b51ca0dc45bcc",
+      "bytes": 3723,
+      "local_sha256": "951ebcc23078de1beb2310c102c5962f1558a379fb17e2ff2bd9a620e10744ce",
+      "local_bytes": 175,
+      "adapted": true
+    },
+    {
+      "source_path": "SKILL.md",
+      "path": "upstream/SKILL.md",
+      "mode": "100644",
+      "git_blob": "f4c6aa030fb25ff4bd7bbc8620638e5913f1a2aa",
+      "sha256": "f7bb698bd5ca3386a0fe7bb12947b25158e196708b41396bcc8311aaef66d793",
+      "bytes": 8226,
+      "local_sha256": "8d01200c3f185444d204884433bec214c7294b4a8d3a2c4ec74fc98f7f6a545f",
+      "local_bytes": 6688,
+      "adapted": true
+    },
+    {
+      "source_path": "assets/.gitkeep",
+      "path": "upstream/assets/.gitkeep",
+      "mode": "100644",
+      "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "local_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "local_bytes": 0,
+      "adapted": false
+    },
+    {
+      "source_path": "assets/examples/01-让AI做我老板.webp",
+      "path": "upstream/assets/examples/01-让AI做我老板.webp",
+      "mode": "100644",
+      "git_blob": "f6d44f1d233a73643fe10df452013ff9b72d88bc",
+      "sha256": "95d6851bbca0b418fc9787ccb2b0b85f9acc4670502fdd19b46bb4d171eb268f",
+      "bytes": 247394,
+      "local_sha256": "95d6851bbca0b418fc9787ccb2b0b85f9acc4670502fdd19b46bb4d171eb268f",
+      "local_bytes": 247394,
+      "adapted": false
+    },
+    {
+      "source_path": "assets/examples/02-下一代Agent来了.webp",
+      "path": "upstream/assets/examples/02-下一代Agent来了.webp",
+      "mode": "100644",
+      "git_blob": "1f2346bf53e89e6ac7d496726d12f66b8fe7aa53",
+      "sha256": "ec35f8b9391aeeed57e1835fb041a529a2c55cc20cf929feda660ea0680d0fd6",
+      "bytes": 195656,
+      "local_sha256": "ec35f8b9391aeeed57e1835fb041a529a2c55cc20cf929feda660ea0680d0fd6",
+      "local_bytes": 195656,
+      "adapted": false
+    },
+    {
+      "source_path": "assets/examples/03-3个Skills一个运营部.webp",
+      "path": "upstream/assets/examples/03-3个Skills一个运营部.webp",
+      "mode": "100644",
+      "git_blob": "ca101c79d1967e7cfe4db1d12763653ef447461d",
+      "sha256": "9dd7d7f63faa2868d2e61b61757064ce56a886b692fb362a02be07e3fb27ac2a",
+      "bytes": 244034,
+      "local_sha256": "9dd7d7f63faa2868d2e61b61757064ce56a886b692fb362a02be07e3fb27ac2a",
+      "local_bytes": 244034,
+      "adapted": false
+    },
+    {
+      "source_path": "assets/examples/04-别再自己操作电脑了.webp",
+      "path": "upstream/assets/examples/04-别再自己操作电脑了.webp",
+      "mode": "100644",
+      "git_blob": "3e5c94b4a60d95216ad1f6b280cf65bfc01cfa9a",
+      "sha256": "216335ad5236c3d550a42be471785aba65b2bbb91b780a5b39a33690de5d74aa",
+      "bytes": 254232,
+      "local_sha256": "216335ad5236c3d550a42be471785aba65b2bbb91b780a5b39a33690de5d74aa",
+      "local_bytes": 254232,
+      "adapted": false
+    },
+    {
+      "source_path": "assets/examples/05-我真不该做这期视频.webp",
+      "path": "upstream/assets/examples/05-我真不该做这期视频.webp",
+      "mode": "100644",
+      "git_blob": "4b8c3bd553a0b2b9fc95b5c9075ee0e246296dd3",
+      "sha256": "a5426dd8b40e27d868afdb55c7e286ba6a75f93dc4e35857bd2791ae7a873f0f",
+      "bytes": 312586,
+      "local_sha256": "a5426dd8b40e27d868afdb55c7e286ba6a75f93dc4e35857bd2791ae7a873f0f",
+      "local_bytes": 312586,
+      "adapted": false
+    },
+    {
+      "source_path": "assets/examples/06-一键制作拼贴动画.webp",
+      "path": "upstream/assets/examples/06-一键制作拼贴动画.webp",
+      "mode": "100644",
+      "git_blob": "f7a24636c013d061fcca40a03d0f73f97fd5fdfd",
+      "sha256": "d864d6616bfa3df726a44234212518e9f394ba3f7fdc4ab1fa1cd6ded3e6e928",
+      "bytes": 427298,
+      "local_sha256": "d864d6616bfa3df726a44234212518e9f394ba3f7fdc4ab1fa1cd6ded3e6e928",
+      "local_bytes": 427298,
+      "adapted": false
+    },
+    {
+      "source_path": "assets/examples/07-养Agent晚了还有救吗.webp",
+      "path": "upstream/assets/examples/07-养Agent晚了还有救吗.webp",
+      "mode": "100644",
+      "git_blob": "9c148205157b2cc0d638868d58c83ccd469eaa1b",
+      "sha256": "780eaaa196fe1aa008587d28670d1a761b50c1017a1b5ca8240d4ee0f650c8b2",
+      "bytes": 212876,
+      "local_sha256": "780eaaa196fe1aa008587d28670d1a761b50c1017a1b5ca8240d4ee0f650c8b2",
+      "local_bytes": 212876,
+      "adapted": false
+    },
+    {
+      "source_path": "assets/examples/08-AI生视频不是模型.webp",
+      "path": "upstream/assets/examples/08-AI生视频不是模型.webp",
+      "mode": "100644",
+      "git_blob": "1205e439a2e0d3837d8124f8ea72781e4eccd664",
+      "sha256": "94377c51d3cfaa6a0f0ba69e567dc529caf0311db6c5fe2a4a6552b8241cab29",
+      "bytes": 255814,
+      "local_sha256": "94377c51d3cfaa6a0f0ba69e567dc529caf0311db6c5fe2a4a6552b8241cab29",
+      "local_bytes": 255814,
+      "adapted": false
+    },
+    {
+      "source_path": "references/examples.md",
+      "path": "upstream/references/examples.md",
+      "mode": "100644",
+      "git_blob": "ce73ea40bd54a92f44e7da4e3f16895b88cc63c8",
+      "sha256": "0723c654a12a649cdabd9261ab3fd1e8dc3a1c68a9e26182a0f435ec5e088d94",
+      "bytes": 9910,
+      "local_sha256": "0723c654a12a649cdabd9261ab3fd1e8dc3a1c68a9e26182a0f435ec5e088d94",
+      "local_bytes": 9910,
+      "adapted": false
+    },
+    {
+      "source_path": "references/style-01-深色渐变风.md",
+      "path": "upstream/references/style-01-深色渐变风.md",
+      "mode": "100644",
+      "git_blob": "a49e560fcb5b18d64d72b8737160a124e0106433",
+      "sha256": "b242d750c6da817aa0d707b36fe448e8772660b20d7fddce1f776e0d9be6c57f",
+      "bytes": 1581,
+      "local_sha256": "b242d750c6da817aa0d707b36fe448e8772660b20d7fddce1f776e0d9be6c57f",
+      "local_bytes": 1581,
+      "adapted": false
+    },
+    {
+      "source_path": "references/style-02-纯色扁平风.md",
+      "path": "upstream/references/style-02-纯色扁平风.md",
+      "mode": "100644",
+      "git_blob": "36b5d971b40471a26760e7519d8da9da028ad32f",
+      "sha256": "e15019a8464a85bd8afabd73bb2c72b6646ff073c865ad797ea22468937acbee",
+      "bytes": 1446,
+      "local_sha256": "e15019a8464a85bd8afabd73bb2c72b6646ff073c865ad797ea22468937acbee",
+      "local_bytes": 1446,
+      "adapted": false
+    },
+    {
+      "source_path": "references/style-03-产品主视觉风.md",
+      "path": "upstream/references/style-03-产品主视觉风.md",
+      "mode": "100644",
+      "git_blob": "f7505b6f4f27b264d670bbe1e728d1b9c3eb9d94",
+      "sha256": "5ca156eca901486d2a19ac57f161e1a65691a6801e7ef61f7bc01b3d3ae532e1",
+      "bytes": 1610,
+      "local_sha256": "5ca156eca901486d2a19ac57f161e1a65691a6801e7ef61f7bc01b3d3ae532e1",
+      "local_bytes": 1610,
+      "adapted": false
+    },
+    {
+      "source_path": "references/style-04-对比卡片风.md",
+      "path": "upstream/references/style-04-对比卡片风.md",
+      "mode": "100644",
+      "git_blob": "4c0464d1c50189e84e0192e4dfb50276cc86a9e3",
+      "sha256": "dcb63dd8274e7f217a50c1224cb23e506a9c73d370ac09997974e42c69955653",
+      "bytes": 1658,
+      "local_sha256": "dcb63dd8274e7f217a50c1224cb23e506a9c73d370ac09997974e42c69955653",
+      "local_bytes": 1658,
+      "adapted": false
+    },
+    {
+      "source_path": "references/style-05-极简留白风.md",
+      "path": "upstream/references/style-05-极简留白风.md",
+      "mode": "100644",
+      "git_blob": "e8c1504c73f3f43e721494a0ee83a7aeb8487613",
+      "sha256": "4f44a106809e6ad88897be1195aa555eda673b37ef4998108339318c62547cbe",
+      "bytes": 1375,
+      "local_sha256": "4f44a106809e6ad88897be1195aa555eda673b37ef4998108339318c62547cbe",
+      "local_bytes": 1375,
+      "adapted": false
+    },
+    {
+      "source_path": "references/style-06-海报拼贴风.md",
+      "path": "upstream/references/style-06-海报拼贴风.md",
+      "mode": "100644",
+      "git_blob": "d5273b7243d235ff084063c780dbabe0fb604533",
+      "sha256": "fe55875deae901c9c9c36fd22cacc4d77957a8836a85b7fe9cb2c9ab2d0b368e",
+      "bytes": 1588,
+      "local_sha256": "fe55875deae901c9c9c36fd22cacc4d77957a8836a85b7fe9cb2c9ab2d0b368e",
+      "local_bytes": 1588,
+      "adapted": false
+    },
+    {
+      "source_path": "references/style-07-人物侧置留白风.md",
+      "path": "upstream/references/style-07-人物侧置留白风.md",
+      "mode": "100644",
+      "git_blob": "af1dd4a36c57c6b841f7d42a665e7163112b8a1e",
+      "sha256": "44b5c3a80f2c96bbf278b18d922b0029e134df2cdd343b915ee2736a5d7681c1",
+      "bytes": 1335,
+      "local_sha256": "44b5c3a80f2c96bbf278b18d922b0029e134df2cdd343b915ee2736a5d7681c1",
+      "local_bytes": 1335,
+      "adapted": false
+    },
+    {
+      "source_path": "references/style-08-背影构图风.md",
+      "path": "upstream/references/style-08-背影构图风.md",
+      "mode": "100644",
+      "git_blob": "51cd0ca9dfb9cc28dbd069bd476f35f9914690ac",
+      "sha256": "3e33e7fd3dc9baa4c08be82d6afa34c6eb2a4849c284c7c29cc37b8902565ebd",
+      "bytes": 1366,
+      "local_sha256": "3e33e7fd3dc9baa4c08be82d6afa34c6eb2a4849c284c7c29cc37b8902565ebd",
+      "local_bytes": 1366,
+      "adapted": false
+    },
+    {
+      "source_path": "references/style-09-局部出镜风.md",
+      "path": "upstream/references/style-09-局部出镜风.md",
+      "mode": "100644",
+      "git_blob": "8f9cd2e182aff4af69116d2dba767a6bb111a9bf",
+      "sha256": "939dc0394ed6e1625254384c0405eddf2be0a2d8f7904090bd9aab4324ac61fb",
+      "bytes": 1425,
+      "local_sha256": "939dc0394ed6e1625254384c0405eddf2be0a2d8f7904090bd9aab4324ac61fb",
+      "local_bytes": 1425,
+      "adapted": false
+    },
+    {
+      "source_path": "references/style-10-正面对视风.md",
+      "path": "upstream/references/style-10-正面对视风.md",
+      "mode": "100644",
+      "git_blob": "5146253fdb3e948c6d69df80af83b021998d6931",
+      "sha256": "5ff95f0aac0a065637e2f6f5ac9c8d64159a981145e8d3e941443d6208293e3b",
+      "bytes": 1562,
+      "local_sha256": "5ff95f0aac0a065637e2f6f5ac9c8d64159a981145e8d3e941443d6208293e3b",
+      "local_bytes": 1562,
+      "adapted": false
+    }
+  ]
+}

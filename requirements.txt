@@ -1,0 +1,2 @@
+# 任务执行器只使用 Python 标准库；Python >=3.9。
+# 选用历史编辑校验工具时才需要 Pillow，见 requirements-editorial.txt。

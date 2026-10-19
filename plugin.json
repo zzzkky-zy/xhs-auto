@@ -1,0 +1,15 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "xiaohongshu-operations",
+  "version": "0.6.0",
+  "description": "小红书运营skill与MCP：普通动作直接调用，长期任务按需排队，保留完整创作方法与可恢复回执。",
+  "repository": "https://github.com/zzzkky-zy/xhs-ncp-skill",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "小红书自动运营",
+        "shortDescription": "评论、图文和异常恢复"
+      }
+    }
+  }
+}

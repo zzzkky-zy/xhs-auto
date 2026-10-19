@@ -1,0 +1,849 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:xhs-operations:content-review:2",
+  "title": "Private content evidence input; semantic quality is reviewed by the agent",
+  "description": "Partial profiles may be saved, but runtime review requires every field and confirmation source. The runtime also checks current file bytes, ownership, stage lineage, publishing fields and batch quotas.",
+  "oneOf": [
+    {
+      "type": "object",
+      "required": [
+        "operation",
+        "data"
+      ],
+      "properties": {
+        "operation": {
+          "const": "configure"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "content_profile": {
+              "$ref": "#/$defs/profile"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "operation",
+        "data"
+      ],
+      "properties": {
+        "operation": {
+          "const": "update"
+        },
+        "data": {
+          "type": "object",
+          "required": [
+            "run_id",
+            "content_record"
+          ],
+          "properties": {
+            "run_id": {
+              "type": "string"
+            },
+            "content_record": {
+              "type": "object",
+              "required": [
+                "id",
+                "stage",
+                "artifact"
+              ],
+              "properties": {
+                "id": {
+                  "$ref": "#/$defs/text"
+                },
+                "stage": {
+                  "enum": [
+                    "source",
+                    "draft",
+                    "edited",
+                    "final"
+                  ]
+                },
+                "artifact": {
+                  "$ref": "#/$defs/file"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "operation",
+        "data"
+      ],
+      "properties": {
+        "operation": {
+          "const": "review"
+        },
+        "data": {
+          "type": "object",
+          "required": [
+            "run_id",
+            "payloads",
+            "evidence"
+          ],
+          "properties": {
+            "run_id": {
+              "type": "string"
+            },
+            "evidence": {
+              "$ref": "#/$defs/text"
+            },
+            "payloads": {
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 1000,
+              "items": {
+                "type": "object",
+                "required": [
+                  "content_id",
+                  "tool",
+                  "payload"
+                ],
+                "properties": {
+                  "content_id": {
+                    "$ref": "#/$defs/text"
+                  },
+                  "tool": {
+                    "enum": [
+                      "post_comment_to_feed",
+                      "reply_comment_in_feed",
+                      "publish_content",
+                      "publish_with_video"
+                    ]
+                  },
+                  "payload": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "operation"
+      ],
+      "properties": {
+        "operation": {
+          "const": "status"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "include_profile": {
+              "type": "boolean",
+              "description": "Explicitly read the complete private profile; default diagnostics omit it."
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "file": {
+      "type": "string",
+      "pattern": "^/"
+    },
+    "strategy": {
+      "type": "object",
+      "required": [
+        "A",
+        "B",
+        "C_max"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "A": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "B": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "C_max": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "fallback": {
+          "type": "object",
+          "required": [
+            "A",
+            "B",
+            "C"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "A": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "B": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "C": {
+              "const": 0
+            }
+          }
+        }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "properties": {
+        "persona": {
+          "$ref": "#/$defs/text"
+        },
+        "target_audience": {
+          "$ref": "#/$defs/text"
+        },
+        "objective": {
+          "$ref": "#/$defs/text"
+        },
+        "verified_selling_points": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "claim",
+              "evidence_ref",
+              "evidence_file"
+            ],
+            "properties": {
+              "id": {
+                "$ref": "#/$defs/text"
+              },
+              "claim": {
+                "$ref": "#/$defs/text"
+              },
+              "evidence_ref": {
+                "$ref": "#/$defs/text"
+              },
+              "evidence_file": {
+                "$ref": "#/$defs/file"
+              }
+            }
+          }
+        },
+        "offer": {
+          "type": "object",
+          "required": [
+            "description",
+            "evidence_ref"
+          ],
+          "properties": {
+            "description": {
+              "$ref": "#/$defs/text"
+            },
+            "evidence_ref": {
+              "$ref": "#/$defs/text"
+            },
+            "evidence_file": {
+              "$ref": "#/$defs/file"
+            }
+          }
+        },
+        "keywords": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        },
+        "boundaries": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        },
+        "allow_c": {
+          "type": "boolean"
+        },
+        "strategy": {
+          "$ref": "#/$defs/strategy"
+        },
+        "voice_samples": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "text",
+              "source_ref"
+            ],
+            "properties": {
+              "text": {
+                "$ref": "#/$defs/text"
+              },
+              "source_ref": {
+                "$ref": "#/$defs/text"
+              }
+            }
+          }
+        },
+        "confirmation_sources": {
+          "type": "object",
+          "additionalProperties": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "cover_person_enabled": {
+          "type": "boolean"
+        },
+        "face_reference": {
+          "type": "object",
+          "required": [
+            "file",
+            "sha256",
+            "source_ref"
+          ],
+          "properties": {
+            "file": {
+              "$ref": "#/$defs/file"
+            },
+            "sha256": {
+              "$ref": "#/$defs/text"
+            },
+            "source_ref": {
+              "$ref": "#/$defs/text"
+            }
+          }
+        },
+        "product_materials": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "file",
+              "sha256",
+              "source_ref"
+            ],
+            "properties": {
+              "file": {
+                "$ref": "#/$defs/file"
+              },
+              "sha256": {
+                "$ref": "#/$defs/text"
+              },
+              "source_ref": {
+                "$ref": "#/$defs/text"
+              }
+            }
+          }
+        },
+        "content_requirements": {
+          "type": "object",
+          "required": [
+            "post_cta",
+            "comment_offer_phrases",
+            "comment_positioning_terms",
+            "min_person_covers"
+          ],
+          "properties": {
+            "post_cta": {
+              "$ref": "#/$defs/text"
+            },
+            "post_cta_components": {
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": {
+                "$ref": "#/$defs/text"
+              }
+            },
+            "comment_offer_phrases": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/text"
+              },
+              "description": "Examples, not the only permitted phrasing; semantic evidence accepts equivalents."
+            },
+            "comment_positioning_terms": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/text"
+              },
+              "description": "Positioning hints; equivalents require actual excerpts and meaning checks."
+            },
+            "min_person_covers": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
+    "source_artifact": {
+      "type": "object",
+      "required": [
+        "kind",
+        "need",
+        "sources"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "comment",
+            "post",
+            "video"
+          ]
+        },
+        "need": {
+          "$ref": "#/$defs/text"
+        },
+        "target": {
+          "type": "object"
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "ref",
+              "snapshot",
+              "coverage",
+              "observed_at"
+            ],
+            "properties": {
+              "ref": {
+                "$ref": "#/$defs/text"
+              },
+              "snapshot": {
+                "$ref": "#/$defs/file"
+              },
+              "coverage": {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "body",
+                    "images",
+                    "comments",
+                    "research"
+                  ]
+                }
+              },
+              "observed_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      }
+    },
+    "draft_artifact": {
+      "type": "object",
+      "required": [
+        "fields",
+        "intent",
+        "humanizer_rules"
+      ],
+      "properties": {
+        "fields": {
+          "type": "object",
+          "description": "For source.kind=video, use #/$defs/video_fields; comments and image posts use their independent runtime contracts."
+        },
+        "intent": {
+          "$ref": "#/$defs/text"
+        },
+        "humanizer_rules": {
+          "$ref": "#/$defs/file"
+        }
+      }
+    },
+    "edited_artifact": {
+      "type": "object",
+      "required": [
+        "fields",
+        "edit_notes"
+      ],
+      "properties": {
+        "fields": {
+          "type": "object",
+          "description": "For source.kind=video, use #/$defs/video_fields; comments and image posts use their independent runtime contracts."
+        },
+        "edit_notes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        }
+      }
+    },
+    "final_artifact": {
+      "type": "object",
+      "required": [
+        "fields",
+        "payload",
+        "business_review"
+      ],
+      "properties": {
+        "fields": {
+          "type": "object",
+          "description": "For source.kind=video, use #/$defs/video_fields; comments and image posts use their independent runtime contracts."
+        },
+        "payload": {
+          "type": "object"
+        },
+        "comment_type": {
+          "enum": [
+            "A",
+            "B",
+            "C"
+          ]
+        },
+        "need": {
+          "$ref": "#/$defs/text"
+        },
+        "demand_evidence": {
+          "$ref": "#/$defs/text"
+        },
+        "selling_point_ids": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/text"
+          }
+        },
+        "business_review": {
+          "type": "object",
+          "required": [
+            "reviewer",
+            "source_fit",
+            "voice",
+            "facts",
+            "cta",
+            "field_checks",
+            "result"
+          ],
+          "properties": {
+            "reviewer": {
+              "$ref": "#/$defs/text"
+            },
+            "source_fit": {
+              "$ref": "#/$defs/text"
+            },
+            "voice": {
+              "$ref": "#/$defs/text"
+            },
+            "facts": {
+              "$ref": "#/$defs/text"
+            },
+            "cta": {
+              "$ref": "#/$defs/text"
+            },
+            "field_checks": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/text"
+              }
+            },
+            "result": {
+              "const": "pass"
+            }
+          }
+        },
+        "image_reviews": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "page",
+              "asset",
+              "visible_text",
+              "observation"
+            ],
+            "properties": {
+              "page": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "asset": {
+                "$ref": "#/$defs/file"
+              },
+              "visible_text": {
+                "type": "string"
+              },
+              "observation": {
+                "$ref": "#/$defs/text"
+              }
+            }
+          }
+        },
+        "video_review": {
+          "$ref": "#/$defs/video_review"
+        },
+        "cta_review": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/intent_excerpt"
+          }
+        },
+        "promotion_review": {
+          "type": "object",
+          "required": [
+            "positioning_excerpt",
+            "capabilities_excerpt",
+            "offer_excerpt",
+            "need_fit"
+          ],
+          "properties": {
+            "positioning_excerpt": {
+              "$ref": "#/$defs/text"
+            },
+            "capabilities_excerpt": {
+              "$ref": "#/$defs/text"
+            },
+            "offer_excerpt": {
+              "$ref": "#/$defs/text"
+            },
+            "need_fit": {
+              "$ref": "#/$defs/text"
+            },
+            "meaning_checks": {
+              "type": "object",
+              "properties": {
+                "offer": {
+                  "$ref": "#/$defs/text"
+                },
+                "positioning": {
+                  "$ref": "#/$defs/text"
+                }
+              }
+            }
+          }
+        },
+        "cover_review": {
+          "type": "object",
+          "required": [
+            "batch_id",
+            "batch_content_ids",
+            "kind",
+            "asset",
+            "asset_sha256",
+            "style",
+            "selection_reason",
+            "observation"
+          ],
+          "properties": {
+            "batch_id": {
+              "$ref": "#/$defs/text"
+            },
+            "asset_sha256": {
+              "$ref": "#/$defs/text"
+            },
+            "style": {
+              "$ref": "#/$defs/text"
+            },
+            "selection_reason": {
+              "$ref": "#/$defs/text"
+            },
+            "observation": {
+              "$ref": "#/$defs/text"
+            },
+            "reference_sha256": {
+              "$ref": "#/$defs/text"
+            },
+            "likeness_observation": {
+              "$ref": "#/$defs/text"
+            },
+            "asset": {
+              "$ref": "#/$defs/file"
+            },
+            "reference_file": {
+              "$ref": "#/$defs/file"
+            },
+            "kind": {
+              "enum": [
+                "person",
+                "illustrated"
+              ]
+            },
+            "batch_content_ids": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/text"
+              }
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "payload": {
+                "type": "object",
+                "required": [
+                  "video"
+                ]
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "video_review"
+            ],
+            "properties": {
+              "fields": {
+                "$ref": "#/$defs/video_fields"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "video_text": {
+      "type": "object",
+      "required": [
+        "kind",
+        "text"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "on_screen",
+            "subtitle"
+          ]
+        },
+        "text": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "video_fields": {
+      "description": "Used only when source.kind=video; never substitute image/page fields. Runtime binds these values across draft, edited and final.",
+      "type": "object",
+      "required": [
+        "title",
+        "content",
+        "interaction",
+        "cta",
+        "video_texts"
+      ],
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "content": {
+          "$ref": "#/$defs/text"
+        },
+        "interaction": {
+          "type": "string"
+        },
+        "cta": {
+          "type": "string"
+        },
+        "video_texts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/video_text"
+          }
+        },
+        "subtitle_absence_reason": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "video_texts": {
+                "not": {
+                  "contains": {
+                    "type": "object",
+                    "required": [
+                      "kind"
+                    ],
+                    "properties": {
+                      "kind": {
+                        "const": "subtitle"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "then": {
+            "required": [
+              "subtitle_absence_reason"
+            ]
+          }
+        }
+      ]
+    },
+    "video_review": {
+      "type": "object",
+      "required": [
+        "asset",
+        "asset_sha256",
+        "video_texts",
+        "visual_observation",
+        "text_observation"
+      ],
+      "properties": {
+        "asset": {
+          "$ref": "#/$defs/file"
+        },
+        "asset_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "video_texts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/video_text"
+          }
+        },
+        "visual_observation": {
+          "$ref": "#/$defs/text"
+        },
+        "text_observation": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    },
+    "intent_excerpt": {
+      "type": "object",
+      "required": [
+        "excerpt",
+        "meaning_check"
+      ],
+      "properties": {
+        "excerpt": {
+          "$ref": "#/$defs/text"
+        },
+        "meaning_check": {
+          "$ref": "#/$defs/text"
+        }
+      }
+    }
+  }
+}

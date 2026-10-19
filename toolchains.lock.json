@@ -1,0 +1,39 @@
+{
+  "go": "1.27.2",
+  "go_source": "https://go.dev/dl/?mode=json",
+  "go_archives": {
+    "darwin-arm64": {
+      "file": "go1.27.2.darwin-arm64.tar.gz",
+      "sha256": "76812b213b1b2302c978d28fa52fa92d541704b9e7d9d5db8002c50e4018c4c5"
+    },
+    "linux-amd64": {
+      "file": "go1.27.2.linux-amd64.tar.gz",
+      "sha256": "ecbadb99091a3f46e31f5f934b068b1864eafa7995211b39eaddf76996045fe5"
+    },
+    "linux-arm64": {
+      "file": "go1.27.2.linux-arm64.tar.gz",
+      "sha256": "94f3e30b8e374bc285e7dadc11e0865726b9bc6e85b841ccceaabc0214c6b7c8"
+    },
+    "darwin-amd64": {
+      "file": "go1.27.2.darwin-amd64.tar.gz",
+      "sha256": "587b59182488b23aa6e5fc25110405a3e0e5b38ed2f5b2f46ed13c32aee356fe"
+    }
+  },
+  "python_core": "standard-library-only; >=3.9",
+  "python_local_tested": "3.9.6",
+  "optional_legacy_editorial": {
+    "Pillow": "11.3.0",
+    "status": "historical_not_required_by_active_skill"
+  },
+  "go_modules": "mcp/xhs-mcp-custom/go.mod + go.sum + vendor/modules.txt",
+  "manifest_schemas": {
+    "plugin": {
+      "url": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+      "sha256": "0a4aad95ce337878ad38802ebf0daa3fde76abe3f65400c86bcbb1ec0b3ab883"
+    },
+    "mcp": {
+      "url": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+      "sha256": "6539175bfcdf43085855183e86da40ea94b166547a72b47ae9a0a390516d3acb"
+    }
+  }
+}

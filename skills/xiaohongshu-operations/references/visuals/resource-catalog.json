@@ -1,0 +1,504 @@
+{
+  "format": 1,
+  "note": "Content resource directory, not new MCP fields or a runtime router. Module names scope all values.",
+  "modules": {
+    "xhs-series": {
+      "guide": "xhs-series.md",
+      "dimensions": {
+        "style": {
+          "values": [
+            "chalkboard",
+            "cute",
+            "fresh",
+            "notion",
+            "screen-print",
+            "study-notes",
+            "warm"
+          ],
+          "definition_dir": "presets"
+        },
+        "layout": {
+          "values": [
+            "sparse",
+            "balanced",
+            "dense",
+            "list",
+            "comparison",
+            "flow",
+            "mindmap",
+            "quadrant"
+          ],
+          "definition_file": "elements/canvas.md"
+        }
+      },
+      "defaults": {
+        "style": "cute",
+        "layout": "balanced"
+      },
+      "presets": {
+        "knowledge-card": {
+          "style": "notion",
+          "layout": "dense"
+        },
+        "checklist": {
+          "style": "notion",
+          "layout": "list"
+        },
+        "concept-map": {
+          "style": "notion",
+          "layout": "mindmap"
+        },
+        "swot": {
+          "style": "notion",
+          "layout": "quadrant"
+        },
+        "tutorial": {
+          "style": "chalkboard",
+          "layout": "flow"
+        },
+        "classroom": {
+          "style": "chalkboard",
+          "layout": "balanced"
+        },
+        "study-guide": {
+          "style": "study-notes",
+          "layout": "dense"
+        },
+        "cute-share": {
+          "style": "cute",
+          "layout": "balanced"
+        },
+        "girly": {
+          "style": "cute",
+          "layout": "sparse"
+        },
+        "cozy-story": {
+          "style": "warm",
+          "layout": "balanced"
+        },
+        "product-review": {
+          "style": "fresh",
+          "layout": "comparison"
+        },
+        "nature-flow": {
+          "style": "fresh",
+          "layout": "flow"
+        },
+        "poster": {
+          "style": "screen-print",
+          "layout": "sparse"
+        },
+        "editorial": {
+          "style": "screen-print",
+          "layout": "balanced"
+        },
+        "cinematic": {
+          "style": "screen-print",
+          "layout": "comparison"
+        }
+      }
+    },
+    "infographic": {
+      "guide": "modules/infographic/guide.md",
+      "dimensions": {
+        "layout": {
+          "values": [
+            "bento-grid",
+            "binary-comparison",
+            "bridge",
+            "circular-flow",
+            "comic-strip",
+            "comparison-matrix",
+            "dashboard",
+            "dense-modules",
+            "funnel",
+            "hierarchical-layers",
+            "hub-spoke",
+            "iceberg",
+            "isometric-map",
+            "jigsaw",
+            "linear-progression",
+            "periodic-table",
+            "story-mountain",
+            "structural-breakdown",
+            "tree-branching",
+            "venn-diagram",
+            "winding-roadmap"
+          ],
+          "definition_dir": "modules/infographic/references/layouts"
+        },
+        "style": {
+          "values": [
+            "aged-academia",
+            "chalkboard",
+            "claymation",
+            "craft-handmade",
+            "ikea-manual",
+            "kawaii",
+            "lego-brick",
+            "morandi-journal",
+            "origami",
+            "pixel-art",
+            "pop-laboratory",
+            "retro-pop-grid",
+            "storybook-watercolor",
+            "technical-schematic"
+          ],
+          "definition_dir": "modules/infographic/references/styles"
+        }
+      },
+      "defaults": {
+        "layout": "bento-grid",
+        "style": "craft-handmade"
+      }
+    },
+    "cover": {
+      "guide": "modules/cover/guide.md",
+      "dimensions": {
+        "type": {
+          "values": [
+            "hero",
+            "conceptual",
+            "typography",
+            "metaphor",
+            "scene",
+            "minimal"
+          ],
+          "definition_file": "modules/cover/references/types.md"
+        },
+        "palette": {
+          "values": [
+            "cool",
+            "dark",
+            "duotone",
+            "earth",
+            "elegant",
+            "mono",
+            "pastel",
+            "retro",
+            "vivid",
+            "warm"
+          ],
+          "definition_dir": "modules/cover/references/palettes"
+        },
+        "rendering": {
+          "values": [
+            "chalk",
+            "digital",
+            "flat-vector",
+            "hand-drawn",
+            "painterly",
+            "pixel",
+            "screen-print"
+          ],
+          "definition_dir": "modules/cover/references/renderings"
+        },
+        "text": {
+          "values": [
+            "none",
+            "title-only",
+            "title-subtitle",
+            "text-rich"
+          ],
+          "definition_file": "modules/cover/references/dimensions/text.md"
+        },
+        "mood": {
+          "values": [
+            "subtle",
+            "balanced",
+            "bold"
+          ],
+          "definition_file": "modules/cover/references/dimensions/mood.md"
+        },
+        "font": {
+          "values": [
+            "clean",
+            "handwritten",
+            "serif",
+            "display"
+          ],
+          "definition_file": "modules/cover/references/dimensions/font.md"
+        }
+      },
+      "defaults": {
+        "text": "title-only",
+        "mood": "balanced",
+        "font": "clean"
+      },
+      "presets": {
+        "elegant": {
+          "palette": "elegant",
+          "rendering": "hand-drawn"
+        },
+        "blueprint": {
+          "palette": "cool",
+          "rendering": "digital"
+        },
+        "chalkboard": {
+          "palette": "dark",
+          "rendering": "chalk"
+        },
+        "dark-atmospheric": {
+          "palette": "dark",
+          "rendering": "digital"
+        },
+        "editorial-infographic": {
+          "palette": "cool",
+          "rendering": "digital"
+        },
+        "fantasy-animation": {
+          "palette": "pastel",
+          "rendering": "painterly"
+        },
+        "flat-doodle": {
+          "palette": "pastel",
+          "rendering": "flat-vector"
+        },
+        "intuition-machine": {
+          "palette": "retro",
+          "rendering": "digital"
+        },
+        "minimal": {
+          "palette": "mono",
+          "rendering": "flat-vector"
+        },
+        "nature": {
+          "palette": "earth",
+          "rendering": "hand-drawn"
+        },
+        "notion": {
+          "palette": "mono",
+          "rendering": "digital"
+        },
+        "pixel-art": {
+          "palette": "vivid",
+          "rendering": "pixel"
+        },
+        "playful": {
+          "palette": "pastel",
+          "rendering": "hand-drawn"
+        },
+        "retro": {
+          "palette": "retro",
+          "rendering": "digital"
+        },
+        "sketch-notes": {
+          "palette": "warm",
+          "rendering": "hand-drawn"
+        },
+        "vector-illustration": {
+          "palette": "retro",
+          "rendering": "flat-vector"
+        },
+        "warm": {
+          "palette": "warm",
+          "rendering": "hand-drawn"
+        },
+        "warm-flat": {
+          "palette": "warm",
+          "rendering": "flat-vector"
+        },
+        "watercolor": {
+          "palette": "earth",
+          "rendering": "painterly"
+        },
+        "poster-art": {
+          "palette": "retro",
+          "rendering": "screen-print"
+        },
+        "mondo": {
+          "palette": "mono",
+          "rendering": "screen-print"
+        },
+        "art-deco": {
+          "palette": "elegant",
+          "rendering": "screen-print"
+        },
+        "propaganda": {
+          "palette": "vivid",
+          "rendering": "screen-print"
+        },
+        "cinematic": {
+          "palette": "duotone",
+          "rendering": "screen-print"
+        }
+      }
+    },
+    "comic": {
+      "guide": "modules/comic/guide.md",
+      "dimensions": {
+        "art": {
+          "values": [
+            "chalk",
+            "ink-brush",
+            "ligne-claire",
+            "manga",
+            "realistic"
+          ],
+          "definition_dir": "modules/comic/references/art-styles"
+        },
+        "tone": {
+          "values": [
+            "action",
+            "dramatic",
+            "energetic",
+            "neutral",
+            "romantic",
+            "warm"
+          ],
+          "definition_dir": "modules/comic/references/tones"
+        },
+        "layout": {
+          "values": [
+            "cinematic",
+            "dense",
+            "mixed",
+            "splash",
+            "standard",
+            "webtoon"
+          ],
+          "definition_dir": "modules/comic/references/layouts"
+        }
+      },
+      "defaults": {
+        "art": "ligne-claire",
+        "tone": "neutral",
+        "layout": "standard"
+      },
+      "presets": {
+        "ohmsha": {
+          "art": "manga",
+          "tone": "neutral",
+          "layout": "webtoon",
+          "definition": "modules/comic/references/presets/ohmsha.md"
+        },
+        "wuxia": {
+          "art": "ink-brush",
+          "tone": "action",
+          "layout": "splash",
+          "definition": "modules/comic/references/presets/wuxia.md"
+        },
+        "shoujo": {
+          "art": "manga",
+          "tone": "romantic",
+          "layout": "standard",
+          "definition": "modules/comic/references/presets/shoujo.md"
+        }
+      }
+    },
+    "gbro-cover-design": {
+      "guide": "modules/gbro-cover-design/guide.md",
+      "original_skill": "modules/gbro-cover-design/upstream/SKILL.md",
+      "references": "modules/gbro-cover-design/upstream/references",
+      "examples": "modules/gbro-cover-design/upstream/references/examples.md",
+      "provenance": "modules/gbro-cover-design/manifest.json",
+      "scope": "cover-only",
+      "face_reference": "user-provided real photo, passed as image 1; never invented from a description",
+      "style_templates": {
+        "style-01": {
+          "name": "深色渐变风",
+          "definition": "modules/gbro-cover-design/upstream/references/style-01-深色渐变风.md"
+        },
+        "style-02": {
+          "name": "纯色扁平风",
+          "definition": "modules/gbro-cover-design/upstream/references/style-02-纯色扁平风.md"
+        },
+        "style-03": {
+          "name": "产品主视觉风",
+          "definition": "modules/gbro-cover-design/upstream/references/style-03-产品主视觉风.md"
+        },
+        "style-04": {
+          "name": "对比卡片风",
+          "definition": "modules/gbro-cover-design/upstream/references/style-04-对比卡片风.md"
+        },
+        "style-05": {
+          "name": "极简留白风",
+          "definition": "modules/gbro-cover-design/upstream/references/style-05-极简留白风.md"
+        },
+        "style-06": {
+          "name": "海报拼贴风",
+          "definition": "modules/gbro-cover-design/upstream/references/style-06-海报拼贴风.md"
+        },
+        "style-07": {
+          "name": "人物侧置留白风",
+          "definition": "modules/gbro-cover-design/upstream/references/style-07-人物侧置留白风.md"
+        },
+        "style-08": {
+          "name": "背影构图风",
+          "definition": "modules/gbro-cover-design/upstream/references/style-08-背影构图风.md"
+        },
+        "style-09": {
+          "name": "局部出镜风",
+          "definition": "modules/gbro-cover-design/upstream/references/style-09-局部出镜风.md"
+        },
+        "style-10": {
+          "name": "正面对视风",
+          "definition": "modules/gbro-cover-design/upstream/references/style-10-正面对视风.md"
+        }
+      }
+    },
+    "naturalizer": {
+      "guide": "modules/naturalizer/guide.md",
+      "applies_to": [
+        "xhs-series",
+        "infographic",
+        "cover",
+        "gbro-cover-design",
+        "comic",
+        "character-sheet"
+      ],
+      "required_references": [
+        "modules/naturalizer/references/style-system.md",
+        "modules/naturalizer/references/de-ai-image-checklist.md"
+      ]
+    }
+  },
+  "common_resources": [
+    "prompt-template.md",
+    "review.md",
+    "batch-styles.md",
+    "workflows/README.md"
+  ],
+  "exclusions": {
+    "xhs-series.style": [
+      "bold",
+      "minimal",
+      "pop",
+      "retro"
+    ],
+    "new-modules": [
+      "cyberpunk-neon",
+      "bold-graphic",
+      "corporate-memphis",
+      "ui-wireframe",
+      "subway-map",
+      "knolling",
+      "vintage"
+    ]
+  },
+  "dimension_boundaries": {
+    "cover.type": [
+      "minimal"
+    ],
+    "cover.mood": [
+      "bold"
+    ],
+    "cover.palette": [
+      "retro"
+    ],
+    "cover.presets": [
+      "minimal",
+      "retro"
+    ],
+    "infographic.style": [
+      "retro-pop-grid",
+      "pop-laboratory",
+      "aged-academia",
+      "pixel-art"
+    ],
+    "comic.preserved_styles": [
+      "realistic",
+      "ink-brush"
+    ]
+  }
+}

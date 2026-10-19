@@ -1,0 +1,70 @@
+{
+  "repository": "https://github.com/zzzkky-zy/xhs-ncp-skill",
+  "commit": "2db47678d3605254d86604074c8ef9900721cefd",
+  "purpose": "有效内容方法来源与当前哈希；删除停用历史和重复副本",
+  "files": [
+    {
+      "source_path": "skills/xiaohongshu-baokuan/SKILL.md",
+      "source_sha256": "8d353889c8edd8c2b43496a90a151e245838228b319d702a1e7b111165cbc99d",
+      "path": "skills/xiaohongshu-operations/references/original-skills/xiaohongshu-baokuan/SKILL.md",
+      "sha256": "7f9ba91fac4faa346569968928bc4cced884d1ab1adcd13242fcf2ff40d93a2c",
+      "adapted": true
+    },
+    {
+      "source_path": "skills/xiaohongshu-baokuan/assets/handoffs/redline-checklist.md",
+      "source_sha256": "34ef49728d5aa382067a17afd169fba3769de6ac4cf3a4328ea7a654f60f7e54",
+      "path": "skills/xiaohongshu-operations/references/original-skills/xiaohongshu-baokuan/assets/handoffs/redline-checklist.md",
+      "sha256": "dd08a3c81dac0f81174ad38e61420c5b7cac924364f94abe8bff4f6f3679f03b",
+      "adapted": true
+    },
+    {
+      "source_path": "skills/xiaohongshu-baokuan/references/post-production.md",
+      "source_sha256": "252c6c79f6fc5c3b9465d37547b034d894356a98f014df981072f29de3419aa5",
+      "path": "skills/xiaohongshu-operations/references/original-skills/xiaohongshu-baokuan/references/post-production.md",
+      "sha256": "610090de9e396fce86aefeeb44d25abf379b6b7c9c38a702098a67ff147d324a",
+      "adapted": true
+    },
+    {
+      "source_path": "skills/xiaohongshu-baokuan/references/research-and-readme.md",
+      "source_sha256": "7867f9e17e2b13afe01cf110974e1cd1ee297ed78f8db7f9ea8cefc94e0b7d09",
+      "path": "skills/xiaohongshu-operations/references/original-skills/xiaohongshu-baokuan/references/research-and-readme.md",
+      "sha256": "6ec643498fecdfba5855e84d12165af2793408e10e41014bb4453bb1e80feba0",
+      "adapted": true
+    },
+    {
+      "source_path": "skills/xiaohongshu-baokuan/references/workflow-checks.md",
+      "source_sha256": "f0666d26c9be03523ff250c33a816bdc25561f10964d75dc1d88190c395470ab",
+      "path": "skills/xiaohongshu-operations/references/original-skills/xiaohongshu-baokuan/references/workflow-checks.md",
+      "sha256": "efc8c0aa40e88cd082653a18ab44f52ec6ebe2ff29429140ba4c611f8fdde5d9",
+      "adapted": true
+    },
+    {
+      "source_path": "skills/soft-cta/SKILL.md",
+      "source_sha256": "a0e46b39fbd73c238695f40f414b1d4352fcc627a0c67a785dec6eaec598c9a0",
+      "path": "skills/xiaohongshu-operations/references/original-skills/soft-cta/SKILL.md",
+      "sha256": "274cc96d44c91f97599e36b1a794486fcb874a35a2b5ead7ad633816140f9aee",
+      "adapted": true
+    },
+    {
+      "source_path": "skills/sweety-xhs-images/references/workflows/analysis-framework.md",
+      "source_sha256": "c06a57e69b917f8f5c4563da61b0aedb11cfbc6a68b2c599407128d13a014432",
+      "path": "skills/xiaohongshu-operations/references/visuals/workflows/analysis-framework.md",
+      "sha256": "5f73ec3ae05ac17eafce84725767897580a60353221da50104bb9d781677c032",
+      "adapted": true
+    },
+    {
+      "source_path": "skills/sweety-xhs-images/references/workflows/outline-template.md",
+      "source_sha256": "ad140ce299bf611d074a67cab4bc0e82f350b21d4c9b7d880605926b3ad6a020",
+      "path": "skills/xiaohongshu-operations/references/visuals/workflows/outline-template.md",
+      "sha256": "3accc89bfa1fe058c16e19c5a347a9cf86b08cb6fb06cd48df0652c14df628ff",
+      "adapted": true
+    },
+    {
+      "source_path": "skills/sweety-xhs-images/references/workflows/prompt-assembly.md",
+      "source_sha256": "365123c53414c4996b2b21aea71c8a668865469cf7791345dd20d037d343cf75",
+      "path": "skills/xiaohongshu-operations/references/visuals/workflows/prompt-assembly.md",
+      "sha256": "0cf49fe9edfdcc88ecb2166562c09f6cc85a57f0e1bba3de5bd565f13f03a295",
+      "adapted": true
+    }
+  ]
+}

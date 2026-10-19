@@ -1,0 +1,1458 @@
+{
+  "repository": "https://github.com/threerocks/sweety-skills",
+  "commit": "3ddcaeb80310daf991797ad2772bba82709d6f3e",
+  "declared_license": "MIT",
+  "inventory": [
+    {
+      "source_path": "skills/sweety-infographic/SKILL.md",
+      "sha256": "6d6bfa973493c950542955e26e5db93ebd76692d9ee4cea85ccc106ab7398df8",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/analysis-framework.md",
+      "sha256": "666d5682334ffde15bbd095a19d0720aa877b0f8c411cafbb60889f3f16fe71a",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/base-prompt.md",
+      "sha256": "a0d476aa0042d25d4c757e7f400883a04f586e74920ac822b89a50dffa185d16",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/bento-grid.md",
+      "sha256": "b8dfb690b90d935483c5bfcfbd1476f31b392990fe81b1b67ad571008f6e6e99",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/binary-comparison.md",
+      "sha256": "6740c77e89b4cd120e2da9c96feb447fb707e40ef42ee1774794337c8079c8ee",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/bridge.md",
+      "sha256": "ead9bd74c76c6de214e0fcee0b6bb756764b10f67ccaba52b591d05136bc7e1d",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/circular-flow.md",
+      "sha256": "96c560cdf274e62cebecdd864e7d7a18ce44863c78cbda3ff62f48233839e859",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/comic-strip.md",
+      "sha256": "3ed52755443e435304cb28925da1f7465bd6186aac2ac125d9336c8e0afed028",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/comparison-matrix.md",
+      "sha256": "77bfeb08fd66287e11db575582262f80a6c8471c5dfa6b9508e3c48e567ae14e",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/dashboard.md",
+      "sha256": "045514ab6f196ff0ab2c7ead9755e955eff582c5cdedc163eb0a4b18aebee2b6",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/dense-modules.md",
+      "sha256": "5d73084f494c863b5c6186925f0eec0372a80157b63ebc6021379a5659b10420",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/funnel.md",
+      "sha256": "e505f04f334d8da00607972b19b23f9a2e24b6c2cff8cdb8fbe6baa0698c7286",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/hierarchical-layers.md",
+      "sha256": "5fdacc7c543788a32d9e73b4cc26465e54adec498dd4975cdcff85ca2f2d1da9",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/hub-spoke.md",
+      "sha256": "d79526313a7f6550e5586652d871dee3b958c2ea400242a9a9c3f2bccf4b57a5",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/iceberg.md",
+      "sha256": "26a21caf9a3d8dd4172565953f2cd060bca0b3ab2afd82f54828dc7542f5e9e3",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/isometric-map.md",
+      "sha256": "ec0be8d54e5a8db5182696c637fd8769f9b9a6c7f4f190ca9f6f4ea7fc00732a",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/jigsaw.md",
+      "sha256": "1b5566cdf0981677bf79437a6c5877749a7ecc22fcf1cccc1bee864c9d865e75",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/linear-progression.md",
+      "sha256": "65dea6f3fc3c131c7d3fc32050e541b3f60e5896699adc0e8624d1c5cc469757",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/periodic-table.md",
+      "sha256": "8fa5c1823092eecd84e88cf8a3f9547e5ce7389dfeec4fd87b6277154f33f858",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/story-mountain.md",
+      "sha256": "251491e38320301caa0e2c29c4d7c73f910f598c8a00f924eb7e58a70cc7f2e8",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/structural-breakdown.md",
+      "sha256": "eff60da27c0603113a283488824312e1078140872ff204935bf2c3cfe712c1fc",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/tree-branching.md",
+      "sha256": "f493c76aa8d5ace6b5cf96a8ca2480f1131ee2ad41d335fdcb82f3ab83d928fc",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/venn-diagram.md",
+      "sha256": "c0babb164e540dcdc83f9006835024d04e3e2782665ceac4742e59b02a0cfd48",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/layouts/winding-roadmap.md",
+      "sha256": "52dc70d953e795696a71a4331b951cc428283016d8a01e0ffcf9f1d79eb6e4f4",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/structured-content-template.md",
+      "sha256": "d979b8d4fb37746fbf404d5737ec76e5837f066b97f6bd45c9b9b9478bee0877",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/aged-academia.md",
+      "sha256": "596be4263818615dc491531bb326370a276c3995d13b27a7d3222da7ab8fffd3",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/bold-graphic.md",
+      "sha256": "d7262e681a5d8ca93aea397dbd4f00925724af9d20909adef877f5f117e2dabd",
+      "disposition": "not_bundled",
+      "reason": "Exact preset excluded by user"
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/chalkboard.md",
+      "sha256": "d903ffb1bd67b7f05972acbf82fec2305d93c149f458ad434097e4b18ff94df5",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/claymation.md",
+      "sha256": "c55e726c0d1156f2715107dd3b3d3c60af385b48db33b6121cb569494aa59644",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/corporate-memphis.md",
+      "sha256": "156e6e27009fdc3305e97ef242cb1a45fac65a054f73cd62718ce99bf5171ebf",
+      "disposition": "not_bundled",
+      "reason": "Exact preset excluded by user"
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/craft-handmade.md",
+      "sha256": "91740549239ab391d18532c83317a137c68cb11ab33ea154130db68a791288c0",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/cyberpunk-neon.md",
+      "sha256": "68fdaa033dbece53c5e788972ab47fc548df621f23c1ab408c7c633b457f6491",
+      "disposition": "not_bundled",
+      "reason": "Exact preset excluded by user"
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/ikea-manual.md",
+      "sha256": "64816d33fd9fb5c22024d2db48f9e4ca7ca38c64cfad1d020880c7f32ccd5690",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/kawaii.md",
+      "sha256": "d88bf32f4257c13ee68b6b13e7af733aa67b4eedce14e50182a791272f389f3a",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/knolling.md",
+      "sha256": "59302d093c12766b1924e659c406429cc2543055ddf791f0d42760a1b2eaafbd",
+      "disposition": "not_bundled",
+      "reason": "Exact preset excluded by user"
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/lego-brick.md",
+      "sha256": "3753f54d30e02bce4de89a1ace9db4ba82bd8395ae8f643c3670449aaaab04c7",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/morandi-journal.md",
+      "sha256": "13d230f40671f05d80c6e8b134e426da1c7f5a463d354ab241ca0f1ee30fec0d",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/origami.md",
+      "sha256": "58f51438267c1499591d272bd7e434283565799889a4b0c75debf2329f2b919b",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/pixel-art.md",
+      "sha256": "1a1dffbccf818e77fd8b16f7a5872e245a934db77ce2aa2a5b6348268bb2f5f3",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/pop-laboratory.md",
+      "sha256": "c920d07989697c46aa3482fe2b2f4c6387ab803e3f19ca11206a35a2ac7b7ff9",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/retro-pop-grid.md",
+      "sha256": "d59faa1639c15a6624c51746d9725de50a40c448dbbeba8faf6eb00ac3468023",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/storybook-watercolor.md",
+      "sha256": "d7067bc69f56f3fad42e3f2671c86317c36962f38fd69a181f9d606d6fd54f88",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/subway-map.md",
+      "sha256": "a122e7f9f5b990f804b717d6e696f916922ff61227e72bfe5e540fd51c66d359",
+      "disposition": "not_bundled",
+      "reason": "Exact preset excluded by user"
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/technical-schematic.md",
+      "sha256": "2b21ce445c6a2b1ef280c2d7b4cb8e87e2f6e720f85cb68a8ba40a5c2d73a12d",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-infographic/references/styles/ui-wireframe.md",
+      "sha256": "9a27502ab6bba76ad042cfa08834053f9e563c76cc8ffb46456cd3db2a6523a3",
+      "disposition": "not_bundled",
+      "reason": "Exact preset excluded by user"
+    },
+    {
+      "source_path": "skills/sweety-cover-image/SKILL.md",
+      "sha256": "4514abad428d04fbcc53396a41ddc21e65bba503194207786f7db883ed8c71d5",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/auto-selection.md",
+      "sha256": "58e7ded9b2581510860c23b70310f7267de2f381539fbed4915424883da70508",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/base-prompt.md",
+      "sha256": "04bfa168192dc77efc13009694297bd1d9e80867d24dae0f1d5a1c5277216364",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/compatibility.md",
+      "sha256": "8b58adbfb37d7dbed8ce9ce80d2f9cddab1253169c6e33b8a7e34170ed630560",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/config/first-time-setup.md",
+      "sha256": "b4a42b9c32a460a4492a3f938b6746cfdd55df48207ad0e66e4ccae2d896c1c7",
+      "disposition": "not_bundled",
+      "reason": "Upstream preference setup, provider and generated watermark configuration not used; task settings and canonical brand apply"
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/config/preferences-schema.md",
+      "sha256": "76c6029ccbfc0bde4874a2af2c29dc3944735a6100a1950de59f63d4037c58f3",
+      "disposition": "not_bundled",
+      "reason": "Upstream preference setup, provider and generated watermark configuration not used; task settings and canonical brand apply"
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/config/watermark-guide.md",
+      "sha256": "a3325e92c9fa17f44f0830cfa6f09fa5e1c37b15a94fe9adebc6d1018358abbd",
+      "disposition": "not_bundled",
+      "reason": "Upstream preference setup, provider and generated watermark configuration not used; task settings and canonical brand apply"
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/dimensions/font.md",
+      "sha256": "b09d97e5901361d966a044d02711f48d1f44d3b5f229a97d2bb1f00e68e26882",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/dimensions/mood.md",
+      "sha256": "40f975e4d2b71be7e0c6118a683ece176174255747fef6aa119d416783a23d4c",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/dimensions/text.md",
+      "sha256": "85568410b0f74abb9a8106fe21a8d30d4f4bc3835f6b0087f5973064e9350191",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/palettes/cool.md",
+      "sha256": "d08067670b03b4d5f12e0627735613f3aaf8647308c7321e227590b3d99c2f10",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/palettes/dark.md",
+      "sha256": "790b48c90c2c707f3c1550d60ef3360b32f31cc6d99aa97af8dbb9022dec81a9",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/palettes/duotone.md",
+      "sha256": "3196a7289e48efbe04e86aad6c3a4d4c7b9adf103a6ef5602c0e078b2c7a6308",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/palettes/earth.md",
+      "sha256": "cf17248809721a299dadbd35604bdb0cc428cb4a3c528f3fb2a41f5ebf011188",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/palettes/elegant.md",
+      "sha256": "b982fbe662366f43edcff21a808d01f5562d42979ef2a4f9a115a54d9490dff2",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/palettes/mono.md",
+      "sha256": "0bf9206a46896562638128383e84a87fba7317e8229741088ff660e7edc97165",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/palettes/pastel.md",
+      "sha256": "0eca6e45c7ab9a5a03aa07592ade87aefbaa7ef5b2d8a429675d083acebd4f3f",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/palettes/retro.md",
+      "sha256": "bae470a8c131c0bb2e66d7e810d7c2f0aea616c7c640578e71bf3f4cf3501340",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/palettes/vivid.md",
+      "sha256": "e50b376bdba609c234aa0622650d3d2c4bb1019377943dece37479733d707680",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/palettes/warm.md",
+      "sha256": "19571f5338409e0be015f9ff863d9273ef970ebeaf65c7efa92c7115935c05a3",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/renderings/chalk.md",
+      "sha256": "3ecd1eda4a76405c1d69c97fe6ba7d2aa61910f85b0032be434c50c8501f7eab",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/renderings/digital.md",
+      "sha256": "ad24896fd8bf37cffb43fcb05c176283df01fad11b6f58b1959b1ef797d4e51f",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/renderings/flat-vector.md",
+      "sha256": "c7806bde5cd8b3ecd7d81b7f7e30d13ca90eba83e7ca5fa716689e383c61fc34",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/renderings/hand-drawn.md",
+      "sha256": "36750c1139b68724896ca3729a7386be138c525665956cd0cdff41827fd95603",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/renderings/painterly.md",
+      "sha256": "28be96451ea70d4727ec2a9b145f923dc5dfc02eddd51b817f352bb2b2e0f840",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/renderings/pixel.md",
+      "sha256": "2ee8b1f8240abb9f3755b8594ef7237c3270b8767a87c357a81008e5999cf484",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/renderings/screen-print.md",
+      "sha256": "da04e3ff84a70c065df0e8fb9024abf6de3796a1151f268827b4f40b0800c1ec",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/style-presets.md",
+      "sha256": "c2a9e7a6d8b821aeb0886835788e44f4a68076a88f442f24cfdfd9e36733342a",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/types.md",
+      "sha256": "b8d27528b5aef46fbe3986df59de3e313fdef5a8fa6e2a8c7216ce66be42a3f5",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/visual-elements.md",
+      "sha256": "8071ad2ee67a4e1da1d4a76bf92d47f356a1bcf397d1c7edbfcf6bb54df12646",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/workflow/confirm-options.md",
+      "sha256": "940dd01d2b8ee54b37c84537bd0704c93ffabf9ccca6873f62b1edd0d2d02fce",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/workflow/prompt-template.md",
+      "sha256": "f8ff44030668d9239b26681f5396711125e25740df444bffc775284850b9dcf8",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-cover-image/references/workflow/reference-images.md",
+      "sha256": "e395404ec58106ed8b82aa1333ed4e4a3234017e92963e35b251364fb1f2f9bf",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/SKILL.md",
+      "sha256": "12e05a893184a4b677455229ffc735d31484454d8de1cd16c3f071fbf2e9824b",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/analysis-framework.md",
+      "sha256": "02cedcd80b3ec283cd929451a4ab1da0f5fd6bad3807f47908b7f286a5bacc23",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/art-styles/chalk.md",
+      "sha256": "735f5eea5723d1d6c9e136f95d509661dcfdf4aecf376da1a610380561783c06",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/art-styles/ink-brush.md",
+      "sha256": "cf43c5345bc8c80b4f0f7c2ce4810392a489494af248cd8ff6c21831fb839c9a",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/art-styles/ligne-claire.md",
+      "sha256": "8906cb27124d23c3a31953b54b6c30eff4d35608f99b38fe5d05dbcdf7a62cdc",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/art-styles/manga.md",
+      "sha256": "b2ea678169e7caa473205f2c33ce973d9ad7b2a9249efbc156cb946ef6314cf5",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/art-styles/realistic.md",
+      "sha256": "6b12457bc3d30eac36aa47862e387a0ef75899422a2298de4fb361d2fbdeba46",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/auto-selection.md",
+      "sha256": "06232c58be20c82faf79fe36a152e2b95530485debe3f8c4fc9f691a32dce1f0",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/base-prompt.md",
+      "sha256": "9cea612602d354d3ebe5e4d0b4619e615e4ca7b94cfe3c4a012c942db2194d37",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/character-template.md",
+      "sha256": "4a1479a239e0c54de327e16fbb2e58aa707652f66152283669aa94382a598210",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/config/first-time-setup.md",
+      "sha256": "e4dd2127feaf62f82142fcc00038d0f75fc32c79b08e73cd7e5f0c84c0bf0976",
+      "disposition": "not_bundled",
+      "reason": "Upstream preference setup, provider and generated watermark configuration not used; task settings and canonical brand apply"
+    },
+    {
+      "source_path": "skills/sweety-comic/references/config/preferences-schema.md",
+      "sha256": "ee83c3b59f825f82da2626a535172adb6d622dd81e0a75ad60021a80a3caf649",
+      "disposition": "not_bundled",
+      "reason": "Upstream preference setup, provider and generated watermark configuration not used; task settings and canonical brand apply"
+    },
+    {
+      "source_path": "skills/sweety-comic/references/config/watermark-guide.md",
+      "sha256": "c8bb2feae3bbe0d9923aad23e60c92e14f245c280213c79a5281f1fcdbbad5ee",
+      "disposition": "not_bundled",
+      "reason": "Upstream preference setup, provider and generated watermark configuration not used; task settings and canonical brand apply"
+    },
+    {
+      "source_path": "skills/sweety-comic/references/layouts/cinematic.md",
+      "sha256": "5ac2a2aa0fc0776851e8af478b37b9fc831047a3bd9f4a83347b7927865cb7e5",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/layouts/dense.md",
+      "sha256": "0dde755a4f36cca13fd5937cebbb1daebb00769e6480b799773270b6187361e7",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/layouts/mixed.md",
+      "sha256": "bd69b3bfca5b5d5986d0b9885645ba24a8a6a26efbb2760ac7cbf249b13c831e",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/layouts/splash.md",
+      "sha256": "eb7c74f8c006ddffbb345737732773b55202be3b3f5f4350f2993323b1e5113e",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/layouts/standard.md",
+      "sha256": "4b498faee176acbaf6638129bbd91efaab2bbf6dd972facb47b5362884a7a583",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/layouts/webtoon.md",
+      "sha256": "2de64e32988aaa14779806007dfdbe382f0b423e0a0cea041d1a1c816ed382e0",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/ohmsha-guide.md",
+      "sha256": "ae764d59a27039ae970423c5f43d692c8adcc7478c48414720a17348abe035c6",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/partial-workflows.md",
+      "sha256": "b422e7a623579ca324ba271aab65f215f623f95ba9d5336ca8ad5ea49d142864",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/presets/ohmsha.md",
+      "sha256": "ac6b746438616454df2691b2c8c032d7800786b49b290f60a77abac9022d4e6c",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/presets/shoujo.md",
+      "sha256": "f84b0bf495abd98d10468d398100453b969ae41e5d0fe4f2ee4ff6d18146ecaa",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/presets/wuxia.md",
+      "sha256": "9d4212233b894d59e84cdc07a995cd91b4731fd33c1f111acf50fb20aece9779",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/storyboard-template.md",
+      "sha256": "917836d5fa0e2c19e52dc827c994e5773a56a2d15e44f89805e05259e8747b34",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/tones/action.md",
+      "sha256": "c62c2f2a64557a20d1d3c29bf60f2cab0f144b5be423fec0d6cddbebf71e7ec4",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/tones/dramatic.md",
+      "sha256": "02fe6d7dd1b7c49e9f1b12f39f25b570b625567bd52a7a5b3ddf4a11e4f745d7",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/tones/energetic.md",
+      "sha256": "f2ab2580fa60f03ac69155d6af712322841875b2c0bbbb84bc5d8f3185210571",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/tones/neutral.md",
+      "sha256": "fc0cd10f068cd5adfba703f903867dd08dbbaf6d1f4eee7a98a107e8e5db68a7",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/tones/romantic.md",
+      "sha256": "7d51adc7c5b2ae681b64d4d7425900afe7ad38f22a0d30d887bc6e7e1d603c94",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/tones/vintage.md",
+      "sha256": "6cc33000124283d91c885059e7e7d933b8e7070a6887e412bd8c32c276372564",
+      "disposition": "not_bundled",
+      "reason": "Exact preset excluded by user"
+    },
+    {
+      "source_path": "skills/sweety-comic/references/tones/warm.md",
+      "sha256": "a80705960f18d23f1717c52b51e2a681f300dcce1f827fc1a5890fbb16811d1d",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/references/workflow.md",
+      "sha256": "98cd2c8f03da13cdf8b8d2b91bbdba8910c7390ab42d859da2a4351d7c9e55c9",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-comic/scripts/merge-to-pdf.ts",
+      "sha256": "4010bb37d2b44d1c2b9adb9d338d6ce7028196b9069d02b51f1b121ffa10ddc0",
+      "disposition": "not_bundled",
+      "reason": "PDF/build tooling outside content-only scope"
+    },
+    {
+      "source_path": "skills/sweety-image-naturalizer/SKILL.md",
+      "sha256": "59e6b41b80a10a37ceee6037c602737d8a4705b2c40486f912f85b386449d2c1",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-image-naturalizer/references/de-ai-image-checklist.md",
+      "sha256": "6ab13503868f0e40f8b5bfec3327a29c35dcde8326dc5e5a8622b75d40470634",
+      "disposition": "bundled",
+      "reason": null
+    },
+    {
+      "source_path": "skills/sweety-image-naturalizer/references/style-system.md",
+      "sha256": "88ce4f308f94ef723fafdbc49ae12de2f82f9983b026dc0da485b6d17d309ee4",
+      "disposition": "bundled",
+      "reason": null
+    }
+  ],
+  "resources": [
+    {
+      "path": "modules/infographic/references/analysis-framework.md",
+      "source_path": "skills/sweety-infographic/references/analysis-framework.md",
+      "source_sha256": "666d5682334ffde15bbd095a19d0720aa877b0f8c411cafbb60889f3f16fe71a",
+      "local_sha256": "d59d91d6b9f3e67d0b193d65879cbe76499e30f5bb6f5fe81a2ada05bb27c045",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/base-prompt.md",
+      "source_path": "skills/sweety-infographic/references/base-prompt.md",
+      "source_sha256": "a0d476aa0042d25d4c757e7f400883a04f586e74920ac822b89a50dffa185d16",
+      "local_sha256": "6706ae335bf244f11184a44ebebb42063edc631640ff96a923bcbd001d194e75",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/bento-grid.md",
+      "source_path": "skills/sweety-infographic/references/layouts/bento-grid.md",
+      "source_sha256": "b8dfb690b90d935483c5bfcfbd1476f31b392990fe81b1b67ad571008f6e6e99",
+      "local_sha256": "5ee5e59401226a762c9d559bf53ea3eefccf60a8be6dae3bd780a2be0b4a6cc5",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/binary-comparison.md",
+      "source_path": "skills/sweety-infographic/references/layouts/binary-comparison.md",
+      "source_sha256": "6740c77e89b4cd120e2da9c96feb447fb707e40ef42ee1774794337c8079c8ee",
+      "local_sha256": "8c397e2487ced40c63990c5dfbf39f08966298c7bac34229a10fcc856293c09b",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/bridge.md",
+      "source_path": "skills/sweety-infographic/references/layouts/bridge.md",
+      "source_sha256": "ead9bd74c76c6de214e0fcee0b6bb756764b10f67ccaba52b591d05136bc7e1d",
+      "local_sha256": "aeb54f4888ebf828b7dadfa0f3237bcb382162304dca3c8776757840905df460",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/circular-flow.md",
+      "source_path": "skills/sweety-infographic/references/layouts/circular-flow.md",
+      "source_sha256": "96c560cdf274e62cebecdd864e7d7a18ce44863c78cbda3ff62f48233839e859",
+      "local_sha256": "a7a8a0cfa52546c54dd86bda6973eb75a0484ad172de01b701b42ece4c303fad",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/comic-strip.md",
+      "source_path": "skills/sweety-infographic/references/layouts/comic-strip.md",
+      "source_sha256": "3ed52755443e435304cb28925da1f7465bd6186aac2ac125d9336c8e0afed028",
+      "local_sha256": "f1b0afcc2cc937dcbffe87436586b7ad7c802b1ab41c7bfb7d0ea67a0759de18",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/comparison-matrix.md",
+      "source_path": "skills/sweety-infographic/references/layouts/comparison-matrix.md",
+      "source_sha256": "77bfeb08fd66287e11db575582262f80a6c8471c5dfa6b9508e3c48e567ae14e",
+      "local_sha256": "4283db722f73ca771e3d6fb55d41248207b8ba6576bed850be612181dba085d6",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/dashboard.md",
+      "source_path": "skills/sweety-infographic/references/layouts/dashboard.md",
+      "source_sha256": "045514ab6f196ff0ab2c7ead9755e955eff582c5cdedc163eb0a4b18aebee2b6",
+      "local_sha256": "878c28e75d4c8464c71011b5536dd34f10bb92f55dd562a28ab6f940979a0f1e",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/dense-modules.md",
+      "source_path": "skills/sweety-infographic/references/layouts/dense-modules.md",
+      "source_sha256": "5d73084f494c863b5c6186925f0eec0372a80157b63ebc6021379a5659b10420",
+      "local_sha256": "e361025e986bb435d90e4b0d84fc8bb84b270ceab7a3a23d3163b699a7d86682",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/funnel.md",
+      "source_path": "skills/sweety-infographic/references/layouts/funnel.md",
+      "source_sha256": "e505f04f334d8da00607972b19b23f9a2e24b6c2cff8cdb8fbe6baa0698c7286",
+      "local_sha256": "338e974c3d84612c687b90748ddd1d7f795c03d497e22499f10fcdfc56d4e598",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/hierarchical-layers.md",
+      "source_path": "skills/sweety-infographic/references/layouts/hierarchical-layers.md",
+      "source_sha256": "5fdacc7c543788a32d9e73b4cc26465e54adec498dd4975cdcff85ca2f2d1da9",
+      "local_sha256": "77a565e7b1d305cffc9180fedb778a1f0441e4838ef63a3cb4828f0e01bdcc89",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/hub-spoke.md",
+      "source_path": "skills/sweety-infographic/references/layouts/hub-spoke.md",
+      "source_sha256": "d79526313a7f6550e5586652d871dee3b958c2ea400242a9a9c3f2bccf4b57a5",
+      "local_sha256": "c1b50149c3875a31373bad8d55cf733754b3b51ef19d5254f2fff251d6025d41",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/iceberg.md",
+      "source_path": "skills/sweety-infographic/references/layouts/iceberg.md",
+      "source_sha256": "26a21caf9a3d8dd4172565953f2cd060bca0b3ab2afd82f54828dc7542f5e9e3",
+      "local_sha256": "2c07bd714af0ab45e101b506ca3e0e1f7136d468630068d717b3619328bcd073",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/isometric-map.md",
+      "source_path": "skills/sweety-infographic/references/layouts/isometric-map.md",
+      "source_sha256": "ec0be8d54e5a8db5182696c637fd8769f9b9a6c7f4f190ca9f6f4ea7fc00732a",
+      "local_sha256": "ff8e84f5ba82cd4bf7a0967b430bc31886d7619f3c204682eff705a2526bc912",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/jigsaw.md",
+      "source_path": "skills/sweety-infographic/references/layouts/jigsaw.md",
+      "source_sha256": "1b5566cdf0981677bf79437a6c5877749a7ecc22fcf1cccc1bee864c9d865e75",
+      "local_sha256": "cce132e9e181ac1083dc204784c925aa47d400d0cadc902643e6d6ad79d59d34",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/linear-progression.md",
+      "source_path": "skills/sweety-infographic/references/layouts/linear-progression.md",
+      "source_sha256": "65dea6f3fc3c131c7d3fc32050e541b3f60e5896699adc0e8624d1c5cc469757",
+      "local_sha256": "d7d6f2b0dc74c82ab2ea201e5313d3cad222877925a88ccc6b6613ae95abc2d2",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/periodic-table.md",
+      "source_path": "skills/sweety-infographic/references/layouts/periodic-table.md",
+      "source_sha256": "8fa5c1823092eecd84e88cf8a3f9547e5ce7389dfeec4fd87b6277154f33f858",
+      "local_sha256": "eac4de849377e2ab8c60a04a3a5899e4639be5211bb814d63e5a18c06e5339e2",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/story-mountain.md",
+      "source_path": "skills/sweety-infographic/references/layouts/story-mountain.md",
+      "source_sha256": "251491e38320301caa0e2c29c4d7c73f910f598c8a00f924eb7e58a70cc7f2e8",
+      "local_sha256": "38439e5298b92e065f96936dcac4f1f7a76d2b4b908add04d07621decd9b7775",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/structural-breakdown.md",
+      "source_path": "skills/sweety-infographic/references/layouts/structural-breakdown.md",
+      "source_sha256": "eff60da27c0603113a283488824312e1078140872ff204935bf2c3cfe712c1fc",
+      "local_sha256": "94656fa20d12bdc0775fcd69ae799418048aec6fdab9ab98495902f69b7c8b49",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/tree-branching.md",
+      "source_path": "skills/sweety-infographic/references/layouts/tree-branching.md",
+      "source_sha256": "f493c76aa8d5ace6b5cf96a8ca2480f1131ee2ad41d335fdcb82f3ab83d928fc",
+      "local_sha256": "064c0ae613d1f5679a535b0c6dc066468b7f083d265adc83b99ec4f9fc2c5764",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/venn-diagram.md",
+      "source_path": "skills/sweety-infographic/references/layouts/venn-diagram.md",
+      "source_sha256": "c0babb164e540dcdc83f9006835024d04e3e2782665ceac4742e59b02a0cfd48",
+      "local_sha256": "e7efdf7e06b01f5c86842696458d90884fae95c5054f6752bd544509276592a9",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/layouts/winding-roadmap.md",
+      "source_path": "skills/sweety-infographic/references/layouts/winding-roadmap.md",
+      "source_sha256": "52dc70d953e795696a71a4331b951cc428283016d8a01e0ffcf9f1d79eb6e4f4",
+      "local_sha256": "032e527e3f011508361e5ac7d9ca247ed4f5b068da5bd3d6a666c55d57f3e917",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/structured-content-template.md",
+      "source_path": "skills/sweety-infographic/references/structured-content-template.md",
+      "source_sha256": "d979b8d4fb37746fbf404d5737ec76e5837f066b97f6bd45c9b9b9478bee0877",
+      "local_sha256": "bbf52011c050b8be7965f630b998df55fd918ad5cc75b8b34e5e18b20e0c79be",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/styles/aged-academia.md",
+      "source_path": "skills/sweety-infographic/references/styles/aged-academia.md",
+      "source_sha256": "596be4263818615dc491531bb326370a276c3995d13b27a7d3222da7ab8fffd3",
+      "local_sha256": "596be4263818615dc491531bb326370a276c3995d13b27a7d3222da7ab8fffd3",
+      "adapted": false
+    },
+    {
+      "path": "modules/infographic/references/styles/chalkboard.md",
+      "source_path": "skills/sweety-infographic/references/styles/chalkboard.md",
+      "source_sha256": "d903ffb1bd67b7f05972acbf82fec2305d93c149f458ad434097e4b18ff94df5",
+      "local_sha256": "d903ffb1bd67b7f05972acbf82fec2305d93c149f458ad434097e4b18ff94df5",
+      "adapted": false
+    },
+    {
+      "path": "modules/infographic/references/styles/claymation.md",
+      "source_path": "skills/sweety-infographic/references/styles/claymation.md",
+      "source_sha256": "c55e726c0d1156f2715107dd3b3d3c60af385b48db33b6121cb569494aa59644",
+      "local_sha256": "c55e726c0d1156f2715107dd3b3d3c60af385b48db33b6121cb569494aa59644",
+      "adapted": false
+    },
+    {
+      "path": "modules/infographic/references/styles/craft-handmade.md",
+      "source_path": "skills/sweety-infographic/references/styles/craft-handmade.md",
+      "source_sha256": "91740549239ab391d18532c83317a137c68cb11ab33ea154130db68a791288c0",
+      "local_sha256": "91740549239ab391d18532c83317a137c68cb11ab33ea154130db68a791288c0",
+      "adapted": false
+    },
+    {
+      "path": "modules/infographic/references/styles/ikea-manual.md",
+      "source_path": "skills/sweety-infographic/references/styles/ikea-manual.md",
+      "source_sha256": "64816d33fd9fb5c22024d2db48f9e4ca7ca38c64cfad1d020880c7f32ccd5690",
+      "local_sha256": "64816d33fd9fb5c22024d2db48f9e4ca7ca38c64cfad1d020880c7f32ccd5690",
+      "adapted": false
+    },
+    {
+      "path": "modules/infographic/references/styles/kawaii.md",
+      "source_path": "skills/sweety-infographic/references/styles/kawaii.md",
+      "source_sha256": "d88bf32f4257c13ee68b6b13e7af733aa67b4eedce14e50182a791272f389f3a",
+      "local_sha256": "d88bf32f4257c13ee68b6b13e7af733aa67b4eedce14e50182a791272f389f3a",
+      "adapted": false
+    },
+    {
+      "path": "modules/infographic/references/styles/lego-brick.md",
+      "source_path": "skills/sweety-infographic/references/styles/lego-brick.md",
+      "source_sha256": "3753f54d30e02bce4de89a1ace9db4ba82bd8395ae8f643c3670449aaaab04c7",
+      "local_sha256": "3753f54d30e02bce4de89a1ace9db4ba82bd8395ae8f643c3670449aaaab04c7",
+      "adapted": false
+    },
+    {
+      "path": "modules/infographic/references/styles/morandi-journal.md",
+      "source_path": "skills/sweety-infographic/references/styles/morandi-journal.md",
+      "source_sha256": "13d230f40671f05d80c6e8b134e426da1c7f5a463d354ab241ca0f1ee30fec0d",
+      "local_sha256": "13d230f40671f05d80c6e8b134e426da1c7f5a463d354ab241ca0f1ee30fec0d",
+      "adapted": false
+    },
+    {
+      "path": "modules/infographic/references/styles/origami.md",
+      "source_path": "skills/sweety-infographic/references/styles/origami.md",
+      "source_sha256": "58f51438267c1499591d272bd7e434283565799889a4b0c75debf2329f2b919b",
+      "local_sha256": "58f51438267c1499591d272bd7e434283565799889a4b0c75debf2329f2b919b",
+      "adapted": false
+    },
+    {
+      "path": "modules/infographic/references/styles/pixel-art.md",
+      "source_path": "skills/sweety-infographic/references/styles/pixel-art.md",
+      "source_sha256": "1a1dffbccf818e77fd8b16f7a5872e245a934db77ce2aa2a5b6348268bb2f5f3",
+      "local_sha256": "1a1dffbccf818e77fd8b16f7a5872e245a934db77ce2aa2a5b6348268bb2f5f3",
+      "adapted": false
+    },
+    {
+      "path": "modules/infographic/references/styles/pop-laboratory.md",
+      "source_path": "skills/sweety-infographic/references/styles/pop-laboratory.md",
+      "source_sha256": "c920d07989697c46aa3482fe2b2f4c6387ab803e3f19ca11206a35a2ac7b7ff9",
+      "local_sha256": "22673b14091eaed5587bc23a192fd121c0b3c9b1fd4173f1eb63db2a8ae19b1c",
+      "adapted": true
+    },
+    {
+      "path": "modules/infographic/references/styles/retro-pop-grid.md",
+      "source_path": "skills/sweety-infographic/references/styles/retro-pop-grid.md",
+      "source_sha256": "d59faa1639c15a6624c51746d9725de50a40c448dbbeba8faf6eb00ac3468023",
+      "local_sha256": "d59faa1639c15a6624c51746d9725de50a40c448dbbeba8faf6eb00ac3468023",
+      "adapted": false
+    },
+    {
+      "path": "modules/infographic/references/styles/storybook-watercolor.md",
+      "source_path": "skills/sweety-infographic/references/styles/storybook-watercolor.md",
+      "source_sha256": "d7067bc69f56f3fad42e3f2671c86317c36962f38fd69a181f9d606d6fd54f88",
+      "local_sha256": "d7067bc69f56f3fad42e3f2671c86317c36962f38fd69a181f9d606d6fd54f88",
+      "adapted": false
+    },
+    {
+      "path": "modules/infographic/references/styles/technical-schematic.md",
+      "source_path": "skills/sweety-infographic/references/styles/technical-schematic.md",
+      "source_sha256": "2b21ce445c6a2b1ef280c2d7b4cb8e87e2f6e720f85cb68a8ba40a5c2d73a12d",
+      "local_sha256": "2b21ce445c6a2b1ef280c2d7b4cb8e87e2f6e720f85cb68a8ba40a5c2d73a12d",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/auto-selection.md",
+      "source_path": "skills/sweety-cover-image/references/auto-selection.md",
+      "source_sha256": "58e7ded9b2581510860c23b70310f7267de2f381539fbed4915424883da70508",
+      "local_sha256": "58e7ded9b2581510860c23b70310f7267de2f381539fbed4915424883da70508",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/base-prompt.md",
+      "source_path": "skills/sweety-cover-image/references/base-prompt.md",
+      "source_sha256": "04bfa168192dc77efc13009694297bd1d9e80867d24dae0f1d5a1c5277216364",
+      "local_sha256": "8c2027b6c0532bbf76bd614a724586e4c47c033a21c31570ca5221ec6a435b2e",
+      "adapted": true
+    },
+    {
+      "path": "modules/cover/references/compatibility.md",
+      "source_path": "skills/sweety-cover-image/references/compatibility.md",
+      "source_sha256": "8b58adbfb37d7dbed8ce9ce80d2f9cddab1253169c6e33b8a7e34170ed630560",
+      "local_sha256": "8b58adbfb37d7dbed8ce9ce80d2f9cddab1253169c6e33b8a7e34170ed630560",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/dimensions/font.md",
+      "source_path": "skills/sweety-cover-image/references/dimensions/font.md",
+      "source_sha256": "b09d97e5901361d966a044d02711f48d1f44d3b5f229a97d2bb1f00e68e26882",
+      "local_sha256": "b09d97e5901361d966a044d02711f48d1f44d3b5f229a97d2bb1f00e68e26882",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/dimensions/mood.md",
+      "source_path": "skills/sweety-cover-image/references/dimensions/mood.md",
+      "source_sha256": "40f975e4d2b71be7e0c6118a683ece176174255747fef6aa119d416783a23d4c",
+      "local_sha256": "40f975e4d2b71be7e0c6118a683ece176174255747fef6aa119d416783a23d4c",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/dimensions/text.md",
+      "source_path": "skills/sweety-cover-image/references/dimensions/text.md",
+      "source_sha256": "85568410b0f74abb9a8106fe21a8d30d4f4bc3835f6b0087f5973064e9350191",
+      "local_sha256": "85568410b0f74abb9a8106fe21a8d30d4f4bc3835f6b0087f5973064e9350191",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/palettes/cool.md",
+      "source_path": "skills/sweety-cover-image/references/palettes/cool.md",
+      "source_sha256": "d08067670b03b4d5f12e0627735613f3aaf8647308c7321e227590b3d99c2f10",
+      "local_sha256": "d08067670b03b4d5f12e0627735613f3aaf8647308c7321e227590b3d99c2f10",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/palettes/dark.md",
+      "source_path": "skills/sweety-cover-image/references/palettes/dark.md",
+      "source_sha256": "790b48c90c2c707f3c1550d60ef3360b32f31cc6d99aa97af8dbb9022dec81a9",
+      "local_sha256": "790b48c90c2c707f3c1550d60ef3360b32f31cc6d99aa97af8dbb9022dec81a9",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/palettes/duotone.md",
+      "source_path": "skills/sweety-cover-image/references/palettes/duotone.md",
+      "source_sha256": "3196a7289e48efbe04e86aad6c3a4d4c7b9adf103a6ef5602c0e078b2c7a6308",
+      "local_sha256": "3196a7289e48efbe04e86aad6c3a4d4c7b9adf103a6ef5602c0e078b2c7a6308",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/palettes/earth.md",
+      "source_path": "skills/sweety-cover-image/references/palettes/earth.md",
+      "source_sha256": "cf17248809721a299dadbd35604bdb0cc428cb4a3c528f3fb2a41f5ebf011188",
+      "local_sha256": "cf17248809721a299dadbd35604bdb0cc428cb4a3c528f3fb2a41f5ebf011188",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/palettes/elegant.md",
+      "source_path": "skills/sweety-cover-image/references/palettes/elegant.md",
+      "source_sha256": "b982fbe662366f43edcff21a808d01f5562d42979ef2a4f9a115a54d9490dff2",
+      "local_sha256": "b982fbe662366f43edcff21a808d01f5562d42979ef2a4f9a115a54d9490dff2",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/palettes/mono.md",
+      "source_path": "skills/sweety-cover-image/references/palettes/mono.md",
+      "source_sha256": "0bf9206a46896562638128383e84a87fba7317e8229741088ff660e7edc97165",
+      "local_sha256": "0bf9206a46896562638128383e84a87fba7317e8229741088ff660e7edc97165",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/palettes/pastel.md",
+      "source_path": "skills/sweety-cover-image/references/palettes/pastel.md",
+      "source_sha256": "0eca6e45c7ab9a5a03aa07592ade87aefbaa7ef5b2d8a429675d083acebd4f3f",
+      "local_sha256": "0eca6e45c7ab9a5a03aa07592ade87aefbaa7ef5b2d8a429675d083acebd4f3f",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/palettes/retro.md",
+      "source_path": "skills/sweety-cover-image/references/palettes/retro.md",
+      "source_sha256": "bae470a8c131c0bb2e66d7e810d7c2f0aea616c7c640578e71bf3f4cf3501340",
+      "local_sha256": "bae470a8c131c0bb2e66d7e810d7c2f0aea616c7c640578e71bf3f4cf3501340",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/palettes/vivid.md",
+      "source_path": "skills/sweety-cover-image/references/palettes/vivid.md",
+      "source_sha256": "e50b376bdba609c234aa0622650d3d2c4bb1019377943dece37479733d707680",
+      "local_sha256": "e50b376bdba609c234aa0622650d3d2c4bb1019377943dece37479733d707680",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/palettes/warm.md",
+      "source_path": "skills/sweety-cover-image/references/palettes/warm.md",
+      "source_sha256": "19571f5338409e0be015f9ff863d9273ef970ebeaf65c7efa92c7115935c05a3",
+      "local_sha256": "19571f5338409e0be015f9ff863d9273ef970ebeaf65c7efa92c7115935c05a3",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/renderings/chalk.md",
+      "source_path": "skills/sweety-cover-image/references/renderings/chalk.md",
+      "source_sha256": "3ecd1eda4a76405c1d69c97fe6ba7d2aa61910f85b0032be434c50c8501f7eab",
+      "local_sha256": "3ecd1eda4a76405c1d69c97fe6ba7d2aa61910f85b0032be434c50c8501f7eab",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/renderings/digital.md",
+      "source_path": "skills/sweety-cover-image/references/renderings/digital.md",
+      "source_sha256": "ad24896fd8bf37cffb43fcb05c176283df01fad11b6f58b1959b1ef797d4e51f",
+      "local_sha256": "ad24896fd8bf37cffb43fcb05c176283df01fad11b6f58b1959b1ef797d4e51f",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/renderings/flat-vector.md",
+      "source_path": "skills/sweety-cover-image/references/renderings/flat-vector.md",
+      "source_sha256": "c7806bde5cd8b3ecd7d81b7f7e30d13ca90eba83e7ca5fa716689e383c61fc34",
+      "local_sha256": "c7806bde5cd8b3ecd7d81b7f7e30d13ca90eba83e7ca5fa716689e383c61fc34",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/renderings/hand-drawn.md",
+      "source_path": "skills/sweety-cover-image/references/renderings/hand-drawn.md",
+      "source_sha256": "36750c1139b68724896ca3729a7386be138c525665956cd0cdff41827fd95603",
+      "local_sha256": "36750c1139b68724896ca3729a7386be138c525665956cd0cdff41827fd95603",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/renderings/painterly.md",
+      "source_path": "skills/sweety-cover-image/references/renderings/painterly.md",
+      "source_sha256": "28be96451ea70d4727ec2a9b145f923dc5dfc02eddd51b817f352bb2b2e0f840",
+      "local_sha256": "28be96451ea70d4727ec2a9b145f923dc5dfc02eddd51b817f352bb2b2e0f840",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/renderings/pixel.md",
+      "source_path": "skills/sweety-cover-image/references/renderings/pixel.md",
+      "source_sha256": "2ee8b1f8240abb9f3755b8594ef7237c3270b8767a87c357a81008e5999cf484",
+      "local_sha256": "2ee8b1f8240abb9f3755b8594ef7237c3270b8767a87c357a81008e5999cf484",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/renderings/screen-print.md",
+      "source_path": "skills/sweety-cover-image/references/renderings/screen-print.md",
+      "source_sha256": "da04e3ff84a70c065df0e8fb9024abf6de3796a1151f268827b4f40b0800c1ec",
+      "local_sha256": "da04e3ff84a70c065df0e8fb9024abf6de3796a1151f268827b4f40b0800c1ec",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/style-presets.md",
+      "source_path": "skills/sweety-cover-image/references/style-presets.md",
+      "source_sha256": "c2a9e7a6d8b821aeb0886835788e44f4a68076a88f442f24cfdfd9e36733342a",
+      "local_sha256": "dd9eb6e9b35367134dc6aebc530fb6850e1fbfff65b5ee52861b4269713f6c79",
+      "adapted": true
+    },
+    {
+      "path": "modules/cover/references/types.md",
+      "source_path": "skills/sweety-cover-image/references/types.md",
+      "source_sha256": "b8d27528b5aef46fbe3986df59de3e313fdef5a8fa6e2a8c7216ce66be42a3f5",
+      "local_sha256": "b8d27528b5aef46fbe3986df59de3e313fdef5a8fa6e2a8c7216ce66be42a3f5",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/visual-elements.md",
+      "source_path": "skills/sweety-cover-image/references/visual-elements.md",
+      "source_sha256": "8071ad2ee67a4e1da1d4a76bf92d47f356a1bcf397d1c7edbfcf6bb54df12646",
+      "local_sha256": "8071ad2ee67a4e1da1d4a76bf92d47f356a1bcf397d1c7edbfcf6bb54df12646",
+      "adapted": false
+    },
+    {
+      "path": "modules/cover/references/workflow/confirm-options.md",
+      "source_path": "skills/sweety-cover-image/references/workflow/confirm-options.md",
+      "source_sha256": "940dd01d2b8ee54b37c84537bd0704c93ffabf9ccca6873f62b1edd0d2d02fce",
+      "local_sha256": "13e99e5b4118c24e97fb674165c2aca91d05833b20859fd67dfc5dc82b9fbb1c",
+      "adapted": true
+    },
+    {
+      "path": "modules/cover/references/workflow/prompt-template.md",
+      "source_path": "skills/sweety-cover-image/references/workflow/prompt-template.md",
+      "source_sha256": "f8ff44030668d9239b26681f5396711125e25740df444bffc775284850b9dcf8",
+      "local_sha256": "148dc2227b6f49ec5e83bdc12c33ce0b02794b719e3e9c4093775aaf69e69866",
+      "adapted": true
+    },
+    {
+      "path": "modules/cover/references/workflow/reference-images.md",
+      "source_path": "skills/sweety-cover-image/references/workflow/reference-images.md",
+      "source_sha256": "e395404ec58106ed8b82aa1333ed4e4a3234017e92963e35b251364fb1f2f9bf",
+      "local_sha256": "bcf58d5ce84eda1dc74e4c7370f094b6e7bc8f122ef568b93a26515ab213cf0d",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/analysis-framework.md",
+      "source_path": "skills/sweety-comic/references/analysis-framework.md",
+      "source_sha256": "02cedcd80b3ec283cd929451a4ab1da0f5fd6bad3807f47908b7f286a5bacc23",
+      "local_sha256": "19ea10442cf2295c1efcb46da01fbd216953f7e9f336bc92e54e7b883ac7e2f3",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/art-styles/chalk.md",
+      "source_path": "skills/sweety-comic/references/art-styles/chalk.md",
+      "source_sha256": "735f5eea5723d1d6c9e136f95d509661dcfdf4aecf376da1a610380561783c06",
+      "local_sha256": "08807db29d8c14228d7738f1b17b00f49f3b9a3d51f0eeb2fe5f609a32a65ad1",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/art-styles/ink-brush.md",
+      "source_path": "skills/sweety-comic/references/art-styles/ink-brush.md",
+      "source_sha256": "cf43c5345bc8c80b4f0f7c2ce4810392a489494af248cd8ff6c21831fb839c9a",
+      "local_sha256": "4980fd93e51566ba6555281f2ab0c471cdb912c003c49c3239c663dfb7d49d4c",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/art-styles/ligne-claire.md",
+      "source_path": "skills/sweety-comic/references/art-styles/ligne-claire.md",
+      "source_sha256": "8906cb27124d23c3a31953b54b6c30eff4d35608f99b38fe5d05dbcdf7a62cdc",
+      "local_sha256": "9c1f2b8403936df2729006813c0e6987b4d07e25ac3832e17fe64b97a43f6512",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/art-styles/manga.md",
+      "source_path": "skills/sweety-comic/references/art-styles/manga.md",
+      "source_sha256": "b2ea678169e7caa473205f2c33ce973d9ad7b2a9249efbc156cb946ef6314cf5",
+      "local_sha256": "49cee6de60223c626402fc68cc46e3f8fdd9f60d08df18b83e129530f368e607",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/art-styles/realistic.md",
+      "source_path": "skills/sweety-comic/references/art-styles/realistic.md",
+      "source_sha256": "6b12457bc3d30eac36aa47862e387a0ef75899422a2298de4fb361d2fbdeba46",
+      "local_sha256": "5d3b3dee26a2d94adef339dd8a14e77d94563d8151f0588201888dcdc5d70763",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/auto-selection.md",
+      "source_path": "skills/sweety-comic/references/auto-selection.md",
+      "source_sha256": "06232c58be20c82faf79fe36a152e2b95530485debe3f8c4fc9f691a32dce1f0",
+      "local_sha256": "94c037b234c2f93c0747b1b75dcc5bffd96b8595feb4a1ebb6ab7f0ce5b1e18e",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/base-prompt.md",
+      "source_path": "skills/sweety-comic/references/base-prompt.md",
+      "source_sha256": "9cea612602d354d3ebe5e4d0b4619e615e4ca7b94cfe3c4a012c942db2194d37",
+      "local_sha256": "c336e9647d9206db8ce042d3ec31915365039ed595d27c53de07b8ecce072968",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/character-template.md",
+      "source_path": "skills/sweety-comic/references/character-template.md",
+      "source_sha256": "4a1479a239e0c54de327e16fbb2e58aa707652f66152283669aa94382a598210",
+      "local_sha256": "781b5b57d37bbdb7bf88c05b8e69b12393a4b27497ba3a24b81ab62270943dc5",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/layouts/cinematic.md",
+      "source_path": "skills/sweety-comic/references/layouts/cinematic.md",
+      "source_sha256": "5ac2a2aa0fc0776851e8af478b37b9fc831047a3bd9f4a83347b7927865cb7e5",
+      "local_sha256": "b0b6ffb54162b7a5f140401ac595218cad35a1fead131be7246edb5b50f75ed5",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/layouts/dense.md",
+      "source_path": "skills/sweety-comic/references/layouts/dense.md",
+      "source_sha256": "0dde755a4f36cca13fd5937cebbb1daebb00769e6480b799773270b6187361e7",
+      "local_sha256": "5c901aa91a942586a857698efef9b186f3e9dc798661a4021549368a85de8dd6",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/layouts/mixed.md",
+      "source_path": "skills/sweety-comic/references/layouts/mixed.md",
+      "source_sha256": "bd69b3bfca5b5d5986d0b9885645ba24a8a6a26efbb2760ac7cbf249b13c831e",
+      "local_sha256": "4dedd0a991ecd8c0207b1228dcbb28ce745de58ac35cb26cf0725e08f370af09",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/layouts/splash.md",
+      "source_path": "skills/sweety-comic/references/layouts/splash.md",
+      "source_sha256": "eb7c74f8c006ddffbb345737732773b55202be3b3f5f4350f2993323b1e5113e",
+      "local_sha256": "87266a95e6c42a597b5cb06c4d30229403d5126161408604e462188e4e8ea208",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/layouts/standard.md",
+      "source_path": "skills/sweety-comic/references/layouts/standard.md",
+      "source_sha256": "4b498faee176acbaf6638129bbd91efaab2bbf6dd972facb47b5362884a7a583",
+      "local_sha256": "6ab74aa69af2aa172cf586d451bae4332dcc768f858afec044c8d8e8197f2563",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/layouts/webtoon.md",
+      "source_path": "skills/sweety-comic/references/layouts/webtoon.md",
+      "source_sha256": "2de64e32988aaa14779806007dfdbe382f0b423e0a0cea041d1a1c816ed382e0",
+      "local_sha256": "f0bf0cd6ff1dab41735b3ff40bfa873f83e6434d923434d5347525953703ec4d",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/ohmsha-guide.md",
+      "source_path": "skills/sweety-comic/references/ohmsha-guide.md",
+      "source_sha256": "ae764d59a27039ae970423c5f43d692c8adcc7478c48414720a17348abe035c6",
+      "local_sha256": "9c3f8f86c805acf78fc3bb872dc677ce0823f242d8e99049adefdccf5b14af97",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/partial-workflows.md",
+      "source_path": "skills/sweety-comic/references/partial-workflows.md",
+      "source_sha256": "b422e7a623579ca324ba271aab65f215f623f95ba9d5336ca8ad5ea49d142864",
+      "local_sha256": "a4cb6221dbd6d6f104c1cab0195a1ffc7d3f2e7206ddb3ccfaf5231e8dec188d",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/presets/ohmsha.md",
+      "source_path": "skills/sweety-comic/references/presets/ohmsha.md",
+      "source_sha256": "ac6b746438616454df2691b2c8c032d7800786b49b290f60a77abac9022d4e6c",
+      "local_sha256": "c5cb441d2a476a9c6c5a8a88e00dae815d16afeb2747655815a3aaf98c053315",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/presets/shoujo.md",
+      "source_path": "skills/sweety-comic/references/presets/shoujo.md",
+      "source_sha256": "f84b0bf495abd98d10468d398100453b969ae41e5d0fe4f2ee4ff6d18146ecaa",
+      "local_sha256": "f84b0bf495abd98d10468d398100453b969ae41e5d0fe4f2ee4ff6d18146ecaa",
+      "adapted": false
+    },
+    {
+      "path": "modules/comic/references/presets/wuxia.md",
+      "source_path": "skills/sweety-comic/references/presets/wuxia.md",
+      "source_sha256": "9d4212233b894d59e84cdc07a995cd91b4731fd33c1f111acf50fb20aece9779",
+      "local_sha256": "9d4212233b894d59e84cdc07a995cd91b4731fd33c1f111acf50fb20aece9779",
+      "adapted": false
+    },
+    {
+      "path": "modules/comic/references/storyboard-template.md",
+      "source_path": "skills/sweety-comic/references/storyboard-template.md",
+      "source_sha256": "917836d5fa0e2c19e52dc827c994e5773a56a2d15e44f89805e05259e8747b34",
+      "local_sha256": "f7b1a970bf246095fe65a72b0c22b2a7d2b3488eb986c0a1fc570984f7af8f89",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/references/tones/action.md",
+      "source_path": "skills/sweety-comic/references/tones/action.md",
+      "source_sha256": "c62c2f2a64557a20d1d3c29bf60f2cab0f144b5be423fec0d6cddbebf71e7ec4",
+      "local_sha256": "c62c2f2a64557a20d1d3c29bf60f2cab0f144b5be423fec0d6cddbebf71e7ec4",
+      "adapted": false
+    },
+    {
+      "path": "modules/comic/references/tones/dramatic.md",
+      "source_path": "skills/sweety-comic/references/tones/dramatic.md",
+      "source_sha256": "02fe6d7dd1b7c49e9f1b12f39f25b570b625567bd52a7a5b3ddf4a11e4f745d7",
+      "local_sha256": "02fe6d7dd1b7c49e9f1b12f39f25b570b625567bd52a7a5b3ddf4a11e4f745d7",
+      "adapted": false
+    },
+    {
+      "path": "modules/comic/references/tones/energetic.md",
+      "source_path": "skills/sweety-comic/references/tones/energetic.md",
+      "source_sha256": "f2ab2580fa60f03ac69155d6af712322841875b2c0bbbb84bc5d8f3185210571",
+      "local_sha256": "f2ab2580fa60f03ac69155d6af712322841875b2c0bbbb84bc5d8f3185210571",
+      "adapted": false
+    },
+    {
+      "path": "modules/comic/references/tones/neutral.md",
+      "source_path": "skills/sweety-comic/references/tones/neutral.md",
+      "source_sha256": "fc0cd10f068cd5adfba703f903867dd08dbbaf6d1f4eee7a98a107e8e5db68a7",
+      "local_sha256": "fc0cd10f068cd5adfba703f903867dd08dbbaf6d1f4eee7a98a107e8e5db68a7",
+      "adapted": false
+    },
+    {
+      "path": "modules/comic/references/tones/romantic.md",
+      "source_path": "skills/sweety-comic/references/tones/romantic.md",
+      "source_sha256": "7d51adc7c5b2ae681b64d4d7425900afe7ad38f22a0d30d887bc6e7e1d603c94",
+      "local_sha256": "7d51adc7c5b2ae681b64d4d7425900afe7ad38f22a0d30d887bc6e7e1d603c94",
+      "adapted": false
+    },
+    {
+      "path": "modules/comic/references/tones/warm.md",
+      "source_path": "skills/sweety-comic/references/tones/warm.md",
+      "source_sha256": "a80705960f18d23f1717c52b51e2a681f300dcce1f827fc1a5890fbb16811d1d",
+      "local_sha256": "a80705960f18d23f1717c52b51e2a681f300dcce1f827fc1a5890fbb16811d1d",
+      "adapted": false
+    },
+    {
+      "path": "modules/comic/references/workflow.md",
+      "source_path": "skills/sweety-comic/references/workflow.md",
+      "source_sha256": "98cd2c8f03da13cdf8b8d2b91bbdba8910c7390ab42d859da2a4351d7c9e55c9",
+      "local_sha256": "704d46672b058ec1ad4d15a18d7bb57bcef0a52bfba12e4b896fa86ecb82e996",
+      "adapted": true
+    },
+    {
+      "path": "modules/naturalizer/references/de-ai-image-checklist.md",
+      "source_path": "skills/sweety-image-naturalizer/references/de-ai-image-checklist.md",
+      "source_sha256": "6ab13503868f0e40f8b5bfec3327a29c35dcde8326dc5e5a8622b75d40470634",
+      "local_sha256": "6ab13503868f0e40f8b5bfec3327a29c35dcde8326dc5e5a8622b75d40470634",
+      "adapted": false
+    },
+    {
+      "path": "modules/naturalizer/references/style-system.md",
+      "source_path": "skills/sweety-image-naturalizer/references/style-system.md",
+      "source_sha256": "88ce4f308f94ef723fafdbc49ae12de2f82f9983b026dc0da485b6d17d309ee4",
+      "local_sha256": "88ce4f308f94ef723fafdbc49ae12de2f82f9983b026dc0da485b6d17d309ee4",
+      "adapted": false
+    },
+    {
+      "path": "modules/infographic/guide.md",
+      "source_path": "skills/sweety-infographic/SKILL.md",
+      "source_sha256": "6d6bfa973493c950542955e26e5db93ebd76692d9ee4cea85ccc106ab7398df8",
+      "local_sha256": "3b20bf26698d947c3f9506b55ee36091cf67abb975c0b87bba428517a7c14e72",
+      "adapted": true
+    },
+    {
+      "path": "modules/cover/guide.md",
+      "source_path": "skills/sweety-cover-image/SKILL.md",
+      "source_sha256": "4514abad428d04fbcc53396a41ddc21e65bba503194207786f7db883ed8c71d5",
+      "local_sha256": "f0f365d023156d7df9cb6b97a0b669668ba492149647b8820cecc6fa920da766",
+      "adapted": true
+    },
+    {
+      "path": "modules/comic/guide.md",
+      "source_path": "skills/sweety-comic/SKILL.md",
+      "source_sha256": "12e05a893184a4b677455229ffc735d31484454d8de1cd16c3f071fbf2e9824b",
+      "local_sha256": "cf732c390a357e99eea3c04459f39bfc0b6ce0bbbb69849f3fbfd3ad41d03119",
+      "adapted": true
+    },
+    {
+      "path": "modules/naturalizer/guide.md",
+      "source_path": "skills/sweety-image-naturalizer/SKILL.md",
+      "source_sha256": "59e6b41b80a10a37ceee6037c602737d8a4705b2c40486f912f85b386449d2c1",
+      "local_sha256": "72e243d9de4e8465bb689c2f47d3bd7644675ed8d3166070cfb33d067f860dfb",
+      "adapted": true
+    },
+    {
+      "source_path": "skills/sweety-infographic/SKILL.md",
+      "path": "modules/infographic/method.md",
+      "source_sha256": "6d6bfa973493c950542955e26e5db93ebd76692d9ee4cea85ccc106ab7398df8",
+      "local_sha256": "4385afe1fb1c1d766fb73ccac6ad852e3fa808c374f1f5013f26707ed29e68c8",
+      "adapted": true
+    },
+    {
+      "source_path": "skills/sweety-cover-image/SKILL.md",
+      "path": "modules/cover/method.md",
+      "source_sha256": "4514abad428d04fbcc53396a41ddc21e65bba503194207786f7db883ed8c71d5",
+      "local_sha256": "d91ffb9741cba66fa496630cc76fbcaa6ca54c19951c4c854ff18d0f7e8731ae",
+      "adapted": true
+    },
+    {
+      "source_path": "skills/sweety-comic/SKILL.md",
+      "path": "modules/comic/method.md",
+      "source_sha256": "12e05a893184a4b677455229ffc735d31484454d8de1cd16c3f071fbf2e9824b",
+      "local_sha256": "c0be0f9f14d581a2a63e3ad9ffaae68586dbe5a23d6979ee32993b8981b0709d",
+      "adapted": true
+    },
+    {
+      "source_path": "skills/sweety-image-naturalizer/SKILL.md",
+      "path": "modules/naturalizer/method.md",
+      "source_sha256": "59e6b41b80a10a37ceee6037c602737d8a4705b2c40486f912f85b386449d2c1",
+      "local_sha256": "37c980d58b417771cf123abb56105f2d5824f07e1e110f962bee5c380860efff",
+      "adapted": true
+    }
+  ],
+  "additional_local_resources": [
+    "xhs-series.md",
+    "prompt-template.md",
+    "review.md",
+    "modules/comic/references/page-prompt-template.md",
+    "resource-catalog.json",
+    "workflows/README.md"
+  ],
+  "license_evidence": {
+    "upstream_readme_license_section": "## License\n\nMIT",
+    "plugin_manifest_license": "MIT",
+    "root_license_file_present": false,
+    "note": "Upstream README and plugin metadata declare MIT; no root or module full license file is present at this commit. No copyright notice or complete upstream license file has been invented.",
+    "sources": [
+      {
+        "source_path": "README.md",
+        "sha256": "b198842936aa17e1dfe93a60276c62ac4f2d75f4698c56f802d7605d8d8e7f4e"
+      },
+      {
+        "source_path": ".codex-plugin/plugin.json",
+        "sha256": "ecad82d5a14f58c662c95c2d0a58beadd063831532fbe40fdbf7871a66ac2e3f"
+      }
+    ]
+  }
+}
