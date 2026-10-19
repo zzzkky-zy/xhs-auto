@@ -55,7 +55,7 @@ Create a Xiaohongshu (Little Red Book) style infographic following these guideli
 
 ---
 
-Please use nano banana pro to generate the infographic based on the specifications above.
+Use the host available image generation tool with the specifications above.
 ```
 
 ## Style Section Assembly
@@ -146,13 +146,12 @@ From outline entry:
 {visual_description}
 ```
 
-## Watermark Section (if enabled)
+## Brand asset placement
 
 ```markdown
 ## Watermark
 
-Include a subtle watermark "{content}" positioned at {position}. The watermark should
-be legible but not distracting from the main content.
+Do not draw a brand or watermark in the generated image. For inner pages, reserve the configured corner area and overlay the supplied original PNG after generation. Covers have no logo.
 ```
 
 ## Assembly Process
@@ -202,17 +201,16 @@ From outline entry, format:
 
 ### Step 4: Add Watermark (if applicable)
 
-If preferences include watermark:
-- Add watermark section with content, position, opacity
+For branded inner pages, record original asset path and placement separately; do not ask the model to recreate it.
 
 ### Step 5: Visual Consistency — Reference Image Chain
 
 When generating multiple images in a series:
 
-1. **Image 1 (cover)**: Generate without `--ref` — this establishes the visual anchor
+1. **Image 1 (cover)**: Establish the visual anchor; a person cover MUST receive the configured real face reference.
 2. **Images 2+**: Always pass image 1 as `--ref` to the installed image generation skill.
    Read that skill's `SKILL.md` and use its documented interface rather than calling its scripts directly.
-   For each later image, use the assembled prompt file as input, set the output image path, keep aspect ratio `3:4`, use quality `2k`, and pass image 1 as the reference.
+   For each later image, use the assembled prompt file as input, set the output image path, keep aspect ratio `3:4`, use the supported quality setting and deliver the required 1080×1440 PNG, and pass image 1 as the reference.
    This ensures the AI maintains the same character design, illustration style, and color rendering across the series.
 
 ### Step 6: Combine
@@ -313,13 +311,11 @@ ChatGPT logo 居中，四周放射状展示功能点
 
 ## Watermark
 
-Include a subtle watermark "@myxhsaccount" positioned at bottom-right
-with approximately 50% visibility. The watermark should
-be legible but not distracting from the main content.
+Reserve bottom-right space for the supplied original brand PNG, applied after generation; do not draw the brand.
 
 ---
 
-Please use nano banana pro to generate the infographic based on the specifications above.
+Use the host available image generation tool with the specifications above.
 ```
 
 ## Prompt Checklist
@@ -330,5 +326,5 @@ Before generating, verify:
 - [ ] Layout section matches outline specification
 - [ ] Content accurately reflects outline entry
 - [ ] Language matches source content
-- [ ] Watermark included (if enabled in preferences)
+- [ ] Original brand asset and placement recorded for post-generation overlay, cover has no logo
 - [ ] No conflicting instructions
