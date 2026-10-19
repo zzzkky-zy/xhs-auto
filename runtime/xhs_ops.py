@@ -62,6 +62,8 @@ class Config:
     def __init__(self, path):
         self.path = Path(path).resolve()
         self.data = json.loads(self.path.read_text())
+        if self.data.get("browser_mode", "local_cdp") != "local_cdp":
+            raise ValueError("ERR_BROWSER_MODE: cloud_host uses cloud_browser.py or codex_mcp.py, never the Go/CDP backend")
         if self.data.get("schema_version") != 1:
             raise ValueError("unsupported config schema")
         self.account = self.data.get("account_id", "")

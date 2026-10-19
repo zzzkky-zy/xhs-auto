@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "browser_mode": "cloud_host",
+  "account_id": "cloud-public-research",
+  "state_dir": "../var/cloud-state",
+  "allow_write": false,
+  "allow_reconcile": false
+}

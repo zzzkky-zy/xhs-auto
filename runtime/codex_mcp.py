@@ -2,6 +2,7 @@
 """Codex stdio 入口：复用私有配置，由官方 Go SDK 转接本机服务。"""
 import argparse
 import hashlib
+import json
 import os
 from pathlib import Path
 import sys
@@ -13,6 +14,13 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, default=Path(os.getenv("XHS_OPS_CONFIG", str(Path(os.getenv("XDG_CONFIG_HOME", str(Path.home() / ".config"))) / "xhs-operations/xhs.local.json"))))
     args = parser.parse_args()
+    mode = json.loads(args.config.read_text()).get("browser_mode", "local_cdp")
+    if mode == "cloud_host":
+        from cloud_mcp import serve
+        serve(args.config)
+        return
+    if mode != "local_cdp":
+        raise ValueError("unsupported browser_mode")
     config = Config(args.config)
     binary = config.resolve(config.data["mcp_binary"])
     env = os.environ.copy()
