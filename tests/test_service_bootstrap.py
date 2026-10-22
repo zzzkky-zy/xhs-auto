@@ -78,6 +78,75 @@ class BootstrapTests(unittest.TestCase):
                 if process.poll() is None:
                     process.terminate(); process.wait(timeout=8)
 
+    def test_stop_waits_for_ready_child_ownership_record(self):
+        # Deterministically hold publication after native readiness. This is the
+        # production foreground ordering, not a weakened stop assertion.
+        source = """
+import importlib.util, pathlib, sys, time
+spec = importlib.util.spec_from_file_location('fixture_ops', sys.argv[1])
+ops = importlib.util.module_from_spec(spec); spec.loader.exec_module(ops)
+original = ops.atomic_file
+config = pathlib.Path(sys.argv[sys.argv.index('--config') + 1])
+release = config.parent / 'release-record'
+def delayed_record(path, data):
+    if path.name == 'managed-process.json':
+        (config.parent / 'record-pending').write_text('SYNTHETIC TEST ONLY')
+        deadline = time.monotonic() + 10
+        while not release.exists():
+            if time.monotonic() > deadline: raise RuntimeError('fixture barrier timeout')
+            time.sleep(.01)
+    return original(path, data)
+ops.atomic_file = delayed_record
+sys.argv.pop(1)
+sys.exit(ops.main())
+"""
+        command = [sys.executable, '-c', source, str(ROOT / 'runtime/xhs_ops.py'),
+                   '--config', str(self.private), 'service', 'foreground']
+        with tempfile.TemporaryFile() as output:
+            process = subprocess.Popen(command, stdout=output, stderr=output)
+            release = self.path / 'release-record'
+            waiting = threading.Event(); continue_wait = threading.Event()
+            original_sleep = time.sleep
+            def observe_wait(seconds):
+                if threading.current_thread() is not threading.main_thread() and not waiting.is_set():
+                    waiting.set()
+                    if not continue_wait.wait(5): raise AssertionError('stop synchronization timed out')
+                return original_sleep(seconds)
+            try:
+                deadline = time.monotonic() + 8
+                while time.monotonic() < deadline and process.poll() is None:
+                    if (self.path / 'record-pending').exists() and OPS.backend_ready(self.config): break
+                    original_sleep(.01)
+                self.assertTrue(OPS.backend_ready(self.config))
+                self.assertFalse((self.config.state_dir / 'managed-process.json').exists())
+                with mock.patch.object(OPS.time, 'sleep', side_effect=observe_wait), concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
+                    stopping = pool.submit(OPS.service_command, self.config, 'stop')
+                    try:
+                        self.assertTrue(waiting.wait(3), 'stop did not wait for ownership publication')
+                        self.assertFalse(stopping.done())
+                    finally:
+                        release.write_text('SYNTHETIC TEST ONLY'); continue_wait.set()
+                    self.assertEqual(stopping.result(timeout=8)['status'], 'stopped')
+                self.assertEqual(process.wait(timeout=8), 0)
+            finally:
+                release.touch(); continue_wait.set()
+                if process.poll() is None:
+                    process.terminate(); process.wait(timeout=8)
+
+    def test_stop_starting_timeout_does_not_signal(self):
+        with mock.patch.object(OPS.fcntl, 'flock', side_effect=BlockingIOError), \
+             mock.patch.object(OPS.time, 'monotonic', side_effect=[0, 6]), \
+             mock.patch.object(OPS.os, 'kill') as kill:
+            with self.assertRaisesRegex(ValueError, 'ERR_SERVICE_STARTUP_PENDING'):
+                OPS._service_command(self.config, 'stop')
+            kill.assert_not_called()
+
+    def test_stop_startup_lock_released_without_record_does_not_signal(self):
+        with mock.patch.object(OPS.fcntl, 'flock', side_effect=[BlockingIOError, None]), \
+             mock.patch.object(OPS.time, 'sleep'), mock.patch.object(OPS.os, 'kill') as kill:
+            self.assertEqual(OPS._service_command(self.config, 'stop')['status'], 'not_managed')
+            kill.assert_not_called()
+
     def test_live_pid_with_unlocked_record_is_not_touched(self):
         record = self.config.state_dir / "managed-process.json"
         value = json.dumps({"pid": os.getpid(), "child_pid": os.getpid(), "config": str(self.config.path)})
@@ -201,9 +270,16 @@ class BootstrapTests(unittest.TestCase):
             self.assertIn("reconcile_task", {tool["name"] for tool in tools})
             # Exercise the normal stdio -> Go -> Python receipt path. A missing
             # task must be rejected without navigating or creating a send.
-            receipt = request(21, "tools/call", {"name": "reconcile_task", "arguments": {"task_id": "fixture-absent"}})
-            self.assertTrue(receipt["isError"])
-            self.assertIn("task not found", json.dumps(receipt))
+            store = OPS.Store(self.config)
+            try:
+                before = {table: list(store.db.execute('SELECT * FROM ' + table)) for table in ('tasks', 'events')}
+                receipt = request(21, "tools/call", {"name": "reconcile_task", "arguments": {"task_id": "fixture-absent"}})
+                self.assertTrue(receipt["isError"])
+                self.assertIn("ERR_TASK_NOT_FOUND", json.dumps(receipt))
+                self.assertNotIn("ERR_TASK_EXECUTOR_FAILED", json.dumps(receipt))
+                self.assertEqual(before, {table: list(store.db.execute('SELECT * FROM ' + table)) for table in ('tasks', 'events')})
+            finally:
+                store.db.close()
             OPS.service_command(self.config, "stop")
             result = request(3, "tools/call", {"name": "get_operation_status", "arguments": {"operation_id": "fixture-absent"}})
             self.assertTrue(result["isError"])

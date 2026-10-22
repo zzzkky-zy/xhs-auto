@@ -22,6 +22,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 import test_direct_runtime as direct_fixtures
 import test_runtime as fixtures
+import integration_diagnostics
 
 ops = fixtures.ops
 ROOT = Path(__file__).resolve().parents[1]
@@ -62,8 +63,22 @@ class DirectIntegrationTests(unittest.TestCase):
                                 expected_user_id="fixture-user")
         self.process = None
         self.proxy = None
+        self.diagnostic_events = []
 
     def tearDown(self):
+        result = getattr(getattr(self, '_outcome', None), 'result', None)
+        failed = result is not None and any(test is self or getattr(test, 'test_case', None) is self for test, _ in [*result.failures, *result.errors])
+        logs = {}
+        if failed:
+            for name in ('backend_log', 'proxy_log'):
+                stream = getattr(self, name, None)
+                if stream is not None and not stream.closed:
+                    stream.flush(); stream.seek(0); logs[name] = stream.read()
+        try:
+            integration_diagnostics.export_failure(os.environ.get('XHS_TEST_DIAGNOSTIC_DIR'),
+                self.id(), self.diagnostic_events, logs, failed)
+        except (OSError, ValueError):
+            print('synthetic failure diagnostics unavailable; original failure preserved', file=sys.stderr)
         self.stop()
         if hasattr(self, "trap"):
             self.trap.shutdown()
@@ -108,17 +123,11 @@ class DirectIntegrationTests(unittest.TestCase):
         self.backend_log = (self.root / "backend.log").open("w+")
         self.process = subprocess.Popen([str(self.binary), "-port", self.config.data["listen"]], env=env,
                                         stdout=self.backend_log, stderr=subprocess.STDOUT)
-        until = time.monotonic() + 5
-        while True:
-            try:
-                with urllib.request.urlopen(self.endpoint[:-4] + "/runtime", timeout=0.2) as response:
-                    json.load(response)
-                break
-            except (OSError, urllib.error.URLError):
-                if self.process.poll() is not None or time.monotonic() > until:
-                    self.backend_log.seek(0)
-                    self.fail("isolated backend did not start: " + self.backend_log.read())
-                time.sleep(0.025)
+        self.diagnostic_events.append({'stage': 'backend_spawned', 'at_monotonic': time.monotonic()})
+        runtime = integration_diagnostics.await_runtime(self.process, self.endpoint[:-4] + '/runtime', self.diagnostic_events)
+        self.assertEqual(runtime['data']['account'], config.account)
+        self.assertEqual(runtime['data']['state_id'], config.state_id)
+        self.assertEqual(runtime['data']['config_fingerprint'], config.fingerprint())
         self.proxy_log = (self.root / "proxy.log").open("w+")
         self.proxy = subprocess.Popen([str(self.binary), "-stdio-proxy", "-upstream", self.endpoint], env=env,
                                       stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=self.proxy_log,
@@ -143,6 +152,8 @@ class DirectIntegrationTests(unittest.TestCase):
         self.proxy.stdin.flush()
 
     def rpc(self, method, params):
+        began = time.monotonic()
+        self.diagnostic_events.append({'stage': 'rpc_begin', 'method': method, 'at_monotonic': began})
         self.sequence += 1
         self.proxy.stdin.write(json.dumps({"jsonrpc": "2.0", "id": self.sequence, "method": method, "params": params}) + "\n")
         self.proxy.stdin.flush()
@@ -153,6 +164,9 @@ class DirectIntegrationTests(unittest.TestCase):
             if "id" in value:
                 self.assertEqual(value["id"], self.sequence)
                 self.assertNotIn("error", value)
+                self.diagnostic_events.append({'stage': 'rpc_end', 'method': method,
+                    'elapsed': time.monotonic() - began,
+                    'error_codes': sorted(set(re.findall(r'\bERR_[A-Z0-9_]{1,64}\b', json.dumps(value['result']))))})
                 return value["result"]
 
     def call(self, tool, arguments):

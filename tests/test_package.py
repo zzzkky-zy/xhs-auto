@@ -22,8 +22,31 @@ class PackageBoundaryTests(unittest.TestCase):
         self.assertIn("mcp/xhs-mcp-custom/go.mod", source)
         self.assertIn("mcp/xhs-mcp-custom/vendor/modules.txt", source)
         self.assertTrue(any(p.startswith("tests/") for p in source))
+        self.assertIn("AGENTS.md", runtime)
+        self.assertIn("AGENTS.md", source)
         self.assertIn("scripts/setup_codex.py", runtime)
         self.assertIn("scripts/cloud_host.py", runtime)
+        self.assertIn("scripts/cloud_handoff.py", runtime)
+        self.assertIn("docs/CLOUD-HANDOFF-INTEGRITY.md", runtime)
+
+    def test_runtime_contains_efficiency_modules_docs_and_host_entrypoints(self):
+        runtime={p.relative_to(ROOT).as_posix() for p in package.files('linux-amd64')}
+        for path in ('runtime/cloud_read_reuse.py','runtime/cloud_owned_pages.py','runtime/effective_rules.py',
+                     'docs/CLOUD-READ-REUSE.md','docs/CLOUD-OWNED-PAGES.md','docs/EFFECTIVE-RULES.md',
+                     'runtime/cloud_host.py','skills/xiaohongshu-operations/SKILL.md'):
+            self.assertIn(path,runtime)
+        host=(ROOT/'runtime/cloud_host.py').read_text()
+        for helper in ('plan_cloud_read_reuse','explain_cloud_effective_rules','register_cloud_owned_page',
+                       'get_cloud_owned_page','plan_cloud_owned_page_cleanup','request_cloud_owned_page_close',
+                       'record_cloud_owned_page_close','observe_cloud_owned_page_inventory'):
+            self.assertIn(helper,host)
+
+    def test_runtime_contains_unified_safety_entrypoints(self):
+        runtime={p.relative_to(ROOT).as_posix() for p in package.files('linux-amd64')}
+        for name in ('cloud_quarantine','cloud_comment_boundary','cloud_notifications','cloud_maintenance'):
+            self.assertIn('runtime/'+name+'.py',runtime)
+        self.assertIn('scripts/cloud_checkpoint.py',runtime)
+        self.assertIn('docs/CLOUD-FINAL-SEND-AND-TOPICS.md',runtime)
 
     def test_runtime_keeps_dependency_licenses(self):
         runtime = set(package.files("darwin-arm64"))

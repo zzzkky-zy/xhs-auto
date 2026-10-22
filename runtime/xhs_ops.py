@@ -62,6 +62,8 @@ class Config:
     def __init__(self, path):
         self.path = Path(path).resolve()
         self.data = json.loads(self.path.read_text())
+        if self.data.get("browser_mode", "local_cdp") != "local_cdp":
+            raise ValueError("ERR_BROWSER_MODE: cloud_host uses cloud_browser.py or codex_mcp.py, never the Go/CDP backend")
         if self.data.get("schema_version") != 1:
             raise ValueError("unsupported config schema")
         self.account = self.data.get("account_id", "")
@@ -916,7 +918,7 @@ class Store:
     def task(self, task_id):
         row = self.db.execute("SELECT * FROM tasks WHERE id=?", (task_id,)).fetchone()
         if not row:
-            raise ValueError("task not found")
+            raise ValueError("ERR_TASK_NOT_FOUND: task not found")
         return dict(row)
 
     def resume(self, task_id, evidence, approval_ref=""):
@@ -1407,6 +1409,28 @@ def service_command(config, action):
         return {**result, "config_fingerprint": config.fingerprint()}
 
 
+def await_managed_record(config, pidfile):
+    """A ready child can precede its supervisor's ownership record publication.
+
+    Wait only while an existing supervisor holds its lock. This confers no
+    ownership: the caller must still verify the original record/PID/hash before
+    signalling anything. A disappearing startup or timeout never sends a signal.
+    """
+    deadline = time.monotonic() + 5
+    while not pidfile.exists():
+        with (config.state_dir / "supervisor.lock").open("a") as lock:
+            try:
+                fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            except BlockingIOError:
+                pass
+            else:
+                return pidfile.exists()
+        if time.monotonic() >= deadline:
+            raise ValueError("ERR_SERVICE_STARTUP_PENDING: supervisor has not published its ownership record; no process stopped")
+        time.sleep(0.05)
+    return True
+
+
 def _service_command(config, action):
     """只管理自己创建并持锁的 MCP 进程；永不 pkill，永不停止 Chrome。"""
     config.state_dir.mkdir(parents=True, exist_ok=True, mode=0o700)
@@ -1506,7 +1530,7 @@ def _service_command(config, action):
     if action == "status":
         return managed_status(config)
     if action == "stop":
-        if not pidfile.exists():
+        if not await_managed_record(config, pidfile):
             return {"status": "not_managed"}
         if managed_status(config)["status"] == "stale":
             pidfile.unlink()

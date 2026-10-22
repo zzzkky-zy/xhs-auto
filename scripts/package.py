@@ -9,10 +9,10 @@ import subprocess
 import tarfile
 
 ROOT = Path(__file__).resolve().parents[1]
-TOP = ["VERSION", "README.md", "HANDOFF.md", "plugin.json", "mcp.json", "requirements.txt", "toolchains.lock.json"]
+TOP = ["AGENTS.md", "VERSION", "README.md", "HANDOFF.md", "plugin.json", "mcp.json", "requirements.txt", "toolchains.lock.json"]
 DIRS = ["docs", "runtime", "scripts", "schemas", "skills/xiaohongshu-operations", "skills/humanizer-zh", "tests"]
 RUNTIME_DIRS = ["docs", "runtime", "schemas", "skills/xiaohongshu-operations", "skills/humanizer-zh"]
-RUNTIME_SCRIPTS = ["setup_codex.py", "smoke_install.py", "cloud_host.py", "private_profile.py"]
+RUNTIME_SCRIPTS = ["setup_codex.py", "smoke_install.py", "cloud_host.py", "cloud_handoff.py", "cloud_checkpoint.py", "private_profile.py"]
 FORBIDDEN = {"cookies.json", "xhs.local.json", ".env", "managed-process.json", "runtime-state.json", "tasks.sqlite3", "operation-journal.db"}
 
 

@@ -72,3 +72,156 @@ class PrivateProfileTransferTests(unittest.TestCase):
         self.material.unlink()
         with self.assertRaises(ValueError): module.export(self.config, self.bundle)
         self.assertFalse(self.bundle.exists())
+
+    def test_export_omits_full_config_and_unknown_nested_credentials(self):
+        data = json.loads(self.config.read_text())
+        data.update(api_key='SECRET_SENTINEL', auth_token_env='SECRET_ENV',
+                    timeout_seconds=123,
+                    operations={'timezone': 'Asia/Shanghai', 'api_key': 'SECRET_NESTED'})
+        self.config.write_text(json.dumps(data))
+        module.export(self.config, self.bundle)
+        self.assertFalse((self.bundle / 'same-host-settings.json').exists())
+        metadata = json.loads((self.bundle / 'transfer.json').read_text())
+        self.assertNotIn('SECRET', json.dumps(metadata))
+        self.assertEqual(metadata['runtime_preferences']['timeout_seconds'], 123)
+        self.assertEqual(metadata['runtime_preferences']['operations'], {'timezone': 'Asia/Shanghai'})
+
+    def test_old_bundle_unknown_preferences_not_imported(self):
+        module.export(self.config, self.bundle)
+        p = self.bundle / 'transfer.json'; data = json.loads(p.read_text())
+        data['runtime_preferences'].update(api_key='SECRET', allow_write=True,
+                                           operations={'timezone': 'Asia/Shanghai', 'cookie': 'SECRET'})
+        p.write_text(json.dumps(data))
+        module.prepare(self.bundle, self.root / 'new', self.plugin)
+        config = json.loads((self.root / 'new/xhs.local.json').read_text())
+        self.assertNotIn('SECRET', json.dumps(config)); self.assertFalse(config['allow_write'])
+
+    def test_unlisted_asset_rejected(self):
+        module.export(self.config, self.bundle)
+        (self.bundle / 'assets/extra').write_text('secret')
+        with self.assertRaises(ValueError): module.prepare(self.bundle, self.root / 'new', self.plugin)
+        self.assertFalse((self.root / 'new').exists())
+
+    def test_symlink_and_hardlink_assets_rejected(self):
+        import os
+        module.export(self.config, self.bundle)
+        asset = next((self.bundle / 'assets').iterdir()); content = asset.read_bytes()
+        asset.unlink(); asset.symlink_to(self.material)
+        with self.assertRaises(ValueError): module.prepare(self.bundle, self.root / 'new', self.plugin)
+        asset.unlink(); os.link(self.material, asset)
+        with self.assertRaises(ValueError): module.prepare(self.bundle, self.root / 'new', self.plugin)
+        self.assertFalse((self.root / 'new').exists())
+
+    def test_parent_symlink_destination_rejected(self):
+        module.export(self.config, self.bundle)
+        link = self.root / 'link'; link.symlink_to(self.state, target_is_directory=True)
+        with self.assertRaises(ValueError): module.prepare(self.bundle, link / 'new', self.plugin)
+        self.assertFalse((self.state / 'new').exists())
+
+    def test_manifest_traversal_rejected(self):
+        module.export(self.config, self.bundle)
+        p = self.bundle / 'transfer.json'; data = json.loads(p.read_text())
+        for name in ('assets/../../original.json', '/tmp/escape', 'assets/../escape', 'assets/a/b'):
+            data['files'] = {name: module.digest(self.material)}; p.write_text(json.dumps(data))
+            with self.assertRaises(ValueError): module.prepare(self.bundle, self.root / 'new', self.plugin)
+        self.assertFalse((self.root / 'new').exists())
+
+    def test_replacement_after_validation_rechecked_before_copy(self):
+        from unittest.mock import patch
+        module.export(self.config, self.bundle)
+        original = module.copy_verified
+        def replace(source, target, expected):
+            source.write_text('changed after validation')
+            return original(source, target, expected)
+        with patch.object(module, 'copy_verified', side_effect=replace):
+            with self.assertRaises(ValueError): module.prepare(self.bundle, self.root / 'new', self.plugin)
+        self.assertFalse((self.root / 'new/xhs.local.json').exists())
+        self.assertFalse((self.root / 'new/configure-profile.json').exists())
+
+    def test_identity_mismatch_rejected_before_destination(self):
+        module.export(self.config, self.bundle)
+        p = self.bundle / 'transfer.json'; data = json.loads(p.read_text())
+        data['expected_user_id'] = 'different-user'; p.write_text(json.dumps(data))
+        with self.assertRaises(ValueError): module.prepare(self.bundle, self.root / 'new', self.plugin)
+        self.assertFalse((self.root / 'new').exists())
+
+    def test_required_material_manifest_binding_checked(self):
+        module.export(self.config, self.bundle)
+        p = self.bundle / 'content-profile.json'; data = json.loads(p.read_text())
+        data['product_materials'][0]['file'] = '${PRIVATE_ROOT}/assets/not-listed'
+        p.write_text(json.dumps(data))
+        meta = self.bundle / 'transfer.json'; data = json.loads(meta.read_text())
+        data['profile_sha256'] = module.digest(p); meta.write_text(json.dumps(data))
+        with self.assertRaises(ValueError): module.prepare(self.bundle, self.root / 'new', self.plugin)
+        self.assertFalse((self.root / 'new').exists())
+
+    def test_export_symlink_source_rejected_before_destination(self):
+        original = self.root / 'original-material'; self.material.rename(original)
+        self.material.symlink_to(original)
+        with self.assertRaises(ValueError): module.export(self.config, self.bundle)
+        self.assertFalse(self.bundle.exists())
+
+    def test_known_structured_preference_not_silently_dropped(self):
+        data = json.loads(self.config.read_text())
+        data['operations'] = {'schedule': {'unknown': 'configuration'}}
+        self.config.write_text(json.dumps(data))
+        with self.assertRaises(ValueError): module.export(self.config, self.bundle)
+        self.assertFalse(self.bundle.exists())
+
+    def test_special_file_rejected_without_blocking(self):
+        import os
+        fifo = self.root / 'fifo'; os.mkfifo(fifo)
+        with self.assertRaises(ValueError): module.read_bytes(fifo)
+
+    def test_profile_cannot_indirectly_export_original_config(self):
+        data = json.loads(self.config.read_text()); data['api_key'] = 'SECRET_REPRO'
+        self.config.write_text(json.dumps(data))
+        self.profile['confirmation_sources']['runtime_settings'] = str(self.config)
+        with sqlite3.connect(self.state / 'tasks.sqlite3') as db:
+            db.execute('UPDATE ops_profile_versions SET body=?', (json.dumps(self.profile),))
+        with self.assertRaisesRegex(ValueError, 'configuration or credential'):
+            module.export(self.config, self.bundle)
+        self.assertFalse(self.bundle.exists())
+
+    def test_real_cloud_runtime_profile_roundtrip(self):
+        import sys
+        sys.path.insert(0, str(ROOT / 'runtime'))
+        import test_cloud_batch
+        fixture = test_cloud_batch.CloudBatchTests(); fixture.setUp()
+        try:
+            fixture.batch.close(); fixture.actions.close()
+            config_before = fixture.path.read_bytes()
+            database = fixture.base / 'state/cloud-batches.sqlite3'
+            db_before = database.read_bytes()
+            bundle = fixture.base / 'business-bundle'
+            module.export(fixture.path, bundle)
+            prepared = fixture.base / 'business-prepared'
+            result = module.prepare(bundle, prepared, self.plugin)
+            settings = json.loads((prepared / 'xhs.local.json').read_text())
+            self.assertEqual(settings['browser_mode'], 'cloud_host')
+            self.assertEqual(settings['expected_user_id'], fixture.data['expected_user_id'])
+            self.assertFalse(settings['allow_write']); self.assertFalse(result['state_initialized'])
+            self.assertEqual(fixture.path.read_bytes(), config_before)
+            self.assertEqual(database.read_bytes(), db_before)
+            self.assertFalse((fixture.base / 'state/tasks.sqlite3').exists())
+        finally:
+            fixture.tmp.cleanup()
+
+    def test_missing_cloud_database_does_not_fallback_or_initialize(self):
+        data = json.loads(self.config.read_text()); data['browser_mode'] = 'cloud_host'
+        self.config.write_text(json.dumps(data))
+        with self.assertRaises(FileNotFoundError): module.export(self.config, self.bundle)
+        self.assertFalse((self.state / 'cloud-batches.sqlite3').exists())
+        self.assertFalse(self.bundle.exists())
+
+    def test_confirmation_file_reference_must_be_in_manifest(self):
+        module.export(self.config, self.bundle)
+        for reference in ('${PRIVATE_ROOT}/assets/missing-evidence.json', '${PRIVATE_ROOT}/../outside'):
+            p = self.bundle / 'content-profile.json'; data = json.loads(p.read_text())
+            data['confirmation_sources']['extra'] = reference
+            p.write_text(json.dumps(data))
+            meta = self.bundle / 'transfer.json'; data = json.loads(meta.read_text())
+            data['profile_sha256'] = module.digest(p); meta.write_text(json.dumps(data))
+            with self.assertRaisesRegex(ValueError, 'profile file reference'):
+                module.prepare(self.bundle, self.root / 'new', self.plugin)
+            self.assertFalse((self.root / 'new').exists())

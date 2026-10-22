@@ -1,0 +1,931 @@
+{
+  "upstream_version": "0.6.0",
+  "tools": [
+    {
+      "annotations": {
+        "readOnlyHint": true,
+        "title": "Check Login Status"
+      },
+      "description": "检查小红书主站的当前账号身份（首页用户身份，使用短缓存；不搜索、不只看 cookie）。创作平台登录不能替代主站身份，云端与本机分别检查。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "fresh": {
+            "type": "boolean",
+            "description": "跳过短期身份检查缓存；不触发重新登录或绕过验证"
+          }
+        },
+        "additionalProperties": false
+      },
+      "name": "check_login_status"
+    },
+    {
+      "description": "启用或暂停已有账号队列；启用只执行已明确纳入后台且获准的任务，暂停不取消正在运行的网页动作。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "启用或暂停领取新任务；已运行任务按其期限结束"
+          }
+        },
+        "required": [
+          "enabled"
+        ],
+        "additionalProperties": false
+      },
+      "name": "control_task_queue"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "title": "Delete Cookies"
+      },
+      "description": "删除 cookies 文件，重置登录状态。删除后需要重新登录。",
+      "inputSchema": {
+        "type": "object"
+      },
+      "name": "delete_cookies"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "title": "Favorite Feed"
+      },
+      "description": "收藏指定笔记或取消收藏（如已收藏将跳过收藏，如未收藏将跳过取消收藏）",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "operation_id": {
+            "type": "string",
+            "description": "调用方稳定的提交编号；同编号同参数不重复提交，换参数报冲突"
+          },
+          "feed_id": {
+            "type": "string",
+            "description": "小红书笔记ID，从Feed列表获取"
+          },
+          "xsec_token": {
+            "type": "string",
+            "description": "访问令牌，从Feed列表的xsecToken字段获取"
+          },
+          "unfavorite": {
+            "type": "boolean",
+            "description": "是否取消收藏，true为取消收藏，false或未设置则为收藏"
+          }
+        },
+        "required": [
+          "feed_id",
+          "xsec_token"
+        ],
+        "additionalProperties": false
+      },
+      "name": "favorite_feed"
+    },
+    {
+      "annotations": {
+        "readOnlyHint": true,
+        "title": "Get Feed Detail"
+      },
+      "description": "获取小红书笔记详情，返回笔记内容、图片、作者信息、互动数据（点赞/收藏/分享数）及评论列表。视频笔记额外返回 video 字段，含各编码档位的视频直链与字幕地址（均带签名、有时效）。默认返回前10条一级评论，如需更多评论请将 load_all_comments 设为 true",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "fresh": {
+            "type": "boolean",
+            "description": "跳过短期读取缓存，重新检查当前页面"
+          },
+          "compact": {
+            "type": "boolean",
+            "description": "省略图片/视频等大字段，保留文本、目标编号与互动数据"
+          },
+          "result_limit": {
+            "type": "integer",
+            "description": "限制返回的列表/评论条数，1..100；返回截断标记，不改变实际采集量"
+          },
+          "feed_id": {
+            "type": "string",
+            "description": "小红书笔记ID，从Feed列表获取"
+          },
+          "xsec_token": {
+            "type": "string",
+            "description": "访问令牌，从Feed列表的xsecToken字段获取"
+          },
+          "load_all_comments": {
+            "type": "boolean",
+            "description": "是否加载全部评论。false仅返回前10条一级评论（默认），true滚动加载更多评论"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "【仅当load_all_comments为true时生效】限制加载的一级评论数量。例如20表示最多加载20条，默认20"
+          },
+          "click_more_replies": {
+            "type": "boolean",
+            "description": "【仅当load_all_comments为true时生效】是否展开二级回复。true展开子评论，false不展开（默认）"
+          },
+          "reply_limit": {
+            "type": "integer",
+            "description": "【仅当click_more_replies为true时生效】跳过回复数过多的评论。例如10表示跳过超过10条回复的，默认10"
+          },
+          "scroll_speed": {
+            "type": "string",
+            "description": "【仅当load_all_comments为true时生效】滚动速度slow慢速、normal正常、fast快速"
+          }
+        },
+        "required": [
+          "feed_id",
+          "xsec_token"
+        ],
+        "additionalProperties": false
+      },
+      "name": "get_feed_detail"
+    },
+    {
+      "annotations": {
+        "readOnlyHint": true,
+        "title": "Get Login QR Code"
+      },
+      "description": "获取登录二维码（多选择器+空白/薯队长检测与重试；返回 Base64 图片和超时时间）",
+      "inputSchema": {
+        "type": "object"
+      },
+      "name": "get_login_qrcode"
+    },
+    {
+      "annotations": {
+        "readOnlyHint": true,
+        "title": "Get My Profile"
+      },
+      "description": "获取当前登录用户的主页，返回用户基本信息，关注、粉丝、获赞量，以及指定 tab 下的内容。tab 可选 note(自己发的笔记,默认)、fav(自己收藏的)、liked(自己点赞的)",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "tab": {
+            "type": "string",
+            "description": "主页 tab: note(笔记,默认)|fav(收藏)|liked(点赞)"
+          }
+        },
+        "additionalProperties": false
+      },
+      "name": "get_my_profile"
+    },
+    {
+      "annotations": {
+        "readOnlyHint": true
+      },
+      "description": "只读查询持久提交记录，不导航、不重发；找不到不等于平台未提交",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "operation_id": {
+            "type": "string",
+            "description": "稳定提交编号"
+          }
+        },
+        "required": [
+          "operation_id"
+        ],
+        "additionalProperties": false
+      },
+      "name": "get_operation_status"
+    },
+    {
+      "annotations": {
+        "readOnlyHint": true
+      },
+      "description": "只读诊断：队列、阶段进度、最近耗时及计数、登录检查是否新鲜。不会导航、登录或发送；服务可用不等于账号已登录。",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "name": "get_runtime_status"
+    },
+    {
+      "annotations": {
+        "readOnlyHint": true
+      },
+      "description": "只读获取任务状态、执行阶段、耗时和可选结果，不打开网页、不重发。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string"
+          },
+          "include_result": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "task_id"
+        ],
+        "additionalProperties": false
+      },
+      "name": "get_task_status"
+    },
+    {
+      "annotations": {
+        "readOnlyHint": true,
+        "title": "Get Unread Count"
+      },
+      "description": "获取通知未读数，返回「评论和@」「赞和收藏」「新增关注」三个分区各自的未读条数。不会清除未读标记。查看具体内容用 list_notifications。",
+      "inputSchema": {
+        "type": "object"
+      },
+      "name": "get_unread_count"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "title": "Like Feed"
+      },
+      "description": "为指定笔记点赞或取消点赞（如已点赞将跳过点赞，如未点赞将跳过取消点赞）",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "operation_id": {
+            "type": "string",
+            "description": "调用方稳定的提交编号；同编号同参数不重复提交，换参数报冲突"
+          },
+          "feed_id": {
+            "type": "string",
+            "description": "小红书笔记ID，从Feed列表获取"
+          },
+          "xsec_token": {
+            "type": "string",
+            "description": "访问令牌，从Feed列表的xsecToken字段获取"
+          },
+          "unlike": {
+            "type": "boolean",
+            "description": "是否取消点赞，true为取消点赞，false或未设置则为点赞"
+          }
+        },
+        "required": [
+          "feed_id",
+          "xsec_token"
+        ],
+        "additionalProperties": false
+      },
+      "name": "like_feed"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "title": "Like Notification"
+      },
+      "description": "给「评论和@」里的一条评论点赞或取消点赞。comment_id 从 list_notifications 获取（其 liked 字段是当前状态）。已是目标状态时跳过。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "operation_id": {
+            "type": "string",
+            "description": "调用方稳定的提交编号；同编号同参数不重复提交，换参数报冲突"
+          },
+          "comment_id": {
+            "type": "string",
+            "description": "目标评论ID，从 list_notifications 的 comment_id 字段获取"
+          },
+          "unlike": {
+            "type": "boolean",
+            "description": "是否取消点赞，true为取消点赞，false或未设置则为点赞"
+          }
+        },
+        "required": [
+          "comment_id"
+        ],
+        "additionalProperties": false
+      },
+      "name": "like_notification"
+    },
+    {
+      "annotations": {
+        "readOnlyHint": true,
+        "title": "List Direct Messages"
+      },
+      "description": "列出小红书私信会话（www /chat 侧栏）。只读。返回 name/time/summary/pinned；conversation_id 需打开会话后从 URL 获取。通知 list_notifications ≠ 私信。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "description": "返回会话条数上限，默认30"
+          }
+        },
+        "additionalProperties": false
+      },
+      "name": "list_direct_messages"
+    },
+    {
+      "annotations": {
+        "readOnlyHint": true,
+        "title": "List Feeds"
+      },
+      "description": "获取首页 Feeds 列表",
+      "inputSchema": {
+        "type": "object"
+      },
+      "name": "list_feeds"
+    },
+    {
+      "annotations": {
+        "readOnlyHint": true,
+        "title": "List Notifications"
+      },
+      "description": "获取通知列表。返回评论内容、评论者、以及对应笔记的 feed_id 和 xsec_token（可用于 get_feed_detail 读原帖）。已删除或不可见的条目会被过滤，过滤数量见 filtered 字段。注意：会清除该分区的未读标记，只需要未读数时用 get_unread_count。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "tab": {
+            "type": "string",
+            "description": "通知分区: mentions(评论和@,默认)|likes(赞和收藏)|connections(新增关注)"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "返回条数上限，默认20"
+          }
+        },
+        "additionalProperties": false
+      },
+      "name": "list_notifications"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "title": "Login With SMS"
+      },
+      "description": "短信验证码登录。首次只传 phone 触发发码；把聊天里收到的验证码填入 code 再调一次。不使用自动接码平台。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "phone": {
+            "type": "string",
+            "description": "手机号"
+          },
+          "code": {
+            "type": "string",
+            "description": "短信验证码。首次可空以触发发码；收到后再带 code 调用"
+          }
+        },
+        "required": [
+          "phone"
+        ],
+        "additionalProperties": false
+      },
+      "name": "login_with_sms"
+    },
+    {
+      "description": "保存一次配置与首次人工验收，后续批次由agent自审；持久随机预约时间，完成后清理自有临时文件并保留防重发记录。不生成内容、不创建宿主日程、不登录。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "operation": {
+            "type": "string",
+            "description": "configure/begin/update/cancel/schedule/review/finish/accept/maintain/status/repair；accept仅记录真实用户对完整首批的验收"
+          },
+          "data": {
+            "type": "object",
+            "description": "私有批次参数，字段见随包持续运营说明",
+            "additionalProperties": true
+          }
+        },
+        "required": [
+          "operation"
+        ],
+        "additionalProperties": false
+      },
+      "name": "manage_operation_run"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "title": "Post Comment"
+      },
+      "description": "发表一级评论到小红书笔记；配置运营运行时后，一次调用完成准确审稿匹配、已有授权核对、发送和回执归账。参数：feed_id、xsec_token、content；run_id/approval_ref可选。需开启写操作。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "description": "可选已审稿批次；省略时按当前账号准确稿件唯一匹配"
+          },
+          "approval_ref": {
+            "type": "string",
+            "description": "可选已有授权记录引用；不替代实际授权"
+          },
+          "operation_id": {
+            "type": "string",
+            "description": "调用方稳定的提交编号；同编号同参数不重复提交，换参数报冲突"
+          },
+          "feed_id": {
+            "type": "string",
+            "description": "小红书笔记ID，从 list_feeds / search_feeds 获取"
+          },
+          "xsec_token": {
+            "type": "string",
+            "description": "访问令牌，与 feed 同条的 xsecToken 字段"
+          },
+          "content": {
+            "type": "string",
+            "description": "评论内容"
+          }
+        },
+        "required": [
+          "feed_id",
+          "xsec_token",
+          "content"
+        ],
+        "additionalProperties": false
+      },
+      "name": "post_comment_to_feed"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "title": "Publish Content"
+      },
+      "description": "发布小红书图文；配置运营运行时后，一次调用完成准确审稿匹配、已有授权核对、发送和回执归账。run_id/approval_ref可选，原编号和防重发沿用。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "description": "可选已审稿批次；省略时按当前账号准确稿件唯一匹配"
+          },
+          "approval_ref": {
+            "type": "string",
+            "description": "可选已有授权记录引用；不替代实际授权"
+          },
+          "operation_id": {
+            "type": "string",
+            "description": "调用方稳定的提交编号；同编号同参数不重复提交，换参数报冲突"
+          },
+          "title": {
+            "type": "string",
+            "description": "内容标题（小红书限制：最多20个中文字或英文单词）"
+          },
+          "content": {
+            "type": "string",
+            "description": "正文内容，不包含以#开头的标签内容，所有话题标签都用tags参数来生成和提供即可"
+          },
+          "images": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "图片路径列表。普通图文至少1张（HTTP/本地绝对路径）；若设 long_article_template 可空"
+          },
+          "tags": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "话题标签列表（可选参数），如 [美食, 旅行, 生活]"
+          },
+          "schedule_at": {
+            "type": "string",
+            "description": "定时发布时间（可选），ISO8601格式如 2024-01-20T10:30:00+08:00，支持1小时至14天内。不填则立即发布"
+          },
+          "is_original": {
+            "type": "boolean",
+            "description": "是否声明原创（可选），true为声明原创，false或不填则不声明"
+          },
+          "visibility": {
+            "type": "string",
+            "description": "可见范围（可选），支持: 公开可见(默认)、仅自己可见、仅互关好友可见。不填则默认公开可见"
+          },
+          "products": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "商品关键词列表（可选），用于绑定带货商品。填写商品名称或商品ID，系统会自动搜索并选择第一个匹配结果。需账号已开通商品功能。示例: [面膜, 防晒霜SPF50]"
+          },
+          "activity": {
+            "type": "string",
+            "description": "关联活动名称（可选，别名 activity_name）。按发布页活动卡片 .activity-name 包含匹配；空则跳过；有值但页面无入口或无匹配卡片时明确报错中止"
+          },
+          "long_article_template": {
+            "type": "string",
+            "description": "长文一键排版模版名（可选）。走写长文→新的创作→一键排版→.template-card；匹配 .template-title。与 topic_template 无关。找不到卡片明确报错。设此参时 images 可空"
+          },
+          "topic_template": {
+            "type": "string",
+            "description": "话题模版名（可选，如 answereq）。发布页 #话题旁下拉→使用/管理话题模版→按卡片名点应用，插入原生话题标签。与 long_article_template 分开；找不到则报错中止"
+          }
+        },
+        "required": [
+          "title",
+          "content"
+        ],
+        "additionalProperties": false
+      },
+      "name": "publish_content"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "title": "Publish Video"
+      },
+      "description": "发布小红书视频（本地单个视频文件）；配置运营运行时后，一次调用完成准确审稿匹配、已有授权核对、发送和回执归账。run_id/approval_ref可选。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "description": "可选已审稿批次；省略时按当前账号准确稿件唯一匹配"
+          },
+          "approval_ref": {
+            "type": "string",
+            "description": "可选已有授权记录引用；不替代实际授权"
+          },
+          "operation_id": {
+            "type": "string",
+            "description": "调用方稳定的提交编号；同编号同参数不重复提交，换参数报冲突"
+          },
+          "title": {
+            "type": "string",
+            "description": "内容标题（小红书限制：最多20个中文字或英文单词）"
+          },
+          "content": {
+            "type": "string",
+            "description": "正文内容，不包含以#开头的标签内容，所有话题标签都用tags参数来生成和提供即可"
+          },
+          "video": {
+            "type": "string",
+            "description": "本地视频绝对路径（仅支持单个视频文件，如:/srv/xhs/output/video.mp4）"
+          },
+          "tags": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "话题标签列表（可选参数），如 [美食, 旅行, 生活]"
+          },
+          "schedule_at": {
+            "type": "string",
+            "description": "定时发布时间（可选），ISO8601格式如 2024-01-20T10:30:00+08:00，支持1小时至14天内。不填则立即发布"
+          },
+          "is_original": {
+            "type": "boolean",
+            "description": "是否声明原创（可选），true为声明原创，false或不填则不声明；请求原创但设置失败则中止发布"
+          },
+          "visibility": {
+            "type": "string",
+            "description": "可见范围（可选），支持: 公开可见(默认)、仅自己可见、仅互关好友可见。不填则默认公开可见"
+          },
+          "products": {
+            "type": [
+              "null",
+              "array"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "description": "商品关键词列表（可选），用于绑定带货商品。填写商品名称或商品ID，系统会自动搜索并选择第一个匹配结果。需账号已开通商品功能。示例: [面膜, 防晒霜SPF50]"
+          },
+          "activity": {
+            "type": "string",
+            "description": "关联活动名称（可选，别名 activity_name）。按发布页活动卡片 .activity-name 包含匹配；空则跳过；有值但页面无入口或无匹配卡片时明确报错中止"
+          }
+        },
+        "required": [
+          "title",
+          "content",
+          "video"
+        ],
+        "additionalProperties": false
+      },
+      "name": "publish_with_video"
+    },
+    {
+      "description": "仅查询原编号的持久Go提交回执并归账任务；不导航、不发送、不启用队列。新手动一级评论须编号、工具、准确内容指纹及目标一致；无记录或未确认成功不能记成功，未知结果继续保留。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "description": "原任务编号；仅查询同编号的持久提交回执并归账，不重新发送"
+          }
+        },
+        "required": [
+          "task_id"
+        ],
+        "additionalProperties": false
+      },
+      "name": "reconcile_task"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "title": "Reply Comment"
+      },
+      "description": "回复笔记下指定评论；配置运营运行时后，一次调用完成准确审稿匹配、已有授权核对、发送和回执归账。参数：feed_id、xsec_token、content，以及 comment_id 或 user_id 至少一个；run_id/approval_ref可选。需开启写操作。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "description": "可选已审稿批次；省略时按当前账号准确稿件唯一匹配"
+          },
+          "approval_ref": {
+            "type": "string",
+            "description": "可选已有授权记录引用；不替代实际授权"
+          },
+          "operation_id": {
+            "type": "string",
+            "description": "调用方稳定的提交编号；同编号同参数不重复提交，换参数报冲突"
+          },
+          "feed_id": {
+            "type": "string",
+            "description": "小红书笔记ID，从 list_feeds / search_feeds / get_feed_detail 获取"
+          },
+          "xsec_token": {
+            "type": "string",
+            "description": "访问令牌，与 feed 同条的 xsecToken 字段"
+          },
+          "comment_id": {
+            "type": "string",
+            "description": "目标评论ID（优先），从 get_feed_detail 评论列表的 id 获取；与 user_id 二选一或同时传"
+          },
+          "user_id": {
+            "type": "string",
+            "description": "目标评论用户ID，评论区 data-user-id；无 comment_id 时用此匹配第一条该用户评论"
+          },
+          "content": {
+            "type": "string",
+            "description": "回复内容"
+          }
+        },
+        "required": [
+          "feed_id",
+          "xsec_token",
+          "content"
+        ],
+        "additionalProperties": false
+      },
+      "name": "reply_comment_in_feed"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "title": "Reply Direct Message"
+      },
+      "description": "回复私信或仅打开会话。参数：conversation_id 或 name，content；open_only 为 true 时只打开不发送。真正发送需将 XHS_ALLOW_WRITE 设为 1（Enter 提交）。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "operation_id": {
+            "type": "string",
+            "description": "调用方稳定的提交编号；同编号同参数不重复提交，换参数报冲突"
+          },
+          "conversation_id": {
+            "type": "string",
+            "description": "会话ID（优先），打开后 URL 形如 /chat/ID；与 name 至少一个"
+          },
+          "name": {
+            "type": "string",
+            "description": "会话显示名（侧栏 .xhs-im-conv-item__name）；与 conversation_id 至少一个"
+          },
+          "content": {
+            "type": "string",
+            "description": "回复正文；open_only 为 true 时可空"
+          },
+          "open_only": {
+            "type": "boolean",
+            "description": "为 true 时只打开会话不发送（半自动）；省略或 false 时发送（需环境变量 XHS_ALLOW_WRITE 为 1）"
+          }
+        },
+        "additionalProperties": false
+      },
+      "name": "reply_direct_message"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true,
+        "title": "Reply Notification"
+      },
+      "description": "回复「评论和@」里的一条评论。comment_id 从 list_notifications 获取。适合处理收到的评论，无需先定位笔记。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "operation_id": {
+            "type": "string",
+            "description": "调用方稳定的提交编号；同编号同参数不重复提交，换参数报冲突"
+          },
+          "comment_id": {
+            "type": "string",
+            "description": "目标评论ID，从 list_notifications 的 comment_id 字段获取"
+          },
+          "content": {
+            "type": "string",
+            "description": "回复内容"
+          }
+        },
+        "required": [
+          "comment_id",
+          "content"
+        ],
+        "additionalProperties": false
+      },
+      "name": "reply_notification"
+    },
+    {
+      "annotations": {
+        "destructiveHint": true
+      },
+      "description": "人工核对 unknown 结果后记录结论；默认禁用，需 XHS_ALLOW_RECONCILE=1。没有平台证据不得把未知标为未提交",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "operation_id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "description": "confirmed 或 not_applied；需人工实际核对平台结果"
+          },
+          "evidence": {
+            "type": "string",
+            "description": "核对的链接或创作中心状态、核对时间与说明，不得推测"
+          }
+        },
+        "required": [
+          "operation_id",
+          "status",
+          "evidence"
+        ],
+        "additionalProperties": false
+      },
+      "name": "resolve_operation"
+    },
+    {
+      "description": "用户处理验证/权限等问题后，凭实际证据恢复同一任务；未知发送只可先查记录，不允许用此入口强行重发。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "task_id": {
+            "type": "string"
+          },
+          "evidence": {
+            "type": "string",
+            "description": "实际处理完成的证据；不能凭猜测恢复未知发送"
+          },
+          "approval_ref": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "task_id",
+          "evidence"
+        ],
+        "additionalProperties": false
+      },
+      "name": "resume_task"
+    },
+    {
+      "annotations": {
+        "readOnlyHint": true,
+        "title": "Search Feeds"
+      },
+      "description": "搜索小红书内容（需要已登录）",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "fresh": {
+            "type": "boolean",
+            "description": "跳过短期读取缓存，重新检查当前页面"
+          },
+          "compact": {
+            "type": "boolean",
+            "description": "省略图片/视频等大字段，保留文本、目标编号与互动数据"
+          },
+          "result_limit": {
+            "type": "integer",
+            "description": "限制返回的列表/评论条数，1..100；返回截断标记，不改变实际采集量"
+          },
+          "keyword": {
+            "type": "string",
+            "description": "搜索关键词"
+          },
+          "filters": {
+            "type": "object",
+            "properties": {
+              "sort_by": {
+                "type": "string",
+                "description": "排序依据: 综合|最新|最多点赞|最多评论|最多收藏,默认为'综合'"
+              },
+              "note_type": {
+                "type": "string",
+                "description": "笔记类型: 不限|视频|图文,默认为'不限'"
+              },
+              "publish_time": {
+                "type": "string",
+                "description": "发布时间: 不限|一天内|一周内|半年内,默认为'不限'"
+              },
+              "search_scope": {
+                "type": "string",
+                "description": "搜索范围: 不限|已看过|未看过|已关注,默认为'不限'"
+              },
+              "location": {
+                "type": "string",
+                "description": "位置距离: 不限|同城|附近,默认为'不限'"
+              }
+            },
+            "description": "筛选选项",
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "keyword"
+        ],
+        "additionalProperties": false
+      },
+      "name": "search_feeds"
+    },
+    {
+      "description": "持久保存任务并快速返回编号，默认交由同机后台执行；不会在本次工具调用里等待网页操作。重复内容返回原任务；真实发送仍需已有授权及写开关。",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "tool": {
+            "type": "string",
+            "description": "现有队列支持的读取/评论/发布工具名"
+          },
+          "payload": {
+            "type": "object",
+            "description": "该工具的原始参数对象；不要包含密码或登录凭据",
+            "additionalProperties": true
+          },
+          "approval_ref": {
+            "type": "string",
+            "description": "真实发送必须提供本轮已有明确授权的记录引用；填字符串本身不代表用户授权"
+          },
+          "not_before": {
+            "type": "number",
+            "description": "可选 Unix 秒；未到时间不会执行"
+          },
+          "dependency": {
+            "type": "string"
+          },
+          "run_id": {
+            "type": "string",
+            "description": "可选持续运营批次编号；验收后沿用该批次的持续授权与内部审查"
+          },
+          "auto_run": {
+            "type": [
+              "null",
+              "boolean"
+            ],
+            "description": "默认将本任务纳入后台队列；false只保存。旧版/手工入队任务不因升级自动执行"
+          }
+        },
+        "required": [
+          "tool",
+          "payload"
+        ],
+        "additionalProperties": false
+      },
+      "name": "submit_task"
+    },
+    {
+      "annotations": {
+        "readOnlyHint": true,
+        "title": "User Profile"
+      },
+      "description": "获取指定的小红书用户主页，返回用户基本信息，关注、粉丝、获赞量，以及指定 tab 下的内容。tab 可选 note(笔记,默认)、fav(收藏)、liked(点赞)，后两者可能被对方设为不公开",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "description": "小红书用户ID，从Feed列表获取"
+          },
+          "xsec_token": {
+            "type": "string",
+            "description": "访问令牌，从Feed列表的xsecToken字段获取"
+          },
+          "tab": {
+            "type": "string",
+            "description": "主页 tab: note(笔记,默认)|fav(收藏)|liked(点赞)。收藏和点赞可能被对方设为不公开"
+          }
+        },
+        "required": [
+          "user_id",
+          "xsec_token"
+        ],
+        "additionalProperties": false
+      },
+      "name": "user_profile"
+    }
+  ]
+}
