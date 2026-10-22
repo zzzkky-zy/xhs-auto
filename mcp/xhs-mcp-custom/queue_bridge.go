@@ -57,13 +57,27 @@ func queueBridge(ctx context.Context, request any) (map[string]any, error) {
 	cmd.Stdout = &out
 	cmd.Stderr = &stderr
 	if err := cmd.Run(); err != nil {
+		// Cancellation/deadline describes the bridge, not the platform outcome.
+		// The executor may already have dispatched an action. Preserve its
+		// durable receipt/unknown state; classification never authorizes retry.
+		if errors.Is(ctx.Err(), context.DeadlineExceeded) {
+			return nil, errors.New("ERR_TASK_EXECUTOR_DEADLINE: executor deadline exceeded; outcome unconfirmed; inspect private task state")
+		}
+		if errors.Is(ctx.Err(), context.Canceled) {
+			return nil, errors.New("ERR_TASK_EXECUTOR_CANCELLED: executor cancelled; outcome unconfirmed; inspect private task state")
+		}
+		var launchError *exec.Error
+		var pathError *os.PathError
+		if errors.As(err, &launchError) || errors.As(err, &pathError) {
+			return nil, errors.New("ERR_TASK_EXECUTOR_UNAVAILABLE: executor could not be launched; inspect private configuration")
+		}
 		message := safeBridgeError(stderr.Bytes())
 		if bridgeDomainError.MatchString(message) {
 			// Keep the executor's safe domain code first: MCP callers use it
 			// to distinguish authorization/quality refusal from process failure.
 			return nil, errors.New(message)
 		}
-		return nil, fmt.Errorf("ERR_TASK_EXECUTOR: %s", message)
+		return nil, errors.New("ERR_TASK_EXECUTOR_FAILED: executor failed; outcome unconfirmed; inspect private task state")
 	}
 	var value map[string]any
 	if err := json.Unmarshal(out.Bytes(), &value); err != nil {
@@ -72,7 +86,7 @@ func queueBridge(ctx context.Context, request any) (map[string]any, error) {
 	return value, nil
 }
 
-var bridgeDomainError = regexp.MustCompile(`^ERR_[A-Z0-9_]+(?:$|:|\s|；)`)
+var bridgeDomainError = regexp.MustCompile(`^(ERR_[A-Z0-9_]+)(?:$|:|\s|；)`)
 
 func safeBridgeError(data []byte) string {
 	var value struct {
@@ -82,7 +96,11 @@ func safeBridgeError(data []byte) string {
 		if len(value.Error) > 350 {
 			return "executor rejected request; inspect private task state"
 		}
-		return value.Error
+		if match := bridgeDomainError.FindStringSubmatch(value.Error); match != nil {
+			// Only the existing machine-code grammar is public. Even a short
+			// structured error can contain a token, command or private path.
+			return match[1] + ": executor rejected request; inspect private task state"
+		}
 	}
 	return "executor unavailable; inspect private state and configuration"
 }

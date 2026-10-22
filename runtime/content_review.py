@@ -109,6 +109,10 @@ class ContentReview:
             raise ValueError("ERR_CONTENT_PROFILE_CONFIRMATION_REQUIRED: " + ",".join(missing))
         return version, profile, missing
 
+    def profile_for_run(self, run, required=True):
+        """Default local behavior; cloud runs override with immutable versions."""
+        return self.profile(required=required)
+
     def file(self, value, root=None, max_bytes=16*1024*1024):
         path = Path(value) if isinstance(value, str) else Path("")
         if not path.is_absolute() or path.is_symlink() or not path.is_file():
@@ -235,7 +239,7 @@ class ContentReview:
                     raise ValueError("ERR_CONTENT_FINAL_CHANGED: edit the actual changed copy first")
                 if not isinstance(value.get("payload"), dict):
                     raise ValueError("ERR_CONTENT_FINAL_REQUIRED")
-        version, _, _ = self.profile(required=False)
+        version, _, _ = self.profile_for_run(run, required=False)
         body = {"value": value, "files": files, "parent": previous["seq"] if previous else None,
                 "profile_version": version}
         stamp = digest(body)
@@ -363,7 +367,7 @@ class ContentReview:
     def review(self, run, items, evidence):
         if not text(evidence):
             raise ValueError("ERR_QUALITY_REVIEW_REQUIRED: record the actual cross-item review")
-        version, profile, _ = self.profile()
+        version, profile, _ = self.profile_for_run(run)
         profile_files = self.profile_files(profile)
         old = run["body"].get("review") or {}
         plan_hash = digest({k: run["body"][k] for k in ("plan", "plan_ref")})
@@ -386,7 +390,7 @@ class ContentReview:
 
     def authorize(self, run, tool, payload):
         review = run["body"].get("review")
-        version, profile, _ = self.profile()
+        version, profile, _ = self.profile_for_run(run)
         if (not review or review.get("schema_version") != 2 or review.get("profile_version") != version
                 or review.get("plan_hash") != digest({k: run["body"][k] for k in ("plan", "plan_ref")})):
             raise ValueError("ERR_CONTENT_REVIEW_STALE: current configuration and plan require a new review")

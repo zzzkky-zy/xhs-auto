@@ -144,6 +144,13 @@ class RuntimeTests(unittest.TestCase):
     def tearDown(self):
         self.store.db.close(); self.tmp.cleanup()
 
+    def test_missing_task_machine_code_has_no_database_side_effects(self):
+        before = self.store.db.total_changes
+        with self.assertRaisesRegex(ValueError, '^ERR_TASK_NOT_FOUND:'):
+            self.store.task('synthetic-absent-task')
+        self.assertEqual(self.store.db.total_changes, before)
+        self.assertEqual(self.store.db.execute('SELECT COUNT(*) FROM tasks').fetchone()[0], 0)
+
     def fake(self):
         server = ThreadingHTTPServer(("127.0.0.1", 0), FakeMCP)
         thread = threading.Thread(target=server.serve_forever, daemon=True); thread.start()

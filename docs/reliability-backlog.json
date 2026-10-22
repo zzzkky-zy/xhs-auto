@@ -1,0 +1,177 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-22",
+  "scope": "Generic operational reliability; statuses require final implementation and verification evidence.",
+  "items": [
+    {
+      "id": "REL-01",
+      "priority": "P0",
+      "problem": "换环境后原任务目录/修复材料缺失；本地代码包含未远端覆盖的修改。历史发送记录不完整，容易把“未读到”误当“没执行”。",
+      "mechanism": "版本化交接manifest含账号/state_id、各库checkpoint、事件高水位、未决动作、素材hash、代码commit、配置指纹；开机先读manifest并检查引用。缺库时只读恢复，不初始化空库。安全备份与可分享脱敏报告分离，禁止token进交付包。",
+      "acceptance": {
+        "regression": "在提交前/提交后回执落盘前/投影更新前逐点故障注入；旧快照恢复必须识别缺口，禁止重发；迁移缺一个文件时返回具体缺项。",
+        "metrics": "已确认回执恢复丢失数=0；无证据自动重发=0；交接完整性检查覆盖率100%；记录恢复耗时，不先承诺固定秒数。"
+      },
+      "status": "partially_implemented_offline_verified",
+      "verification": "Quiescent same-path snapshot checker only; durable backup, trusted latest checkpoint and restore remain open. See CLOUD-HANDOFF-INTEGRITY.md."
+    },
+    {
+      "id": "REL-02",
+      "priority": "P0",
+      "problem": "某个评论主动作记录为not_applied、无输入无Send，任务镜像仍submitted_unknown；CURRENT-RUN说明也曾陈旧。",
+      "mechanism": "读状态同时返回authoritative_status、projection_status、source_event_id、projection_lag；显式幂等rebuild projection只读取账本生成镜像，不改变动作结果。摘要显示“镜像待同步”，不能误报未知发送。",
+      "acceptance": {
+        "regression": "主账本与镜像不一致、重启中断、重复同步、乱序事件；结果不可从unknown变success除非有独立真实证据。",
+        "metrics": "不可解释状态冲突=0；投影滞后可观测率100%；相同事件重建结果一致。"
+      },
+      "status": "partially_implemented_offline_verified",
+      "verification": "See HARDENING-20261022.md; broader acceptance remains open. Not released or installed."
+    },
+    {
+      "id": "REL-03",
+      "priority": "P0",
+      "problem": "工具在输入前拒绝与提交后响应丢失曾共用含混失败描述；旧retry逻辑容许形成链，可能不断重新尝试。",
+      "mechanism": "区分not_started、input_denied、prepared、submit_started、submitted_unknown、confirmed；一次root最多一个独立重试child，只有确认未执行且新增相关授权/修复证据才允许；成功和未知禁止重试。提交token消费与日志事务必须先于外部动作。",
+      "acceptance": {
+        "regression": "重复点击、重复工具响应、并发创建重试、重启后重试、子重试再试、同内容新ID、外部拒绝但本地仍继续；都不能产生第二次未授权Send。",
+        "metrics": "每许可Send次数≤1；重复发布/评论=0；未知动作保存率100%。"
+      },
+      "status": "partially_implemented_offline_verified",
+      "verification": "See HARDENING-20261022.md; broader acceptance remains open. Not released or installed."
+    },
+    {
+      "id": "REL-04",
+      "priority": "P0",
+      "problem": "用户暂停后旧执行进程/已领取动作仍可能持有写许可。当前文档明确queue暂停只影响新领取。",
+      "mechanism": "分别保留queue_pause和用户execution_stop；后者有持久generation，每个新副作用前校验。已在外部提交中的动作允许回执落盘但不再追加动作；恢复需明确用户指令且重新核身份/额度。",
+      "acceptance": {
+        "regression": "claim后暂停、输入后暂停、Send已开始后暂停、跨进程旧generation、定时唤醒、扫码完成；必须仅允许必要只读与归账。",
+        "metrics": "停止生效后新副作用=0；暂停后自动恢复=0。"
+      },
+      "status": "partially_implemented_offline_verified",
+      "verification": "See HARDENING-20261022.md; broader acceptance remains open. Not released or installed."
+    },
+    {
+      "id": "REL-05",
+      "priority": "P0",
+      "problem": "前日不足额的评论不应补算到前日；预约跨日帖子已占次日配额，不能由新批次重置。",
+      "mechanism": "账号级日账本绑定IANA时区；评论主评+回复共享额度；已成功+已保留名额+可信未归账上界保守核算。计划表按实际日历/平台档位编译，历史例外明确scope，不扩散到新批。",
+      "acceptance": {
+        "regression": "23:59到00:00、主评/回复混合、并发批次、未知提交、夏令时通用账号、旧批例外、新批剩余额度不足；不回填过去。",
+        "metrics": "超额/错日归账=0；预约间隔违规=0；已预约内容重复占额=0。"
+      },
+      "status": "planned"
+    },
+    {
+      "id": "REL-06",
+      "priority": "P0",
+      "problem": "公开产品邀请被误解成实际私信；已有许可反复索要，降低执行效率。",
+      "mechanism": "许可引用保存验证来源和适用范围，区分public_comment、private_message、benefit_fulfilment；同范围已有许可复用，不反复问；工具拒绝保留原因与是否执行，新相关证据仅支持有界重试，仍拒绝就停此动作。",
+      "acceptance": {
+        "regression": "公开邀请vs实际DM、授权撤回、内容承诺变化、其他账号、证据来自第三方、同证据重复重试。",
+        "metrics": "无变化重复授权询问趋近0；许可越界=0；外部拒绝绕过=0。"
+      },
+      "status": "planned"
+    },
+    {
+      "id": "REL-07",
+      "priority": "P0",
+      "problem": "安全验证、二维码身份确认、renderer error9、控制会话故障不同；reset曾易被表述成浏览器重启。",
+      "mechanism": "结构化incident包含action ownership、控制健康、页面状态、challenge/rate/permission各独立枚举unknown/yes/no、允许恢复能力；恢复permit一次消费。handoff绑定实际tab并有可核时戳，用户返回只触发验证不直接恢复写入。",
+      "acceptance": {
+        "regression": "tab消失但challenge latch仍在、身份错号、只reset解释器、二维码过期、恢复返回丢失、已授权普通CAPTCHA但要求手机身份验证。",
+        "metrics": "无证据解锁=0；同incident恢复次数有界；平台归因必须有证据。"
+      },
+      "status": "planned"
+    },
+    {
+      "id": "REL-08",
+      "priority": "P1",
+      "problem": "旧评论记录不全曾导致今日全停，原skill只要求有记录时做作者去重。",
+      "mechanism": "风险作用域细化为account/write/target/author/read；缺历史输出uncertainty budget及具体禁用对象。若当日剩余额度无法可信估算仍停写，但来源研究等无副作用工作可继续。",
+      "acceptance": {
+        "regression": "只缺三日前历史、缺当日成功上界、一个目标unknown、纯读取未知、已知作者重复。",
+        "metrics": "安全可执行任务被无关阻塞占用的时间；不以降低安全标准追求完成量。"
+      },
+      "status": "planned"
+    },
+    {
+      "id": "REL-09",
+      "priority": "P1",
+      "problem": "多标签积累、renderer崩溃；页面复用偏离原规则；无法精确归属的同URL页面不能随意关。",
+      "mechanism": "owned resource registry绑定operation/tab/context；终态自动产生cleanup候选，执行前核对所有权与现场，成功close读回inventory；unknown保留并设置数量/资源阈值，触发停止新增而非删证据。",
+      "acceptance": {
+        "regression": "同URL两页、close响应丢失、tab ID重用、终态前清理、崩溃但未提交、用户页混入。",
+        "metrics": "健康已终态owned tab遗留数量；峰值资源与崩溃频率；错误关闭=0。"
+      },
+      "status": "planned"
+    },
+    {
+      "id": "REL-10",
+      "priority": "P1",
+      "problem": "重复展开全部评论、反复读规则和整池导致慢；搜索/阅读计费粒度容易漏算卡片。",
+      "mechanism": "统一account budget service及明确charge unit；证据缓存含已读范围、read_at、内容指纹和失效条件；freshness policy按动作风险分层，不机械重读所有楼中楼。调度取各适用期限最大值，只抽一次持久化，不层层追加等待。",
+      "acceptance": {
+        "regression": "多执行进程交替读写、缓存命中、新卡弹层、嵌套评论未展开、等待期间重启、到期继续不重抽。",
+        "metrics": "有效阅读/总阅读比、重复读占比、预算违规=0、非必要固定等待时长。"
+      },
+      "status": "planned"
+    },
+    {
+      "id": "REL-11",
+      "priority": "P1",
+      "problem": "来源不足、阶段勾选冒充完成、真人封面只比hash、不完整示例或泛化模板易造成低价值内容。",
+      "mechanism": "阶段DAG和invalidate rules；同字节迁移不使审查全失效，内容/素材改变则使后续相关审查失效。质量门包括完整示例+可复制模板、事实出处、CTA精确匹配、真人数量与视觉对比记录；保留人工/模型实看边界，不将hash称视觉验收。",
+      "acceptance": {
+        "regression": "换内容不重审、图片内容改变但文件名同、同图不同压缩hash、引用来源未读完、缺固定CTA、伪造经历、题目相邻重复。",
+        "metrics": "返工率、来源复用率（透明）、完整示例覆盖率100%、视觉检查覆盖率100%。"
+      },
+      "status": "planned"
+    },
+    {
+      "id": "REL-12",
+      "priority": "P1",
+      "problem": "群、活动、模板标签、原创声明和实际预约时间可能与请求不同；活动自动加话题容易被误删。",
+      "mechanism": "publication manifest分别保存requested/observed；硬性用户指定对象不可自动替换，可选fallback由配置明确；回执读取是独立只读权限，不延长写租约。完成状态拆prepared/scheduled/public_visible，不自动跨级。",
+      "acceptance": {
+        "regression": "对象不可选、活动额外话题、原声明默认勾选、半小时档位、预约成功响应丢失、写租约过期后读取真实结果。",
+        "metrics": "已选对象回读覆盖率100%；请求与实际差异未报告=0；重复预约=0。"
+      },
+      "status": "planned"
+    },
+    {
+      "id": "REL-13",
+      "priority": "P1",
+      "problem": "通用运行文档的默认间隔及页面操作期限可能与账号当前确认的配置不同；skill模板缺失fallback不一定适用于用户硬性指定对象。",
+      "mechanism": "配置编译时展示effective_rules及来源，优先顺序为强制限制/权限边界→最新明确用户要求→已确认业务配置→skill默认。无法同时满足则报具体冲突，不能静默取宽松值。例外附生效批次/截止/账号，不能继承到新批。",
+      "acceptance": {
+        "regression": "后改规则只作用新批、旧预约不变、模板fallback禁止、比例C不足时A/B合规分配、配置更新后老grant仍引用旧指纹。",
+        "metrics": "运行时临场重新解释规则次数；同配置计划可重复生成一致结果。"
+      },
+      "status": "planned"
+    },
+    {
+      "id": "REL-14",
+      "priority": "P1",
+      "problem": "修复在任务里测试过，却没有全部进入当前仓库、远端或安装版本。",
+      "mechanism": "每条事故有issue/test/commit/release/install证据链；通用runtime、skill、schema、文档同步修改。临时恢复脚本只能带单次用途标签，不冒充公共API。构建manifest含源码commit、dirty标记、工具链、测试报告hash、包hash；安装端报告实际fingerprint。",
+      "acceptance": {
+        "regression": "dirty工作区打包、源码与schema不同步、版本相同代码不同、远端未包含commit、旧安装未更新；拒绝“已全部发布”状态。",
+        "metrics": "未远端保存的修复数量、提交到安装滞后、实际安装指纹一致率；完整交付定义不以测试项数量代替覆盖。"
+      },
+      "status": "partially_implemented_offline_verified",
+      "verification": "See HARDENING-20261022.md; broader acceptance remains open. Not released or installed."
+    },
+    {
+      "id": "REL-15",
+      "priority": "P2",
+      "problem": "逐步播报、同阻塞反复追问、夜间通知；配额压力导致无价值评论风险。",
+      "mechanism": "调度把依赖阻塞与独立可做项目分开，阻塞指纹去重；夜间非紧急延迟并合并，真实需要决定才通知；用户明确暂停后不再主动催扫码。内容价值优先，允许诚实不足额，不用低质内容凑数。",
+      "acceptance": {
+        "regression": "重复定时任务遇同challenge、无新信息、夜间、用户暂停、成功数未达目标；只通知一次必要变化。",
+        "metrics": "每成功动作工具调用数、人工介入次数/有效完成量、重复通知数=0；另观察有效互动质量，不以条数单独衡量。"
+      },
+      "status": "planned"
+    }
+  ]
+}

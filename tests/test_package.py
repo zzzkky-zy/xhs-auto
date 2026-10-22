@@ -24,6 +24,8 @@ class PackageBoundaryTests(unittest.TestCase):
         self.assertTrue(any(p.startswith("tests/") for p in source))
         self.assertIn("scripts/setup_codex.py", runtime)
         self.assertIn("scripts/cloud_host.py", runtime)
+        self.assertIn("scripts/cloud_handoff.py", runtime)
+        self.assertIn("docs/CLOUD-HANDOFF-INTEGRITY.md", runtime)
 
     def test_runtime_keeps_dependency_licenses(self):
         runtime = set(package.files("darwin-arm64"))
