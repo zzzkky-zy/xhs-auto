@@ -104,7 +104,8 @@
         "regression": "同URL两页、close响应丢失、tab ID重用、终态前清理、崩溃但未提交、用户页混入。",
         "metrics": "健康已终态owned tab遗留数量；峰值资源与崩溃频率；错误关闭=0。"
       },
-      "status": "planned"
+      "status": "partially_implemented_offline_verified",
+      "verification": "Round two optional host helpers and skill workflow integrated; offline tests passed. Real browser capability/performance not verified. See EFFICIENCY-ROUND2-20261022.md."
     },
     {
       "id": "REL-10",
@@ -115,7 +116,8 @@
         "regression": "多执行进程交替读写、缓存命中、新卡弹层、嵌套评论未展开、等待期间重启、到期继续不重抽。",
         "metrics": "有效阅读/总阅读比、重复读占比、预算违规=0、非必要固定等待时长。"
       },
-      "status": "planned"
+      "status": "partially_implemented_offline_verified",
+      "verification": "Round two optional host helpers and skill workflow integrated; offline tests passed. Real browser capability/performance not verified. See EFFICIENCY-ROUND2-20261022.md."
     },
     {
       "id": "REL-11",
@@ -148,7 +150,8 @@
         "regression": "后改规则只作用新批、旧预约不变、模板fallback禁止、比例C不足时A/B合规分配、配置更新后老grant仍引用旧指纹。",
         "metrics": "运行时临场重新解释规则次数；同配置计划可重复生成一致结果。"
       },
-      "status": "planned"
+      "status": "partially_implemented_offline_verified",
+      "verification": "Round two optional host helpers and skill workflow integrated; offline tests passed. Real browser capability/performance not verified. See EFFICIENCY-ROUND2-20261022.md."
     },
     {
       "id": "REL-14",

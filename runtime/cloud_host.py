@@ -10,6 +10,7 @@ import json
 import hashlib
 import os
 import stat
+import sqlite3
 import sys
 from pathlib import Path
 from cloud_actions import CloudActions, READ_OPERATIONS, _text
@@ -20,6 +21,9 @@ from cloud_navigation_target import observed_note_url
 from cloud_pacing import CloudPacing
 from cloud_recovery import CloudRecovery
 from cloud_cover_history import CloudCoverHistory
+from cloud_read_reuse import plan_read_reuse
+from cloud_owned_pages import CloudOwnedPages
+from effective_rules import explain_effective_rules
 from cloud_capabilities import ORIGINAL, LOCAL, AUTH, action_plan, catalog, validate_payload, CREATOR
 
 
@@ -31,6 +35,14 @@ S={'type':'string'}
 J={'type':'object'}
 ID={'operation_id':S}
 HELPERS=[
+ ('plan_cloud_read_reuse',{**ID,'original_read':J,'current_observation':J},('operation_id',),'Advise scoped reuse using an existing immutable action and actual observations; cached advice never consumes browser budget or authorizes Send.'),
+ ('explain_cloud_effective_rules',{'run_id':S,'user_rules':{'type':'array','items':J},'mandatory_rules':{'type':'array','items':J},'runtime_values':J},('run_id',),'Explain rules for an already opened batch and its exact pinned profile; no initialization, settings changes, scheduling or execution authority.'),
+ ('register_cloud_owned_page',{**ID,'resource_id':S,'observation':J},('operation_id','resource_id','observation'),'Register observed ownership of an exact self-created browser page; never adopt another page by URL.'),
+ ('get_cloud_owned_page',{**ID,'resource_id':S},('operation_id','resource_id'),'Inspect retained owned-page lifecycle; never recreates a close permit.'),
+ ('plan_cloud_owned_page_cleanup',{**ID,'resource_id':S,'observation':J},('operation_id','resource_id','observation'),'Read eligibility for exact owned-page cleanup; no browser call or permit.'),
+ ('request_cloud_owned_page_close',{**ID,'resource_id':S,'observation':J,'capability':J},('operation_id','resource_id','observation','capability'),'Consume at most one local native-close permit after terminal evidence and account pause checks; host authority remains required and unknown never replays.'),
+ ('record_cloud_owned_page_close',{**ID,'resource_id':S,'outcome':S,'observation':J},('operation_id','resource_id','outcome','observation'),'Record actual host-observed close outcome, not inferred success.'),
+ ('observe_cloud_owned_page_inventory',{**ID,'resource_id':S,'observation':J},('operation_id','resource_id','observation'),'Record an exact subsequent inventory observation without closing or renewing a permit.'),
  ('set_cloud_execution_pause',{'paused':{'type':'boolean'},'user_source':S,'reason':S},('paused','user_source','reason'),'Persist explicit user-directed execution pause or resume; audit source is not permission, never renews authorizations or cancels in-flight calls.'),
  ('cloud_daily_comment_status',{'date':S},(),'Summarize actual account-wide Shanghai-day comment receipts and unresolved reservations across all runs; cumulative totals are separate.'),
  ('record_cloud_cover_history',{'image_path':S,'publication_status':S,'source_evidence':S,'reference_person':S},('image_path','publication_status','source_evidence','reference_person'),'Append actual published/scheduled cover evidence and perceptual image fingerprint; no platform mutation.'),
@@ -133,6 +145,41 @@ class CloudHost:
     def _batch(self):
         if self.batch is None:self.batch=CloudBatch(self.config,action_ledger=self.actions)
         return self.batch
+
+    def _check_owned_page_pacing(self, operation_id):
+        """Read existing pacing state; never create a clean ledger for cleanup."""
+        row=self.actions._row(operation_id);binding=json.loads(row['binding_json'])
+        account=binding['expected_account'];path=self.actions.directory/'cloud-pacing.sqlite3'
+        if not path.is_file() or any(p.is_symlink() for p in (path,*path.parents)):
+            raise ValueError('ERR_OWNED_PAGE_PACING_REQUIRED: existing unlinked pacing ledger required')
+        related={row['attempt_id']}
+        for event in self.actions.db.execute('SELECT detail FROM action_events WHERE account=? AND operation_id=?',(self.actions.account,operation_id)):
+            detail=json.loads(event['detail'])
+            if isinstance(detail,dict) and isinstance(detail.get('attempt_id'),str):related.add(detail['attempt_id'])
+        db=None
+        try:
+            db=sqlite3.connect(path.as_uri()+'?mode=ro',uri=True)
+            db.execute('PRAGMA query_only=ON');db.execute('BEGIN')
+            if db.execute('SELECT 1 FROM pacing_blocks WHERE account=? AND active=1 LIMIT 1',(account,)).fetchone():
+                raise ValueError('ERR_OWNED_PAGE_PACING_BLOCK: actual account restriction remains active')
+            for attempt,status,evidence in db.execute("SELECT attempt,status,result FROM pacing_steps WHERE account=? AND status IN ('unknown','in_flight')",(account,)):
+                if status=='in_flight' or attempt in related:
+                    raise ValueError('ERR_OWNED_PAGE_STEP_PENDING: relevant unknown or active account call')
+                peers=self.actions.db.execute('SELECT operation_id,binding_json,claim_context FROM actions WHERE attempt_id=?',(attempt,)).fetchall()
+                observed=json.loads(evidence or '{}')
+                ended_read=(isinstance(observed,dict) and observed.get('call_ended') is True and all(observed.get(k) is False for k in ('challenge_active','rate_limited','permission_denied')))
+                independent=False
+                for peer in peers:
+                    prior=json.loads(peer['binding_json'])
+                    if prior.get('expected_account')!=account:continue
+                    independent=(ended_read and peer['operation_id']!=operation_id and prior.get('operation') in READ_OPERATIONS and prior.get('mutation') is False and bool(peer['claim_context']) and peer['claim_context']!=row['claim_context'])
+                    if not independent:break
+                if not independent:
+                    raise ValueError('ERR_OWNED_PAGE_STEP_PENDING: unknown page relation is not independently established')
+        except sqlite3.Error as error:
+            raise ValueError('ERR_OWNED_PAGE_PACING_REQUIRED: existing pacing schema unavailable') from error
+        finally:
+            if db is not None:db.close()
 
     def _review_payload(self, operation, payload, approval_ref=''):
         """Every content mutation must use an explicit, current reviewed run.
@@ -384,6 +431,40 @@ class CloudHost:
         if definition is None:raise ValueError('ERR_CLOUD_UNSUPPORTED: unknown tool')
         schema=definition['inputSchema']
         if not isinstance(args,dict) or not set(schema.get('required',[])).issubset(args) or (schema.get('additionalProperties') is False and set(args)-set(schema.get('properties',{}))):raise ValueError('invalid tool arguments')
+        if name=='plan_cloud_read_reuse':
+            binding=self.actions.get(args['operation_id'])['binding']
+            self.actions.execution_pause_status(binding['expected_account'])  # exact account check; reads remain permitted while paused
+            return plan_read_reuse(binding,args.get('original_read'),args.get('current_observation'),self.actions.clock())
+        if name=='explain_cloud_effective_rules':
+            if self.batch is None:raise ValueError('ERR_BATCH_NOT_OPEN: open the existing batch through the supported lifecycle first; diagnosis does not initialize storage')
+            config=self.actions._config();run=self.batch.continuous.run(args['run_id'])
+            version=run['body'].get('content_profile_version')
+            if not version:raise ValueError('ERR_RULES_PINNED_PROFILE_REQUIRED: no fallback to current profile')
+            _,profile,_=self.batch.continuous.content.profile_for_run(run,required=False)
+            pause=self.actions.execution_pause_status()
+            context={'account_id':pause['expected_account'],
+                     'run_id':args['run_id'],'profile_version':version,
+                     'batch_kind':'future' if profile.get('future_content_policy') is not None else 'legacy',
+                     'evaluated_at':dt.datetime.fromtimestamp(self.actions.clock(),dt.timezone.utc).isoformat()}
+            result=explain_effective_rules(config=config,profile=profile,context=context,
+                user_rules=args.get('user_rules',()),mandatory_rules=args.get('mandatory_rules',()),runtime_values=args.get('runtime_values'))
+            result['authoritative_execution_control']=dict(pause,source='persistent_account_execution_control',write_admission_blocked=pause['paused'])
+            supplied=args.get('runtime_values') or {}
+            result['runtime_control_mismatches']=[]
+            if 'execution_paused' in supplied and supplied['execution_paused'] is not pause['paused']:
+                result['runtime_control_mismatches'].append({'field':'execution_paused','supplied_snapshot_value':supplied['execution_paused'],'authoritative_value':pause['paused']})
+                result['needs_decision']=True
+            return result
+        if name in {'register_cloud_owned_page','get_cloud_owned_page','plan_cloud_owned_page_cleanup',
+                    'request_cloud_owned_page_close','record_cloud_owned_page_close','observe_cloud_owned_page_inventory'}:
+            pages=CloudOwnedPages(self.actions)
+            if name=='request_cloud_owned_page_close' and self.actions.execution_pause_status()['paused']:
+                raise ValueError('ERR_EXECUTION_PAUSED: page cleanup cannot bypass explicit account pause through a read action')
+            if name=='request_cloud_owned_page_close':self._check_owned_page_pacing(args['operation_id'])
+            method={'register_cloud_owned_page':pages.register,'get_cloud_owned_page':pages.get,
+                    'plan_cloud_owned_page_cleanup':pages.candidate,'request_cloud_owned_page_close':pages.request_close,
+                    'record_cloud_owned_page_close':pages.record_result,'observe_cloud_owned_page_inventory':pages.observe_inventory}[name]
+            return method(**args)
         if name=='set_cloud_execution_pause':return self.actions.set_execution_pause(**args)
         if name=='cloud_daily_comment_status':
             from cloud_daily_comments import DailyComments

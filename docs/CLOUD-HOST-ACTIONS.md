@@ -812,3 +812,45 @@ installations or platform-scheduled posts. There is a gap between issuing a
 permit and the external tool call; callers must stop using unconsumed permits
 when pause arrives. An already issued/in-flight browser call cannot be revoked
 by this SQLite latch. Save its actual outcome without retrying blindly.
+
+## Optional efficiency helpers (offline-verified contracts)
+
+- `plan_cloud_read_reuse(operation_id, original_read?, current_observation?)` loads the actual
+  stored action binding; no caller-supplied binding is accepted. Returns scoped补读 advice only,
+  no pacing credit, freshness forgery or Send permission. See `CLOUD-READ-REUSE.md`.
+- `explain_cloud_effective_rules(run_id, user_rules?, mandatory_rules?, runtime_values?)` requires
+  an already open batch subsystem and the run's stored profile version. It never creates a batch
+  for diagnostics or substitutes the latest profile. Caller rules/runtime snapshots remain
+  unverified explanatory inputs, not authorizations. See `EFFECTIVE-RULES.md`.
+- `register_cloud_owned_page`, `get_cloud_owned_page`, `plan_cloud_owned_page_cleanup`,
+  `request_cloud_owned_page_close`, `record_cloud_owned_page_close`, and
+  `observe_cloud_owned_page_inventory` implement the explicit lifecycle in `CLOUD-OWNED-PAGES.md`.
+  The helper does not itself close a tab; the host must verify official-tool capabilities and
+  normal execution authority. Missing native instance evidence means preserve/skip, never invent.
+
+Before issuing any close permit, the host checks exact-account pause and the **existing** pacing
+ledger using `mode=ro`, `query_only`, and SELECT in one read transaction (not immutable, so WAL is
+visible). Missing/unrecognized state is not initialized into a clean ledger. Real account blocks,
+any account call still in flight, and related/unproven-independent unknown steps prevent closing.
+An unknown step from a positively different nonempty browser context and a stored pure-read action
+is not, by itself, a permanent global cleanup block. Unmapped historical attempts remain blocked.
+No pacing counts or historical facts are modified by this check; SQLite WAL reader bookkeeping is
+not claimed to have zero filesystem side effects. The read check and external browser close are
+not atomic; the tool host must still honor authorization and current browser evidence at dispatch.
+
+These helpers do not add browser acceptance or live speed claims. Old paths stay available;
+existing CloudHost initialization semantics remain unchanged. Only explicit register/request/result
+calls write local owned-page records; a consumed unknown close is never reissued after restart.
+
+The independent old-read exception requires an actual persisted step result: after the single call
+ends, `record_cloud_browser_step(..., outcome='unknown', evidence={call_ended:true,
+challenge_active:false, rate_limited:false, permission_denied:false, ...})` may preserve the observed
+facts through the existing tool. Do not invent these fields to obtain cleanup. Missing proof stays
+blocked. The action must also be a stored READ_OPERATION in a different known browser context.
+All own historical `attempt_id` values in action events stay related, even if another peer has reused
+an attempt identifier. This does not reconcile the old unknown or allow replay; it only avoids
+blocking an independent already-finished page. Active account restrictions always take precedence.
+
+Rule explanation additionally returns `authoritative_execution_control` read from persistent exact
+account state. A caller's `runtime_values.execution_paused` is only a supplied snapshot; disagreement
+appears in `runtime_control_mismatches` and cannot hide the true pause or resume execution.

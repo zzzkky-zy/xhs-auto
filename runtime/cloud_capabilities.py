@@ -43,7 +43,7 @@ def capability(name):
 
 
 def catalog():
-    return {'original_tool_count':len(ORIGINAL),'follow_unfollow_in_original':False,'capabilities':[capability(name) for name in sorted(ORIGINAL)],'native_host_bridge':'assistant executes official CUA calls; no external browser RPC endpoint','approval_boundary':'Ledger evidence does not grant authority. Host checks actual owner instruction and policy before each side effect.'}
+    return {'original_tool_count':len(ORIGINAL),'follow_unfollow_in_original':False,'capabilities':[capability(name) for name in sorted(ORIGINAL)],'native_host_bridge':'assistant executes official CUA calls; no external browser RPC endpoint','approval_boundary':'Ledger evidence does not grant authority. Host checks actual owner instruction and policy before each side effect.','local_efficiency_helpers':{'read_reuse':'pure scoped advice; no browser read credit or Send authority','owned_pages':'host-reported exact ownership with one consumed close permit; unknown is never retried','effective_rules':'diagnostic view of existing run-pinned rules; does not apply settings'},'efficiency_verification_scope':'offline contracts only; no measured live speed or browser acceptance'}
 
 
 def _validate(value, schema, path='payload', depth=0):

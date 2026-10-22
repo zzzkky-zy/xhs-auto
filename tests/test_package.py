@@ -27,6 +27,18 @@ class PackageBoundaryTests(unittest.TestCase):
         self.assertIn("scripts/cloud_handoff.py", runtime)
         self.assertIn("docs/CLOUD-HANDOFF-INTEGRITY.md", runtime)
 
+    def test_runtime_contains_efficiency_modules_docs_and_host_entrypoints(self):
+        runtime={p.relative_to(ROOT).as_posix() for p in package.files('linux-amd64')}
+        for path in ('runtime/cloud_read_reuse.py','runtime/cloud_owned_pages.py','runtime/effective_rules.py',
+                     'docs/CLOUD-READ-REUSE.md','docs/CLOUD-OWNED-PAGES.md','docs/EFFECTIVE-RULES.md',
+                     'runtime/cloud_host.py','skills/xiaohongshu-operations/SKILL.md'):
+            self.assertIn(path,runtime)
+        host=(ROOT/'runtime/cloud_host.py').read_text()
+        for helper in ('plan_cloud_read_reuse','explain_cloud_effective_rules','register_cloud_owned_page',
+                       'get_cloud_owned_page','plan_cloud_owned_page_cleanup','request_cloud_owned_page_close',
+                       'record_cloud_owned_page_close','observe_cloud_owned_page_inventory'):
+            self.assertIn(helper,host)
+
     def test_runtime_keeps_dependency_licenses(self):
         runtime = set(package.files("darwin-arm64"))
         module = ROOT / "mcp/xhs-mcp-custom"
